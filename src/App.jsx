@@ -27,6 +27,7 @@ import Categories from "./Pages/Categories/Categories";
 import ContactUs from "./Pages/ContactUs/ContactUs";
 import Checkout from "./Pages/CheckOut/Checkout";
 import Payment from "./Pages/PaymentStatus/Payment";
+import Blogs from "./Pages/Blogs/Blogs";
 function App() {
   const location = useLocation().pathname.slice(1);
   return (
@@ -51,7 +52,7 @@ function App() {
             <Route path="categories" element={<Categories />} />
             <Route path="categories/:id" element={<SingleCategory />} />
       
-          {/* <Route path="product-details/:id" element={<ProductDetails />} /> */}
+       
           <Route path="cart" >
             <Route index element={<Cart />} />
             <Route path="checkout"  >
@@ -62,6 +63,7 @@ function App() {
           </Route>
           <Route path="brands" element={<Brands />} />
           <Route path="contact" element={<ContactUs />} />
+          <Route path="Blogs" element={<Blogs />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
