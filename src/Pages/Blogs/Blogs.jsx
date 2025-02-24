@@ -5,16 +5,26 @@ import user from "../../../public/svgs/user.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-
+import { FaLink } from "react-icons/fa";
 const Blogs = () => {
   const blogCards = Array.from({ length: 12 }, (_, idx) => (
     <div
       key={idx}
-      className="flex flex-col justify-center items-center gap-6 rounded-sm"
+      className="flex flex-col justify-center items-center gap-4 rounded-sm"
     >
-      <div className="bg-[#161819] p-3 rounded-[30px]">
-        <img src={img1} className="rounded-[12px] object-cover" />
+      <div className="bg-[#161819] p-3 rounded-[30px] flex justify-center relative overflow-hidden group">
+        <img
+          src={img1}
+          className="rounded-[12px] cursor-pointer object-cover w-[80%] transform transition-transform duration-500 group-hover:scale-110"
+        />
+
+        <div className="absolute inset-0 bg-black bg-opacity-30 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500  cursor-pointer">
+          <span className="text-white text-2xl font-bold">
+            <FaLink className="text-white" />
+          </span>
+        </div>
       </div>
+
       <div className="flex justify-center items-center gap-2">
         <div className="flex justify-center items-center gap-2">
           <img src={user} className="w-3 h-3" />
@@ -22,13 +32,15 @@ const Blogs = () => {
         </div>
         <div className="flex justify-center items-center gap-2">
           <img src={calender} className="w-3 h-3" />
-          <span className="text-[16px] text-[#ed1d24]">August 3, 2022</span>
+          <span className="text-[14px] text-[#ed1d24]">August 3, 2022</span>
         </div>
       </div>
-      <h1 className="text-[#a9afc3] text-[18px] capitalize">
+
+      <h3 className="text-[#a9afc3] text-[16px] capitalize">
         Blog Title Written here
-      </h1>
-      <button className="px-8 py-2 rounded-full text-[16px] bg-[#a61c00] text-[#a9afc3]">
+      </h3>
+
+      <button className="px-8 py-2 rounded-full text-[16px] bg-[#ff0000] text-[#fff]">
         Read More
       </button>
     </div>
@@ -36,7 +48,6 @@ const Blogs = () => {
 
   return (
     <div className="pt-24">
-      {/* عرض الشبكة في الشاشات الكبيرة */}
       <div className="hidden sm:grid grid-cols-12 gap-4">
         {blogCards.map((card, idx) => (
           <div key={idx} className="col-span-4 mb-10 max-md:col-span-6">
