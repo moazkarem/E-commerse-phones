@@ -28,6 +28,7 @@ import ContactUs from "./Pages/ContactUs/ContactUs";
 import Checkout from "./Pages/CheckOut/Checkout";
 import Payment from "./Pages/PaymentStatus/Payment";
 import Blogs from "./Pages/Blogs/Blogs";
+import SingleBrand from './Pages/SingleBrand/SingleBrand';
 function App() {
   const location = useLocation().pathname.slice(1);
   return (
@@ -62,6 +63,7 @@ function App() {
             </Route>
           </Route>
           <Route path="brands" element={<Brands />} />
+          <Route path="brands/:id" element={<SingleBrand />} />
           <Route path="contact" element={<ContactUs />} />
           <Route path="Blogs" element={<Blogs />} />
           <Route path="*" element={<ErrorPage />} />
