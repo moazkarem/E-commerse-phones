@@ -56,7 +56,7 @@ const Filter = () => {
   };
   return (
     <div className={style["filter"]}>
-      <div className="flex flex-col gap-4 w-full ">
+      <div className="flex flex-col gap-6 w-full ">
         <div className="p-4 bg-[#161819] rounded-[10px]">
           <h1 className="text-[#a9afc3] text-[22px] mb-4">Categories</h1>
           {Array.from({ length: 6 }, (_, idx) => (

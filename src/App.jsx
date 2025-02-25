@@ -29,6 +29,7 @@ import Checkout from "./Pages/CheckOut/Checkout";
 import Payment from "./Pages/PaymentStatus/Payment";
 import Blogs from "./Pages/Blogs/Blogs";
 import SingleBrand from './Pages/SingleBrand/SingleBrand';
+import About from "./Pages/About/About";
 function App() {
   const location = useLocation().pathname.slice(1);
   return (
@@ -51,6 +52,7 @@ function App() {
           <Route index element={<Home />} />
          
             <Route path="categories" element={<Categories />} />
+            <Route path="about" element={<About />} />
             <Route path="categories/:id" element={<SingleCategory />} />
       
        
