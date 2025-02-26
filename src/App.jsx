@@ -28,8 +28,9 @@ import ContactUs from "./Pages/ContactUs/ContactUs";
 import Checkout from "./Pages/CheckOut/Checkout";
 import Payment from "./Pages/PaymentStatus/Payment";
 import Blogs from "./Pages/Blogs/Blogs";
-import SingleBrand from './Pages/SingleBrand/SingleBrand';
+import SingleBrand from "./Pages/SingleBrand/SingleBrand";
 import About from "./Pages/About/About";
+import SingleProduct from "./Pages/SingleProduct/SingleProduct";
 function App() {
   const location = useLocation().pathname.slice(1);
   return (
@@ -50,22 +51,21 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />}>
           <Route index element={<Home />} />
-         
-            <Route path="categories" element={<Categories />} />
-            <Route path="about" element={<About />} />
-            <Route path="categories/:id" element={<SingleCategory />} />
-      
-       
-          <Route path="cart" >
+
+          <Route path="categories" element={<Categories />} />
+          <Route path="about" element={<About />} />
+          <Route path="categories/:id" element={<SingleCategory />} />
+
+          <Route path="cart">
             <Route index element={<Cart />} />
-            <Route path="checkout"  >
+            <Route path="checkout">
               <Route index element={<Checkout />} />
               <Route path="payment" element={<Payment />} />
-             
             </Route>
           </Route>
           <Route path="brands" element={<Brands />} />
           <Route path="brands/:id" element={<SingleBrand />} />
+          <Route path="singleproduct" element={<SingleProduct />} />
           <Route path="contact" element={<ContactUs />} />
           <Route path="Blogs" element={<Blogs />} />
           <Route path="*" element={<ErrorPage />} />

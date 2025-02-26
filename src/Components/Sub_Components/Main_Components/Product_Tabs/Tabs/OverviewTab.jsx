@@ -6,8 +6,8 @@ export default function OverviewTab() {
   return (
     <article className="flex flex-col  gap-8">
       <div className="text-main text-xl font-medium">
-        The <span className="text-[red] font-medium">{currentItem.title}</span>{" "}
-        {currentItem.info}provides with fabulous sound quality
+        The <span className="text-[red] font-medium">Product Title</span>{" "}
+        currentItem.info provides with fabulous sound quality
       </div>
       <ul className="flex flex-col gap-2">
         <li className="text-main text-large list-disc">
@@ -21,8 +21,8 @@ export default function OverviewTab() {
       <p className="text-main text-large text-justify leading-[30px]">
         Buy the{" "}
         <span className="text-main text-xl font-medium">
-          {currentItem.title}
-          {currentItem.info}
+          Product Title
+           Product info
         </span>{" "}
         which offers you with fabulous music experience by providing you with
         awesome sound quality that you can never move on from. Enjoy perfect

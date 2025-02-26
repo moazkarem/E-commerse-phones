@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { CurrentItemContext } from "../../../../Contexts/CurrentItemProvider";
 export default function SpecificationsTab() {
-  const currentItem = useContext(CurrentItemContext);
+  // const currentItem = useContext(CurrentItemContext);
   const tableData = [
-    { label: "Brand", target: currentItem.brand },
-    { label: "Model", target: currentItem.title },
-    { label: "Generic Name", target: currentItem.category },
-    { label: "Headphone Type", target: currentItem.type },
-    { label: "Connectivity", target: currentItem.connectivity },
+    { label: "Brand", target:' currentItembrand '},
+    { label: "Model", target: "currentItem.title" },
+    { label: "Generic Name", target: "currentItem.category" },
+    { label: "Headphone Type", target: "currentItem.type" },
+    { label: "Connectivity", target: "currentItem.connectivity" },
     { label: "Microphone", target: "Yes" },
   ];
   return (
