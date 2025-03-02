@@ -1,8 +1,17 @@
+import { useDispatch, useSelector } from "react-redux";
 import img1 from "../../../public/images/sonyXb910n-2.png";
 import BreadCrumb from "../../Components/BreadCrump/BreadCrump";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
+import { useEffect } from "react";
+import { getAllCategories } from "../../store/Categories/actions";
 const Categories = () => {
+  const dispatch = useDispatch();
+  const { categories, loading, error } = useSelector((state) => state.categoriesRed);
+  console.log(categories.products , 'test data')
+  useEffect(() => {
+    dispatch(getAllCategories()); 
+  }, [dispatch]);
   return (
     <div className="pb-20">
       <div>
