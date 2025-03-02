@@ -1,13 +1,39 @@
 import { useContext } from "react";
 import CartItem from "./Cart_Item/CartItem";
-import { CartContext } from "../../../Contexts/CartProvider";
-
+import img1 from "../../../../../public/images/sonyXb400-1.png";
 export default function CartList() {
-  const { cartItems } = useContext(CartContext);
-
+  const cartItems = [
+    {
+      id: 1,
+      images: [img1, img1],
+      info: "lorem ipsum dolor",
+      brand: "sony",
+      originalPrice: 170,
+      finalPrice: 220,
+      title: "Phone Iohoe",
+    },
+    {
+      id: 2,
+      images: [img1, img1],
+      info: "lorem ipsum dolor",
+      brand: "sony",
+      originalPrice: 170,
+      finalPrice: 220,
+      title: "Phone Iohoe",
+    },
+    {
+      id: 3,
+      images: [img1, img1],
+      info: "lorem ipsum dolor",
+      brand: "sony",
+      originalPrice: 170,
+      finalPrice: 220,
+      title: "Phone Iohoe",
+    },
+  ];
   return (
     <ul className="cart-list w-full lg:w-3/5 overflow-y-scroll max-h-[380px] bg-[#161819] px-4 sm:px-8 ">
-      {cartItems.map((item) => (
+      {cartItems?.map((item) => (
         <CartItem
           key={item.id}
           itemId={item.id}

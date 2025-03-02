@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { FaLink } from "react-icons/fa";
+import BreadCrumb from "../../Components/BreadCrump/BreadCrump";
 const Blogs = () => {
   const blogCards = Array.from({ length: 12 }, (_, idx) => (
     <div
@@ -47,21 +48,26 @@ const Blogs = () => {
   ));
 
   return (
-    <div className="pt-24">
-      <div className="hidden sm:grid grid-cols-12 gap-4">
-        {blogCards.map((card, idx) => (
-          <div key={idx} className="col-span-4 mb-10 max-md:col-span-6">
-            {card}
-          </div>
-        ))}
+    <div className="">
+      <div >
+        <BreadCrumb base={"Home"} page={"Blogs"} />
       </div>
-
-      <div className="sm:hidden relative">
-        <Swiper spaceBetween={10} slidesPerView={1.3}>
+      <div className="">
+        <div className="hidden sm:grid grid-cols-12 gap-4">
           {blogCards.map((card, idx) => (
-            <SwiperSlide key={idx}>{card}</SwiperSlide>
+            <div key={idx} className="col-span-4 mb-10 max-md:col-span-6">
+              {card}
+            </div>
           ))}
-        </Swiper>
+        </div>
+
+        <div className="sm:hidden relative">
+          <Swiper spaceBetween={10} slidesPerView={1.3}>
+            {blogCards.map((card, idx) => (
+              <SwiperSlide key={idx}>{card}</SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </div>
   );

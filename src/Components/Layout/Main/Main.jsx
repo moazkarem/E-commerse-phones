@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-// React Toastify
 import { Slide, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export default function Main() {

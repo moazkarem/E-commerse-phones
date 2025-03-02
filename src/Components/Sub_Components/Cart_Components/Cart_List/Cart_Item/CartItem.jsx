@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import QuantityButton from "../../../Buttons/Quantity_Button/QuantityButton";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
-import { memo, useCallback, useContext, useEffect, useState } from "react";
-import { CartContext } from "../../../../Contexts/CartProvider";
+import { memo } from "react";
 import PropTypes from "prop-types";
 
 function CartItem({
@@ -14,31 +13,6 @@ function CartItem({
   itemFinalPrice,
   itemTitle,
 }) {
-  const { removeCartItem, summaryListHandler } = useContext(CartContext);
-  const [quantity, setQuantity] = useState(
-    localStorage.getItem(`item_${itemId}_quantity`) !== null
-      ? Number(localStorage.getItem(`item_${itemId}_quantity`))
-      : 1
-  );
-  // Local storage
-  useEffect(
-    () => localStorage.setItem(`item_${itemId}_quantity`, quantity),
-    [quantity]
-  );
-  const calculateItemSummary = useCallback(() => {
-    return {
-      itemId: itemId,
-      itemTotalFinal: itemFinalPrice * quantity,
-      itemTotalOriginal: itemOriginalPrice * quantity,
-      itemTotalDiscount: (itemOriginalPrice - itemFinalPrice) * quantity,
-    };
-  }, [itemId, itemFinalPrice, itemOriginalPrice, quantity]);
-
-  useEffect(() => {
-    const newItemSummary = calculateItemSummary();
-    summaryListHandler(newItemSummary);
-  }, [quantity, calculateItemSummary]);
-
   return (
     <li className="w-full  flex gap-4  border-b-[1px] border-[#ffffff30] py-6  md:max-h-[200px]">
       <Link to={`/product-details/${itemId}`} className="w-2/5 md:w-1/5 ">
@@ -59,13 +33,11 @@ function CartItem({
             ${itemOriginalPrice.toLocaleString()}
           </del>
         </div>
-        <QuantityButton
-          currentQuantity={quantity}
-          quantitySetter={setQuantity}
-        />
+        <QuantityButton currentQuantity={10} quantitySetter={15} />
+
         <button
           className="remove-button"
-          onClick={() => removeCartItem(itemId)}
+          // onClick={() => removeCartItem(itemId)}
         >
           <MdOutlineRemoveShoppingCart />
         </button>

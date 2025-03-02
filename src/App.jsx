@@ -65,9 +65,9 @@ function App() {
           </Route>
           <Route path="brands" element={<Brands />} />
           <Route path="brands/:id" element={<SingleBrand />} />
-          <Route path="singleproduct" element={<SingleProduct />} />
+          <Route path="products/:id" element={<SingleProduct />} />
           <Route path="contact" element={<ContactUs />} />
-          <Route path="Blogs" element={<Blogs />} />
+          <Route path="blogs" element={<Blogs />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>

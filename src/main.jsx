@@ -32,15 +32,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HelmetProvider>
       <BrowserRouter basename="/X-Beat/">
-        <UserProvider>
-          <ProductsProvider>
-            <CartProvider>
+     
+       
+           
               <FocusProvider>
                 <App />
               </FocusProvider>
-            </CartProvider>
-          </ProductsProvider>
-        </UserProvider>
+           
+         
+       
       </BrowserRouter>
     </HelmetProvider>
   </React.StrictMode>

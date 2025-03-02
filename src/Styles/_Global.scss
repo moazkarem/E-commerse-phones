@@ -10,6 +10,9 @@
   scrollbar-width: thin;
   scrollbar-color: $thumbColor $trackColor;
 }
+.active{
+  color:#ed1d24;
+}
 img {
   user-select: none;
 }
@@ -130,7 +133,74 @@ del {
     color: $textColor;
   }
 }
-
+.rate {
+  display: flex;
+  gap: 3px;
+  .rc-rate {
+    .rc-rate-star {
+      color: #d6d6d6;
+      &.rc-rate-star-half {
+        .rc-rate-star-first {
+          color: #f5b634;
+        }
+      }
+      &.rc-rate-star-full {
+        .rc-rate-star-second {
+          color: #f5b634;
+        }
+      }
+    }
+  }
+  .rc-rate {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: normal;
+    font-style: normal;
+    outline: none;
+    line-height: 0;
+    .rc-rate-star {
+      margin: 0 1.5px;
+      padding: 0;
+      display: inline-block;
+      position: relative;
+      transition: all ease-in-out .3s;
+      color: #585858;
+      line-height: 0;
+      .rc-rate-star-first,
+      .rc-rate-star-second {
+        transition: all ease-in-out .3s;
+      }
+      .rc-rate-star-first {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        opacity: 0;
+        [dir="ltr"] & {
+          left: 0;
+          right: auto;
+        }
+      }
+      &.rc-rate-star-half {
+        .rc-rate-star-first {
+          color: #f5b634;
+          opacity: 1;
+        }
+      }
+      &.rc-rate-star-full {
+        .rc-rate-star-second {
+          color: #f5b634;
+        }
+      }
+    }
+  }
+}
 // Scrollbar
 ::-webkit-scrollbar {
   width: 8px;

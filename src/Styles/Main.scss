@@ -2,14 +2,12 @@
 @use "tailwindcss/base";
 @use "tailwindcss/components";
 @use "tailwindcss/utilities";
-
 // Main Styling
 @use "./Global";
 @use "./Mixins";
 @use "./Variables";
 
 // Layout
-@use "../Components/Layout/Header/Header";
 @use "../Components/Layout/Top_Button/TopButton";
 @use "../Components/Layout/Slider/Slider";
 

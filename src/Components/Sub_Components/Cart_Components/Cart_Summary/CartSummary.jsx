@@ -1,25 +1,24 @@
-import { useContext } from "react";
-import { CartContext } from "../../../Contexts/CartProvider";
+import { Link } from "react-router-dom";
+
 
 export default function CartSummary() {
-  const { cartItems, summaryTotal } = useContext(CartContext);
   return (
     <div className="w-full lg:w-2/5 cart-summary">
       <div className=" py-6 border-b-[1px] border-[#ffffff30]">
         <h5 className="text-main mb-10">
-          Order Summary ( {cartItems.length} items )
+          Order Summary (10 items )
         </h5>
         <ul className="flex flex-col gap-3">
           <li className="flex items-center">
             <p className="text-large text-main mr-auto">Original Price</p>
             <h6 className="text-main">
-              ${summaryTotal.totalOriginalPrice.toLocaleString()}
+             1500
             </h6>
           </li>
           <li className="flex items-center">
             <p className="text-large text-main mr-auto">Discount</p>
             <h6 className="text-[#008000]">
-              - ${summaryTotal.totalDiscount.toLocaleString()}
+              - 120
             </h6>
           </li>
           <li className="flex items-center">
@@ -32,10 +31,12 @@ export default function CartSummary() {
         <div className="flex items-center">
           <h5 className="text-main mr-auto">Total Price</h5>
           <h3 className="text-main">
-            ${summaryTotal.totalFinalPrice.toLocaleString()}
+            $1400
           </h3>
         </div>
+        <Link to={'/cart/checkout'}>
         <button className="full-button">Checkout</button>
+        </Link>
       </div>
     </div>
   );

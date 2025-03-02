@@ -3,10 +3,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css/pagination";
 import "swiper/css";
-import Arrowright from "../../../../public/svgs/arrow-right.svg"
-import Arrowleft from "../../../../public/svgs/arrow-left.svg";
-import BadIcon from "../../../../public/svgs/bag.svg";
-import styles from './styles/style.module.scss'
+import style from './styles/style.module.scss'
+import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
 import { offersData } from './data';
 import ProductCard from './ProductCard';
 const OurProducts = () => {
@@ -17,42 +16,37 @@ const OurProducts = () => {
       ));
   return (
   
-    <div className={`${styles["main-offers"]} main-offers`}>
+    <div className={`py-12 ${style['products']}`}>
       <div className='container'>
-        <div className="inner">
-          <div className="head-div">
-            <div>
-              <h6>يمكنك رؤية</h6>
-              <h3 className="title">منتجاتنا</h3>
+        <div className=" rounded-[6px] flex flex-col items-center ">
+          <div className="text-center w-full ">
+            <div className='flex flex-col justify-center items-center gap-4 mb-10'>
+              <h6 className='text-[#a9afc3] text-[16px] '>You Can See</h6>
+              <h3 className="text-[36px] text-[#a9afc3] ">Our Products</h3>
             </div>
           </div>
-          <div className="allcards-desktop">
-            {/* <Row>{renderSlides}</Row> */}
+          <div className="mb-6 w-full">
             <div className='container'>
-              <div className="cardsSwiper">
+              <div>
                 <Swiper
-                  
                   spaceBetween={30}
-                  navigation={{
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
-                  }}
+                
                   breakpoints={{
                     0: {
-                      slidesPerView: 1,
-                      spaceBetween: 10,
+                      slidesPerView: 1.5,
+                      spaceBetween: 15,
                     },
                     768: {
-                      slidesPerView: 3,
-                      spaceBetween: 10,
+                      slidesPerView: 2.5,
+                      spaceBetween: 15,
                     },
                     992: {
-                      slidesPerView: 3,
-                      spaceBetween: 10,
+                      slidesPerView: 2.5,
+                      spaceBetween: 15,
                     },
                     1200: {
-                      slidesPerView: 4,
-                      spaceBetween: 10,
+                      slidesPerView: 4.5,
+                      spaceBetween: 15,
                     },
                   }}
                   modules={[Navigation]}
@@ -60,14 +54,6 @@ const OurProducts = () => {
                   {renderSlides}
                 </Swiper>
 
-                <div className="arrow-btns">
-                  <button className="swiper-button swiper-button-next">
-                    <img src={Arrowright}  width="20" height="20" />
-                  </button>
-                  <button className="swiper-button swiper-button-prev">
-                    <img src={Arrowleft}  width="20" height="20" />
-                  </button>
-                </div>
               </div>
             </div>
           </div>
