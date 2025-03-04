@@ -1,8 +1,9 @@
-import axios from "axios"
-import server from "./server"
-
-export const getAllCategoriesApi = async ()=>{
-  const response =await axios.get('https://dummyjson.com/products')
-  // if(!response.)
-  return response.data
-}
+import server from "./server";
+export const getAllCategoriesApi = async () => {
+  try {
+    const response = await server.get("/api/v1/categories");
+    return response?.data?.data;
+  } catch (err) {
+    console.log("ERROR IN CATEGORIES API", err);
+  }
+};

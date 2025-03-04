@@ -8,7 +8,7 @@ import { CiHeart } from "react-icons/ci";
 const ProductCard = ({ item }) => {
   return (
     <div className="rounded-[10px]">
-      <div className="relative overflow-hidden cursor-pointer rounded-[10px] pt-[100%] group bg-[#222]">
+      <div className="relative overflow-hidden cursor-pointer rounded-[10px] pt-[100%] group bg-[#111]">
         <Link href={`products/${item.id}`}>
           <img
             src={item.image}
