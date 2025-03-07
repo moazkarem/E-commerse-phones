@@ -1,57 +1,62 @@
-import img1 from "../../../public/images/sonyXb910n-2.png";
+import { useEffect, useMemo, useState } from "react";
 import BreadCrumb from "../../Components/BreadCrump/BreadCrump";
-import { IoIosArrowForward } from "react-icons/io";
-import { IoIosArrowBack } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllbrands } from "../../store/Brands/actions";
+import BrandCard from "./BrandCard";
+import NullScreen from "../../Components/NullScreen/NullScreen";
+import Loading from "../../Components/Loading/Loading";
+import Pagination from "../../Components/pagination/Pagination";
 const Brands = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const { brands, loading } = useSelector((state) => state.brandsRed);
+  const { data } = brands;
+  const limit = 9;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllbrands(limit, currentPage));
+  }, [dispatch, limit, currentPage]);
+
+  const renderBrands = data?.map((brand) => (
+    <BrandCard key={brand._id} brand={brand} />
+  ));
+  //============================HANDEL LOADING ===========
+  if (loading)
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <Loading />
+      </div>
+    );
+  //============================HANDEL NULL SCREEN ===========
+  if (!data || data?.length === 0)
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <NullScreen msg="Sorry, there are no categories now." />
+      </div>
+    );
+
+  //============================HANDEL PAGINATION ===========
+  let pageCount = 0;
+
+  if (brands?.paginationResult) {
+    pageCount = brands?.paginationResult?.numberOfPages;
+  }
+  console.log(pageCount);
+  const handelPages = (page) => {
+    setCurrentPage(page);
+  };
   return (
     <div>
       <div>
         <BreadCrumb base={"Home"} page={"Brands"} />
       </div>
       <div className="grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-4">
-        {Array.from({ length: 12 }, (_, idx) => (
-          <div
-            key={idx}
-            className="brand-logo flex flex-col justify-center items-center gap-6 mb-10 cursor-pointer"
-          >
-            <div className="bg-[#222] p-3 rounded-[10px] group overflow-hidden">
-              <img
-                src={img1}
-                alt="brand"
-                className="w-full h-auto max-h-[500px] object-cover transform transition-all duration-300 group-hover:scale-105 "
-              />
-            </div>
-            <h5 className=" text-center text-[18px] text-[#a9afc3]  pt-4">
-              Brand Name
-            </h5>
-          </div>
-        ))}
+        {renderBrands}
       </div>
-      <div className="w-full flex justify-center items-center gap-5">
-        <span className="border border-[#ed1d24] p-1 rounded-full cursor-pointer">
-          <IoIosArrowBack className=" text-[30px]" />
-        </span>
-        <div className="flex justify-center items-center gap-4">
-          <span className="text-[16px] font-bold text-[#a9afc3] cursor-pointer">
-            1
-          </span>
-          <span className="text-[16px] font-bold text-[#a9afc3] cursor-pointer">
-            2
-          </span>
-          <span className="text-[16px] font-bold text-[#ed1d24] cursor-pointer">
-            3
-          </span>
-          <span className="text-[16px] font-bold text-[#a9afc3] cursor-pointer">
-            4
-          </span>
-          <span className="text-[16px] font-bold text-[#a9afc3] cursor-pointer">
-            5
-          </span>
-        </div>
-        <span className="border border-[#ed1d24] p-1 rounded-full cursor-pointer">
-          <IoIosArrowForward className=" text-[30px]" />
-        </span>
-      </div>
+      <Pagination
+        pageCount={pageCount}
+        onPress={handelPages}
+        currentPage={currentPage}
+      />
     </div>
   );
 };

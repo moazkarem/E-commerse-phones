@@ -2,14 +2,14 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
-const Pagination = ({ pageCount, onPress , currentPage }) => {
-  const handlePageClick = ({selected }) => {
-    onPress(selected +1); // تمرير رقم الصفحة الجديدة
+const Pagination = ({ pageCount, onPress, currentPage }) => {
+  const handlePageClick = ({ selected }) => {
+    onPress(selected + 1);
   };
 
   return (
     <ReactPaginate
-    forcePage={currentPage - 1}
+      forcePage={currentPage - 1}
       breakLabel="..."
       nextLabel={
         <span className="flex items-center justify-center border border-[#ed1d24] p-2 rounded-full cursor-pointer">
@@ -23,7 +23,7 @@ const Pagination = ({ pageCount, onPress , currentPage }) => {
       }
       onPageChange={handlePageClick}
       marginPagesDisplayed={2}
-      pageRangeDisplayed={3}
+      pageRangeDisplayed={2}
       pageCount={pageCount}
       containerClassName="flex justify-center space-x-2 mt-6"
       pageClassName="px-2 py-2 rounded-md cursor-pointer"

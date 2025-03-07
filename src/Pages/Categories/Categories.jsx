@@ -17,20 +17,22 @@ const Categories = () => {
     dispatch(getAllCategories(limit, currentPage));
   }, [dispatch, currentPage, limit]);
 
+  //============================HANDEL PAGINATION ===========
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage);
   };
+
   const pageCount = useMemo(() => {
     return categories.paginationResult?.numberOfPages || 0;
   }, [categories]);
-
+  //============================HANDEL LOADING ===========
   if (loading)
     return (
       <div className="w-full h-[100vh] flex justify-center items-center">
         <Loading />
       </div>
     );
-
+  //============================HANDEL NULL SCREEN ===========
   if (!categories.data || categories.data.length === 0)
     return (
       <div className="w-full h-[100vh] flex justify-center items-center">

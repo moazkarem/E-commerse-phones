@@ -28,7 +28,7 @@ const Navbar = () => {
       
       <div
         className={`navbar  ${
-          scrollY > 150 ? "bg-[#222]" : "bg-transparent "
+          scrollY > 40 ? "bg-[#222]" : "bg-transparent "
         } transition-all duration-500 fixed top-0 w-full z-50 h-20`}
       >
         <div className="container mx-auto px-4 flex justify-between  items-center sm:flex ">
@@ -65,7 +65,7 @@ const Navbar = () => {
               <li className="text-lg p-2">
                 <NavLink
                   to="/"
-                  className="text-white hover:text-[#ed1d24] hover:bg-transparent font-bold"
+                  className="text-white hover:text-[#ed1d24] hover:bg-transparent "
                 >
                   Home
                 </NavLink>
@@ -73,7 +73,7 @@ const Navbar = () => {
               <li className="text-lg p-2">
                 <NavLink
                   to="/categories"
-                  className="text-white hover:text-[#ed1d24] hover:bg-transparent font-bold"
+                  className="text-white hover:text-[#ed1d24] hover:bg-transparent "
                 >
                   Categories
                 </NavLink>
@@ -81,7 +81,7 @@ const Navbar = () => {
               <li className="text-lg p-2">
                 <NavLink
                   to="/blogs"
-                  className="text-white hover:text-[#ed1d24] hover:bg-transparent font-bold"
+                  className="text-white hover:text-[#ed1d24] hover:bg-transparent "
                 >
                   Blogs
                 </NavLink>
@@ -89,7 +89,7 @@ const Navbar = () => {
               <li className="text-lg p-2">
                 <NavLink
                   to="/about"
-                  className="text-white hover:text-[#ed1d24] hover:bg-transparent font-bold"
+                  className="text-white hover:text-[#ed1d24] hover:bg-transparent "
                 >
                   About
                 </NavLink>
@@ -97,7 +97,7 @@ const Navbar = () => {
               <li className="text-lg p-2">
                 <NavLink
                   to="/contact"
-                  className="text-white hover:text-[#ed1d24] hover:bg-transparent font-bold"
+                  className="text-white hover:text-[#ed1d24] hover:bg-transparent "
                 >
                   Contact
                 </NavLink>
