@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import BreadCrumb from "../../Components/BreadCrump/BreadCrump";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllbrands } from "../../store/Brands/actions";
@@ -6,9 +6,10 @@ import BrandCard from "./BrandCard";
 import NullScreen from "../../Components/NullScreen/NullScreen";
 import Loading from "../../Components/Loading/Loading";
 import Pagination from "../../Components/pagination/Pagination";
+import Error from '../../Components/Error/Error'
 const Brands = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { brands, loading } = useSelector((state) => state.brandsRed);
+  const { brands, loading , error } = useSelector((state) => state.brandsRed);
   const { data } = brands;
   const limit = 9;
   const dispatch = useDispatch();
@@ -16,8 +17,8 @@ const Brands = () => {
     dispatch(getAllbrands(limit, currentPage));
   }, [dispatch, limit, currentPage]);
 
-  const renderBrands = data?.map((brand) => (
-    <BrandCard key={brand._id} brand={brand} />
+  const renderBrands = data?.map((brand , index) => (
+    <BrandCard key={brand._id} brand={brand} index={index}/>
   ));
   //============================HANDEL LOADING ===========
   if (loading)
@@ -26,6 +27,13 @@ const Brands = () => {
         <Loading />
       </div>
     );
+   //============================HANDEL LOADING ===========
+  if (error)
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+       <Error msg={error}/>
+      </div>
+    ); 
   //============================HANDEL NULL SCREEN ===========
   if (!data || data?.length === 0)
     return (

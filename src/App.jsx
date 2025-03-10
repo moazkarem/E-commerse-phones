@@ -31,8 +31,12 @@ import Blogs from "./Pages/Blogs/Blogs";
 import SingleBrand from "./Pages/SingleBrand/SingleBrand";
 import About from "./Pages/About/About";
 import SingleProduct from "./Pages/SingleProduct/SingleProduct";
+import { useLayoutEffect } from "react";
 function App() {
   const location = useLocation().pathname.slice(1);
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [location]);
   return (
     <div
       className={`grid ${

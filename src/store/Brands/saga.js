@@ -4,6 +4,9 @@ import { getAllBrandsFailure, getAllBrandsSuccess } from "./actions";
 import {GET_ALL_BRANDS} from './actionTypes'
 function* getBrandsSaga({payload}) {
   const{limit , page} = payload
+  if(!navigator.onLine){
+   yield put( getAllBrandsFailure('You Are Offline Please Try Again'))
+  }
   try {
     const data = yield call(getBrandsApi , {limit , page});
     yield put(getAllBrandsSuccess(data));

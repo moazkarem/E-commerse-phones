@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css/pagination";
@@ -6,28 +6,57 @@ import "swiper/css";
 import style from "./styles/style.module.scss";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
-import { offersData } from "./data";
 import ProductCard from "./ProductCard";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllproducts } from "../../../store/actions";
+import Loading from "../../../Components/Loading/Loading";
+import Error from "../../../Components/Error/Error";
 const OurProducts = () => {
-  const renderSlides = offersData?.map((item, idx) => (
-    <SwiperSlide key={idx}>
-      <ProductCard item={item} />
+  const swiperRef = useRef(null);
+  const dispatch = useDispatch();
+  const { loading, error, products } = useSelector(
+    (state) => state.productsRed
+  );
+  useEffect(() => {
+    dispatch(getAllproducts());
+  }, [dispatch]);
+  //============================HANDEL DATA ===========
+  const { data } = products;
+  const renderSlides = data?.slice(0, 8)?.map((product, index) => (
+    <SwiperSlide key={product._id}>
+      <ProductCard product={product} index={index} />
     </SwiperSlide>
   ));
+
+  if (loading)
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <Loading />
+      </div>
+    );
+  //============================HANDEL LOADING ===========
+  if (error)
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <Error msg={error} />
+      </div>
+    );
   return (
     <div className={`pt-28 ${style["products"]}`}>
       <div className="container">
         <div className=" rounded-[6px] flex flex-col items-center ">
           <div className="text-center w-full ">
             <div className="flex flex-col justify-center items-center gap-4 mb-16">
-              <h6 className="text-[#a9afc3] text-[16px] ">You Can See</h6>
-              <h3 className="text-[28px] text-[#a9afc3] ">Our Products</h3>
+              <h3 className="text-[28px] text-[#a9afc3] ">Best Seller</h3>
             </div>
           </div>
           <div className="mb-6 w-full">
-            <div className="container">
+            <div className="container max-[350px]:p-0">
               <div>
                 <Swiper
+                  ref={swiperRef}
+                  modules={[Navigation]}
+                  navigation
                   spaceBetween={30}
                   breakpoints={{
                     0: {
@@ -51,10 +80,23 @@ const OurProducts = () => {
                       spaceBetween: 15,
                     },
                   }}
-                  modules={[Navigation]}
                 >
                   {renderSlides}
                 </Swiper>
+                <div className="flex justify-center items-center gap-6 pt-16">
+                  <button
+                    onClick={() => swiperRef.current?.swiper.slidePrev()}
+                    className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
+                  >
+                    <IoIosArrowBack className="text-[25px]" />
+                  </button>
+                  <button
+                    onClick={() => swiperRef.current?.swiper.slideNext()}
+                    className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
+                  >
+                    <IoIosArrowForward className="text-[25px]" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>

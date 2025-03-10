@@ -6,10 +6,14 @@ import Loading from "../../Components/Loading/Loading";
 import NullScreen from "../../Components/NullScreen/NullScreen";
 import Pagination from "../../Components/pagination/Pagination";
 import { useMemo } from "react";
+import Error from "../../Components/Error/Error";
+import { Link } from "react-router-dom";
 
 const Categories = () => {
   const dispatch = useDispatch();
-  const { categories, loading } = useSelector((state) => state.categoriesRed);
+  const { categories, loading, error } = useSelector(
+    (state) => state.categoriesRed
+  );
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 4;
 
@@ -32,6 +36,13 @@ const Categories = () => {
         <Loading />
       </div>
     );
+  //============================HANDEL ERROR ===========
+  if (error)
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <Error msg={error} />
+      </div>
+    );
   //============================HANDEL NULL SCREEN ===========
   if (!categories.data || categories.data.length === 0)
     return (
@@ -40,21 +51,22 @@ const Categories = () => {
       </div>
     );
 
-  const renderCategoies = categories?.data.map(({ image, name, slug }, idx) => (
-    <div
-      key={idx}
-      className="flex flex-col justify-center items-center gap-6 mb-10"
-    >
-      <div className="border border-[#596268] p-3 rounded-[10px] overflow-hidden group">
-        <img
-          src={image}
-          alt={slug}
-          className="w-full h-auto max-h-[500px] object-cover transform transition-transform duration-300 group-hover:scale-105 cursor-pointer"
-        />
-      </div>
-      <h5 className="text-center text-[18px] text-[#a9afc3]">{name}</h5>
-    </div>
-  ));
+  const renderCategoies = categories?.data.map(
+    ({ image, name, slug, _id }, idx) => (
+      <Link key={idx} to={`/categories/${_id}`}>
+        <div className="flex flex-col justify-center items-center gap-6 mb-10">
+          <div className="border border-[#596268] p-3 rounded-[10px] overflow-hidden group">
+            <img
+              src={image}
+              alt={slug}
+              className="w-full h-[260px] max-h-[300px] object-cover transform transition-transform duration-300 group-hover:scale-105 cursor-pointer"
+            />
+          </div>
+          <h5 className="text-center text-[18px] text-[#a9afc3]">{name}</h5>
+        </div>
+      </Link>
+    )
+  );
 
   return (
     <div className="pb-20">

@@ -10,10 +10,13 @@ import Loading from "../../../Components/Loading/Loading";
 const Categories = () => {
   const swiperRef = useRef(null);
   const dispatch = useDispatch();
-  const { categories, loading } = useSelector((state) => state.categoriesRed);
+  const { categories, loading, error } = useSelector(
+    (state) => state.categoriesRed
+  );
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
+  //============================HANDEL DATA ===========
   const renderCategories = categories?.data
     ?.slice(0, 8)
     ?.map(({ image, name, slug }, idx) => (
@@ -30,8 +33,21 @@ const Categories = () => {
         </div>
       </SwiperSlide>
     ));
-  if (loading) return <Loading />;
-  if (!categories) return null;
+  //============================HANDEL LOADING ===========
+  if (loading)
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <Loading />
+      </div>
+    );
+  //============================HANDEL ERROR ===========
+  if (error)
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <Error msg={error} />
+      </div>
+    );
+  //============================ START JSX ===========
   return (
     <div className="pt-28 relative">
       <h3 className="text-[28px] text-[#a9afc3] text-center mb-16 ">
