@@ -7,12 +7,13 @@ import {
 import { GET_ALL_PRODUCTS } from "./actionTypes";
 import { getProductsApi } from "../../../api/products";
 
-function* getAllproductsSaga() {
+function* getAllproductsSaga({ payload }) {
+  const { limit, page } = payload;
   if (!navigator.onLine) {
     yield put(getAllproductsFailure("You Are Offline , Please Try Againe"));
   }
   try {
-    const data = yield call(getProductsApi);
+    const data = yield call(getProductsApi, { limit, page });
     yield put(getAllproductsSuccess(data));
   } catch (error) {
     yield put(getAllproductsFailure(error));

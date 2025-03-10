@@ -27,20 +27,21 @@ const OurProducts = () => {
       <ProductCard product={product} index={index} />
     </SwiperSlide>
   ));
-
+  //============================HANDEL LOADING ===========
   if (loading)
     return (
       <div className="w-full h-[100vh] flex justify-center items-center">
         <Loading />
       </div>
     );
-  //============================HANDEL LOADING ===========
+  //============================HANDEL ERROR ===========
   if (error)
     return (
       <div className="w-full h-[100vh] flex justify-center items-center">
         <Error msg={error} />
       </div>
     );
+  //============================START JSX ===========
   return (
     <div className={`pt-28 ${style["products"]}`}>
       <div className="container">

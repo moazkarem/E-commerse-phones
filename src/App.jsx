@@ -32,10 +32,11 @@ import SingleBrand from "./Pages/SingleBrand/SingleBrand";
 import About from "./Pages/About/About";
 import SingleProduct from "./Pages/SingleProduct/SingleProduct";
 import { useLayoutEffect } from "react";
+import AllProducts from "./Pages/Products/AllProducts";
 function App() {
   const location = useLocation().pathname.slice(1);
   useLayoutEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, behavior: "instant" });
   }, [location]);
   return (
     <div
@@ -69,6 +70,7 @@ function App() {
           </Route>
           <Route path="brands" element={<Brands />} />
           <Route path="brands/:id" element={<SingleBrand />} />
+          <Route path="products" element={<AllProducts />} />
           <Route path="products/:id" element={<SingleProduct />} />
           <Route path="contact" element={<ContactUs />} />
           <Route path="blogs" element={<Blogs />} />
