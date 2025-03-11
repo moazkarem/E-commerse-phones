@@ -73,6 +73,11 @@ const Drawer = ({ isDrawerOpen, setIsDrawerOpen, toggleDrawer }) => {
             </NavLink>
           </li>
           <li className="text-lg p-2">
+            <NavLink to="/products" className="text-white hover:text-[#ed1d24] ">
+              Products
+            </NavLink>
+          </li>
+          <li className="text-lg p-2">
             <NavLink to="/about" className="text-white hover:text-[#ed1d24] ">
               About
             </NavLink>

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Filter from "./Filter/Filter";
 import SingleCard from "./SingleCard/SingleCard";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +15,6 @@ const AllProducts = () => {
   const { loading, error, products } = useSelector(
     (state) => state.productsRed
   );
-  console.log(products, "test pagi");
   useEffect(() => {
     dispatch(getAllproducts(limit, currentPage));
   }, [dispatch, limit, currentPage]);

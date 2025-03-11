@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./style.module.scss";
 import { Range, getTrackBackground } from "react-range";
+import { getAllproducts } from "../../../store/actions";
+import { useDispatch } from "react-redux";
 
 const Filter = () => {
+  const dispatch = useDispatch();
   const [colorOptions, setColorOptions] = useState([
     {
       id: 1,
@@ -54,9 +57,27 @@ const Filter = () => {
   const handleChange = (newValues) => {
     setValues(newValues);
   };
+  //============================HANDEL SEARCH INPUT FILTERATION ===========
+  const [search, setSearch] = useState("");
+
   return (
     <div className={style["filter"]}>
       <div className="flex flex-col gap-4 w-full ">
+        <div className="p-4 bg-[#161819] rounded-[10px]">
+          <h1 className="text-[#a9afc3] text-[22px] mb-4">Search</h1>
+          <input
+            placeholder="search an product"
+            className="w-full ps-3 text-white text-sm border-[#6c757d] outline-none rounded-[10px] py-4"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <button
+            onClick={() => dispatch(getAllproducts(10, 1, search))}
+            className="w-full rounded-[10px] py-3 mt-2 text-white bg-[#ed1d24]"
+          >
+            search
+          </button>
+        </div>
         <div className="p-4 bg-[#161819] rounded-[10px]">
           <h1 className="text-[#a9afc3] text-[22px] mb-4">Categories</h1>
           {Array.from({ length: 6 }, (_, idx) => (
@@ -102,7 +123,7 @@ const Filter = () => {
           ))}
         </div>
         <div className="p-4 bg-[#161819] rounded-[10px]">
-        <h1 className="text-[#a9afc3] text-[22px] mb-4">Price</h1>
+          <h1 className="text-[#a9afc3] text-[22px] mb-4">Price</h1>
           <div className="range-slider">
             <Range
               values={values}
@@ -143,12 +164,12 @@ const Filter = () => {
                 </div>
               )}
             />
-             <div className="flex justify-between items-center mt-3 w-full ">
-                  <h6 className="text-sm text-[#e0e0e0]">
+            <div className="flex justify-between items-center mt-3 w-full ">
+              <h6 className="text-sm text-[#e0e0e0]">
                 From {values[0]} $ to {values[1]} $
-                  </h6>
-                  <span className="filter-btn">Filter</span>
-                </div>
+              </h6>
+              <span className="filter-btn">Filter</span>
+            </div>
           </div>
         </div>
         <div className="p-4 bg-[#161819] rounded-[10px]">
@@ -179,8 +200,6 @@ const Filter = () => {
             ))}
           </form>
         </div>
-
-        
       </div>
     </div>
   );
