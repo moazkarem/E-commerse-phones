@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import style from "./style.module.scss";
 import { Range, getTrackBackground } from "react-range";
-import { getAllproducts } from "../../../store/actions";
-import { useDispatch } from "react-redux";
+import { getAllCategories } from "../../../store/actions";
+import { useDispatch, useSelector } from "react-redux";
 
-const Filter = () => {
-  const dispatch = useDispatch();
+const Filter = ({
+  searchWord,
+  setSearchWord,
+  products,
+  categoryChecked,
+  setCategoryChecked,
+}) => {
   const [colorOptions, setColorOptions] = useState([
     {
       id: 1,
@@ -57,65 +62,76 @@ const Filter = () => {
   const handleChange = (newValues) => {
     setValues(newValues);
   };
-  //============================HANDEL SEARCH INPUT FILTERATION ===========
-  const [search, setSearch] = useState("");
+  //============================HANDEL GET ALL CATEGORIES ===========
+  const dispatch = useDispatch();
+  const { categories, loading, error } = useSelector(
+    (state) => state.categoriesRed
+  );
+  useEffect(() => {
+    dispatch(getAllCategories());
+  }, [dispatch]);
 
+  const handelCatChange = (e) => {
+    let value = e.target.value;
+    setCategoryChecked((prevState) =>
+      e.target.checked
+        ? [...prevState, value]
+        : prevState.filter((val) => val !== value)
+    );
+  };
+  //============================HANDEL SEARCH INPUT FILTERATION ===========
+  const searchInputRef = useRef(null);
+  useEffect(() => {
+    if (searchInputRef.current) {
+      searchInputRef.current.focus(); // Focus on input when the component mounts
+    }
+  }, []);
+  const handelChange = (e) => {
+    const value = e.target.value;
+    localStorage.setItem("searchWord", value);
+    setSearchWord(value);
+  };
   return (
     <div className={style["filter"]}>
       <div className="flex flex-col gap-4 w-full ">
         <div className="p-4 bg-[#161819] rounded-[10px]">
           <h1 className="text-[#a9afc3] text-[22px] mb-4">Search</h1>
           <input
+            ref={searchInputRef}
             placeholder="search an product"
             className="w-full ps-3 text-white text-sm border-[#6c757d] outline-none rounded-[10px] py-4"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            value={searchWord}
+            onChange={handelChange}
           />
-          <button
-            onClick={() => dispatch(getAllproducts(10, 1, search))}
-            className="w-full rounded-[10px] py-3 mt-2 text-white bg-[#ed1d24]"
-          >
-            search
-          </button>
+          <h4 className="text-[16px] font-light capitalize text-[#ed1d24] mt-3">
+            {" "}
+            exist <b className="text-white mx-1">
+              {products?.results}
+            </b> product{" "}
+          </h4>
         </div>
+
         <div className="p-4 bg-[#161819] rounded-[10px]">
           <h1 className="text-[#a9afc3] text-[22px] mb-4">Categories</h1>
-          {Array.from({ length: 6 }, (_, idx) => (
-            <div key={idx} className="flex justify-between items-center mb-5">
+          {categories?.data?.slice(0, 10)?.map((category) => (
+            <div
+              key={category._id}
+              className="flex justify-between items-center mb-5"
+            >
               <div className="flex justify-center items-center gap-2">
                 <input
-                  type="checkbox"
-                  id={`electronics-${idx}`}
-                  name={`electronics-${idx}`}
                   className="checked:bg-[#a61c00]"
+                  type="checkbox"
+                  id={category?._id}
+                  name={category?.name}
+                  value={category?._id}
+                  onChange={handelCatChange}
                 />
                 <label
-                  htmlFor={`electronics-${idx}`}
-                  className="text-[#a9afc3] text-[18px] max-[992px]:!text-[16px]"
-                >
-                  Electronics {idx + 1}
-                </label>
-              </div>
-              <span className="text-[#a61c00] text-[18px]">(12)</span>
-            </div>
-          ))}
-        </div>
-        <div className="p-4 bg-[#161819] rounded-[10px]">
-          <h1 className="text-[#a9afc3] text-[22px] mb-4">Latest</h1>
-          {Array.from({ length: 6 }, (_, idx) => (
-            <div key={idx} className="flex justify-between items-center mb-5">
-              <div className="flex justify-center items-center gap-2">
-                <input
-                  type="checkbox"
-                  id={`electronics-${idx}`}
-                  name={`electronics-${idx}`}
-                  className="checked:bg-[#a61c00]"
-                />
-                <label
-                  htmlFor={`electronics-${idx}`}
+                  htmlFor={category?._id}
                   className="text-[#a9afc3] text-[18px]"
                 >
-                  Electronics {idx + 1}
+                  {category?.name}
                 </label>
               </div>
               <span className="text-[#a61c00] text-[18px]">(12)</span>

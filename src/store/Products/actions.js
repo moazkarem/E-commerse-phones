@@ -4,9 +4,9 @@ import {
   GET_ALL_PRODUCTS_FAILURE,
 } from "./actionTypes";
 
-export const getAllproducts = (limit , page , search) => ({
+export const getAllproducts = (limit , page , search , catQuery) => ({
   type: GET_ALL_PRODUCTS,
-  payload:{limit , page , search}
+  payload:{limit , page , search , catQuery}
 });
 export const getAllproductsSuccess = (payload) => ({
   type: GET_ALL_PRODUCTS_SUCCESS,

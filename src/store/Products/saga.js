@@ -1,6 +1,5 @@
 import { put, call, takeLatest, fork, all } from "redux-saga/effects";
 import {
-  getAllproducts,
   getAllproductsFailure,
   getAllproductsSuccess,
 } from "./actions";
@@ -8,15 +7,15 @@ import { GET_ALL_PRODUCTS } from "./actionTypes";
 import { getProductsApi } from "../../../api/products";
 
 function* getAllproductsSaga({ payload }) {
-  const { limit, page , search } = payload;
+  const { limit, page , search , catQuery } = payload;
   if (!navigator.onLine) {
     yield put(getAllproductsFailure("You Are Offline , Please Try Againe"));
   }
   try {
-    const data = yield call(getProductsApi, { limit, page , search });
+    const data = yield call(getProductsApi, { limit, page , search , catQuery });
     yield put(getAllproductsSuccess(data));
   } catch (error) {
-    yield put(getAllproductsFailure(error));
+    yield put(getAllproductsFailure(error.message));
   }
 }
 
