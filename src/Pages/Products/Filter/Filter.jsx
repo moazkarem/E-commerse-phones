@@ -1,15 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import style from "./style.module.scss";
 import { Range, getTrackBackground } from "react-range";
-import { getAllCategories } from "../../../store/actions";
+import { getAllbrands, getAllCategories } from "../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 const Filter = ({
   searchWord,
   setSearchWord,
   products,
-  categoryChecked,
   setCategoryChecked,
+  setBrandChecked,
+  setPriceFrom,
+  setPriceTo,
+  priceFrom,
+  priceTo,
+  setSort,
 }) => {
   const [colorOptions, setColorOptions] = useState([
     {
@@ -54,19 +59,10 @@ const Filter = ({
       name_en: "#F429EC",
     },
   ]);
-  const [values, setValues] = useState([40, 200]);
-  const STEP = 1;
-  const MIN = 0;
-  const MAX = 400;
 
-  const handleChange = (newValues) => {
-    setValues(newValues);
-  };
   //============================HANDEL GET ALL CATEGORIES ===========
   const dispatch = useDispatch();
-  const { categories, loading, error } = useSelector(
-    (state) => state.categoriesRed
-  );
+  const { categories } = useSelector((state) => state.categoriesRed);
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
@@ -79,6 +75,21 @@ const Filter = ({
         : prevState.filter((val) => val !== value)
     );
   };
+  //============================HANDEL GET ALL BRANDS ===========
+  const { brands } = useSelector((state) => state.brandsRed);
+
+  useEffect(() => {
+    dispatch(getAllbrands());
+  }, [dispatch]);
+
+  const heandelBrandChange = (e) => {
+    let value = e.target.value;
+    setBrandChecked((val) =>
+      e.target.checked
+        ? [...val, value]
+        : val.filter((brand) => brand !== value)
+    );
+  };
   //============================HANDEL SEARCH INPUT FILTERATION ===========
   const searchInputRef = useRef(null);
   useEffect(() => {
@@ -86,14 +97,54 @@ const Filter = ({
       searchInputRef.current.focus(); // Focus on input when the component mounts
     }
   }, []);
-  const handelChange = (e) => {
+  const handelsearchChange = (e) => {
     const value = e.target.value;
     localStorage.setItem("searchWord", value);
     setSearchWord(value);
   };
+  //============================HANDEL PRICE FILTER ===========
+  const [values, setValues] = useState([priceFrom, priceTo]);
+  const MIN = 0;
+  const MAX = 10000;
+  const STEP = 1;
+  const handlePriceChange = (newValues) => {
+    setValues(newValues);
+  };
+  useEffect(() => {
+    setPriceFrom(values[0]);
+    setPriceTo(values[1]);
+  }, [values]);
+  //============================HANDEL SORT FILTER ===========
+  const [selectedSort, setSelectedSort] = useState("");
+  const sort = [
+    "Highest Rated",
+    "Best Selling",
+    "Lowest Price",
+    "Highest Price",
+  ];
+  const handelSort = (sortBy) => {
+    setSelectedSort(sortBy);
+    switch (sortBy) {
+      case "Highest Price":
+        setSort("-price");
+        break;
+      case "Lowest Price":
+        setSort("+price");
+        break;
+      case "Best Selling":
+        setSort("-sold");
+        break;
+      case "Highest Rated":
+        setSort("-ratingsQuantity");
+        break;
+      default:
+        setSort("");
+    }
+  };
   return (
     <div className={style["filter"]}>
       <div className="flex flex-col gap-4 w-full ">
+        {/* ============================START SEARCH INPUT FILTER =========== */}
         <div className="p-4 bg-[#161819] rounded-[10px]">
           <h1 className="text-[#a9afc3] text-[22px] mb-4">Search</h1>
           <input
@@ -101,7 +152,7 @@ const Filter = ({
             placeholder="search an product"
             className="w-full ps-3 text-white text-sm border-[#6c757d] outline-none rounded-[10px] py-4"
             value={searchWord}
-            onChange={handelChange}
+            onChange={handelsearchChange}
           />
           <h4 className="text-[16px] font-light capitalize text-[#ed1d24] mt-3">
             {" "}
@@ -110,7 +161,7 @@ const Filter = ({
             </b> product{" "}
           </h4>
         </div>
-
+        {/* ============================START FILTER BY CATEGORY =========== */}
         <div className="p-4 bg-[#161819] rounded-[10px]">
           <h1 className="text-[#a9afc3] text-[22px] mb-4">Categories</h1>
           {categories?.data?.slice(0, 10)?.map((category) => (
@@ -138,6 +189,29 @@ const Filter = ({
             </div>
           ))}
         </div>
+        {/* ============================START FILTER BY BRAND =========== */}
+        <div className="p-4 bg-[#161819] rounded-[10px]">
+          <h1 className="text-[#a9afc3] text-[22px] mb-4">Brands</h1>
+          {brands?.data?.slice(0, 7)?.map(({ _id, name }) => (
+            <div key={_id} className="flex justify-between items-center mb-5">
+              <div className="flex justify-center items-center gap-2">
+                <input
+                  className="checked:bg-[#a61c00]"
+                  type="checkbox"
+                  id={_id}
+                  name={name}
+                  value={_id}
+                  onChange={heandelBrandChange}
+                />
+                <label htmlFor={_id} className="text-[#a9afc3] text-[18px]">
+                  {name}
+                </label>
+              </div>
+              <span className="text-[#a61c00] text-[18px]">(12)</span>
+            </div>
+          ))}
+        </div>
+        {/* ============================START FILTER BY PRICE =========== */}
         <div className="p-4 bg-[#161819] rounded-[10px]">
           <h1 className="text-[#a9afc3] text-[22px] mb-4">Price</h1>
           <div className="range-slider">
@@ -146,7 +220,7 @@ const Filter = ({
               step={STEP}
               min={MIN}
               max={MAX}
-              onChange={handleChange}
+              onChange={handlePriceChange}
               renderTrack={({ props, children }) => (
                 <div
                   onMouseDown={props.onMouseDown}
@@ -174,7 +248,7 @@ const Filter = ({
                   </div>
                 </div>
               )}
-              renderThumb={({ index, props, isDragged }) => (
+              renderThumb={({ index, props }) => (
                 <div {...props} className="thumps">
                   <div className="labeles">{values[index]}</div>
                 </div>
@@ -184,11 +258,29 @@ const Filter = ({
               <h6 className="text-sm text-[#e0e0e0]">
                 From {values[0]} $ to {values[1]} $
               </h6>
-              <span className="filter-btn">Filter</span>
+              {/* <span className="filter-btn">Filter</span> */}
             </div>
           </div>
         </div>
+        {/* ============================START FILTER BY SORTING =========== */}
         <div className="p-4 bg-[#161819] rounded-[10px]">
+          <h1 className="text-[#a9afc3] text-[22px] mb-4">Sort By </h1>
+          {sort?.map((item, idx) => (
+            <div key={idx} className="flex justify-between items-center mb-5">
+              <div className="flex justify-center items-center gap-2">
+                <span
+                  onClick={() => handelSort(item)}
+                  className={`${
+                    selectedSort === item ? "text-[#a61c00]" : "text-[#a9afc3]"
+                  } text-[18px] cursor-pointer`}
+                >
+                  {item}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* <div className="p-4 bg-[#161819] rounded-[10px]">
           <h1 className="text-[#a9afc3] text-[22px] mb-4">Colors</h1>
           <form className="flex items-center justify-start  flex-wrap">
             {colorOptions.map((item) => (
@@ -215,7 +307,7 @@ const Filter = ({
               </div>
             ))}
           </form>
-        </div>
+        </div> */}
       </div>
     </div>
   );

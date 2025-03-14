@@ -4,9 +4,18 @@ import {
   GET_ALL_PRODUCTS_FAILURE,
 } from "./actionTypes";
 
-export const getAllproducts = (limit , page , search , catQuery) => ({
+export const getAllproducts = (
+  limit,
+  page,
+  search,
+  catQuery,
+  brandQuery,
+  priceFrom,
+  priceTo ,
+  sort
+) => ({
   type: GET_ALL_PRODUCTS,
-  payload:{limit , page , search , catQuery}
+  payload: { limit, page, search, catQuery, brandQuery, priceFrom, priceTo ,sort },
 });
 export const getAllproductsSuccess = (payload) => ({
   type: GET_ALL_PRODUCTS_SUCCESS,

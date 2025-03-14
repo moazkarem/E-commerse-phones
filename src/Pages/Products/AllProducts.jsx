@@ -20,22 +20,51 @@ const AllProducts = () => {
     localStorage.getItem("searchWord") || ""
   );
   const [categoryChecked, setCategoryChecked] = useState([]);
-
+  const [brandChecked, setBrandChecked] = useState([]);
+  const [priceFrom, setPriceFrom] = useState(0);
+  const [priceTo, setPriceTo] = useState(5000);
+  const [sort , setSort] = useState('')
+  console.log(sort ,'sor')
   //============================HANDEL DATA ===========
   useEffect(() => {
-    console.log("categoryChecked:", categoryChecked);
-
     const catQuery =
       categoryChecked.length > 0
-        ? categoryChecked.map((val) => `category[in][]=${val}`).join("&")
+        ? categoryChecked
+            .map((category) => `category[in][]=${category}`)
+            .join("&")
         : "";
-    
+    const brandQuery =
+      brandChecked.length > 0
+        ? brandChecked.map((brand) => `brand[in][]=${brand}`).join("&")
+        : "";
+
     const search = setTimeout(() => {
-      dispatch(getAllproducts(limit, currentPage, searchWord, catQuery));
+      dispatch(
+        getAllproducts(
+          limit,
+          currentPage,
+          searchWord,
+          catQuery,
+          brandQuery,
+          priceFrom,
+          priceTo ,
+          sort
+        )
+      );
     }, 1000);
 
     return () => clearTimeout(search);
-  }, [dispatch, limit, currentPage, searchWord, categoryChecked]);
+  }, [
+    dispatch,
+    limit,
+    currentPage,
+    searchWord,
+    categoryChecked,
+    brandChecked,
+    priceFrom,
+    priceTo,
+    sort
+  ]);
 
   const renderProducts = products?.data?.map((product, index) => (
     <SingleCard product={product} key={product._id} index={index} />
@@ -71,6 +100,12 @@ const AllProducts = () => {
             products={products}
             categoryChecked={categoryChecked}
             setCategoryChecked={setCategoryChecked}
+            setBrandChecked={setBrandChecked}
+            setPriceFrom={setPriceFrom}
+            setPriceTo={setPriceTo}
+            priceTo={priceTo}
+            priceFrom={priceFrom}
+            setSort={setSort}
           />
         </div>
         <div className="col-span-9 max-md:col-span-12">
