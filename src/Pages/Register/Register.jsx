@@ -7,7 +7,8 @@ import Errormsg from "../../Components/Error/Errormsg";
 import { useDispatch, useSelector } from "react-redux";
 import { postSignUp } from "../../store/actions";
 import { useNavigate } from "react-router-dom";
-import BeatLoader from "react-spinners/BeatLoader";
+import BounceLoader from "react-spinners/BounceLoader";
+import Button from "../../Ui/Button";
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const Register = () => {
   } = useForm({
     resolver: yupResolver(signUpSchema),
   });
+  //============================HANDEL FIELDS LOOP ===========
   const renderFields = signUp?.map(({ name, type, icon, label }) => (
     <div key={name} className="relative">
       <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#6c757d] text-xl">
@@ -34,10 +36,9 @@ const Register = () => {
       {errors[name] && <Errormsg msg={errors[name]?.message} />}
     </div>
   ));
-
+  //============================HANDEL SUBMIT DATA ===========
   const onSubmit = (data) => {
     dispatch(postSignUp(data, navigate));
-   
   };
   return (
     <div className="min-h-screen flex justify-center items-center bg-[#141414] px-4">
@@ -48,24 +49,14 @@ const Register = () => {
           className="flex flex-col space-y-8"
         >
           {renderFields}
-          <button
-            className="w-full bg-[rgba(255,0,0,0.8)] text-white py-3 rounded-md hover:bg-[#ff0000] transition flex justify-center items-center gap-2"
-            disabled={loading}
+          <Button
+          loading={loading}
+            style={
+              "w-full bg-[rgba(255,0,0,0.8)] text-white py-3 rounded-md hover:bg-[#ff0000] transition flex justify-center items-center gap-2"
+            }
           >
-            {loading ? (
-              <>
-                <span className="animate-spin border-2 border-white border-t-transparent rounded-full w-4 h-4"></span>
-                <BeatLoader
-                  color="#d63636"
-                  margin={3}
-                  size={10}
-                  speedMultiplier={1}
-                />
-              </>
-            ) : (
-              "Sign Up"
-            )}
-          </button>
+            Sign Up
+          </Button>
         </form>
       </div>
     </div>
