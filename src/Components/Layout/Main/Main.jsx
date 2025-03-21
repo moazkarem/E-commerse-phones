@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 export default function Main() {
   return (
     <main className="main container m-auto relative">
-      <ToastContainer transition={Slide} />
+      {/* <ToastContainer transition={Slide} /> */}
       <Outlet />
     </main>
   );

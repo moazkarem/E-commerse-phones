@@ -11,7 +11,7 @@ import NullScreen from "../../Components/NullScreen/NullScreen";
 
 const AllProducts = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 9;
+  const limit = 8;
   const dispatch = useDispatch();
   const { loading, error, products } = useSelector(
     (state) => state.productsRed
@@ -23,8 +23,8 @@ const AllProducts = () => {
   const [brandChecked, setBrandChecked] = useState([]);
   const [priceFrom, setPriceFrom] = useState(0);
   const [priceTo, setPriceTo] = useState(5000);
-  const [sort , setSort] = useState('')
-  console.log(sort ,'sor')
+  const [sort, setSort] = useState("");
+  console.log(sort, "sor");
   //============================HANDEL DATA ===========
   useEffect(() => {
     const catQuery =
@@ -47,7 +47,7 @@ const AllProducts = () => {
           catQuery,
           brandQuery,
           priceFrom,
-          priceTo ,
+          priceTo,
           sort
         )
       );
@@ -63,7 +63,7 @@ const AllProducts = () => {
     brandChecked,
     priceFrom,
     priceTo,
-    sort
+    sort,
   ]);
 
   const renderProducts = products?.data?.map((product, index) => (
@@ -133,7 +133,5 @@ const AllProducts = () => {
     </>
   );
 };
-
-// ✅ فصل مكونات شاشة التحميل والخطأ
 
 export default AllProducts;

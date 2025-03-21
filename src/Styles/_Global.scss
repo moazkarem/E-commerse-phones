@@ -133,6 +133,32 @@ del {
     color: $textColor;
   }
 }
+@keyframes toastIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toastOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* تطبيق الأنيميشن على التوستات */
+.__toaster-container .react-hot-toast {
+  animation: toastIn 0.5s ease-out, toastOut 0.5s ease-in 2.5s forwards;
+}
 .rate {
   display: flex;
   gap: 3px;

@@ -115,11 +115,15 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="flex-none">
+            <NavLink to={'/login'}>
+
             <Button
+            
               style={`text-[#fff] bg-[#ed1d24]  rounded-full  text-[18px] py-[6px] font-light px-12 max-[450px]:px-8 hover:bg-[#ed1d24]`}
             >
               LOGIN{" "}
             </Button>
+            </NavLink>
           </div>
         </div>
       </div>
