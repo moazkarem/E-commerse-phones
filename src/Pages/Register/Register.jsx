@@ -7,12 +7,11 @@ import Errormsg from "../../Components/Error/Errormsg";
 import { useDispatch, useSelector } from "react-redux";
 import { postSignUp } from "../../store/actions";
 import { useNavigate } from "react-router-dom";
-import BounceLoader from "react-spinners/BounceLoader";
 import Button from "../../Ui/Button";
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading } = useSelector((state) => state.signUpRed);
+  const { loading } = useSelector((state) => state.authRed);
   const {
     register,
     handleSubmit,
@@ -50,7 +49,7 @@ const Register = () => {
         >
           {renderFields}
           <Button
-          loading={loading}
+            loading={loading}
             style={
               "w-full bg-[rgba(255,0,0,0.8)] text-white py-3 rounded-md hover:bg-[#ff0000] transition flex justify-center items-center gap-2"
             }

@@ -25,8 +25,8 @@ import SingleProduct from "./Pages/SingleProduct/SingleProduct";
 import AllProducts from "./Pages/Products/AllProducts";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
-import Forget from "./Pages/Forget/Forget";
 import Verifiy from "./Pages/Verifiy/Verifiy";
+import ForgetPassword from "./Pages/ForgetPassword/Forget";
 
 // Layout wrapper component that includes all layout elements
 function MainLayout({ children }) {
@@ -64,7 +64,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/forgetpassword" element={<Forget />} />
+        <Route path="/forgetpassword" element={<ForgetPassword />} />
         <Route path="/verifiy" element={<Verifiy />} />
 
         <Route

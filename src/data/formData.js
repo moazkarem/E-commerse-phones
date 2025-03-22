@@ -13,16 +13,21 @@ export const signUp = [
     type: "password",
     name: "password",
     label: "Password",
-   icon: CiLock,
+    icon: CiLock,
   },
   {
     type: "password",
     name: "passwordConfirm",
     label: "Confirm password",
-   icon: CiLock,
+    icon: CiLock,
   },
 ];
 export const signIn = [
-  { type: "email", name: "signin_form_mail", label: "Email" },
-  { type: "password", name: "signin_pass", label: "Password" },
+  {
+    type: "email",
+    name: "email",
+    label: "Email",
+    icon: MdOutlineMarkEmailRead,
+  },
+  { type: "password", name: "password", label: "Password", icon: CiLock },
 ];
