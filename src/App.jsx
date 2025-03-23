@@ -27,6 +27,7 @@ import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import Verifiy from "./Pages/Verifiy/Verifiy";
 import ForgetPassword from "./Pages/ForgetPassword/Forget";
+import ResetPassword from "./Pages/ResetPasswprd/ResetPassword";
 
 // Layout wrapper component that includes all layout elements
 function MainLayout({ children }) {
@@ -66,6 +67,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/forgetpassword" element={<ForgetPassword />} />
         <Route path="/verifiy" element={<Verifiy />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
 
         <Route
           path="/*"

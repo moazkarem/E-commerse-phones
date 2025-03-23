@@ -8,13 +8,20 @@ export const postSignUp = async ({ data }) => {
 
 export const postLoginApi = async ({ data }) => {
   const response = await server.post("/api/v1/auth/login", data);
-  console.log(response?.data, "from login auth api");
+  // console.log(response?.data, "from login auth api");
   return response;
 };
 
 export const postForgetPassApi = async ({ data }) => {
-  console.log(data , 'forg')
+
   const response = await server.post("/api/v1/auth/forgotPasswords", data);
-  console.log(response?.data, "from forget pass api");
+  // console.log(response?.data, "from forget pass api");
+  return response;
+};
+
+export const postVerifiyCodeApi = async ({ data }) => {
+
+  const response = await server.post("/api/v1/auth/verifyResetCode", data);
+  console.log(response?.data, "from verifiy api");
   return response;
 };

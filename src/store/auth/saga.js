@@ -1,5 +1,10 @@
 import { call, put, takeLatest, all, fork } from "redux-saga/effects";
-import { postForgetPassApi, postLoginApi, postSignUp } from "../../../api/auth";
+import {
+  postForgetPassApi,
+  postLoginApi,
+  postSignUp,
+  postVerifiyCodeApi,
+} from "../../../api/auth";
 import {
   postForgetPasswordFailure,
   postForgetPasswordSuccess,
@@ -7,8 +12,15 @@ import {
   postLoginSuccess,
   postSignUpFailure,
   postSignUpSuccess,
+  postVerifiyCodeFailure,
+  postVerifiyCodeSuccess,
 } from "./action";
-import { POST_FORGET_PASSWORD, POST_LOGIN, POST_SIGNUP } from "./actionTypes";
+import {
+  POST_FORGET_PASSWORD,
+  POST_LOGIN,
+  POST_SIGNUP,
+  POST_VERIFIY_CODE,
+} from "./actionTypes";
 import toast from "react-hot-toast";
 //================================ START SIGN UP SAGAS ==========
 function* postSignUpSaga({ payload }) {
@@ -66,7 +78,32 @@ function* watchForget() {
   yield takeLatest(POST_FORGET_PASSWORD, postForgetSaga);
 }
 
+//================================ START VERIFIY CODE SAGAS ==========
+
+function* postVerifiySaga({ payload }) {
+  const { data, navigate } = payload;
+  try {
+    const forgetData = yield call(postVerifiyCodeApi, { data });
+    yield put(postVerifiyCodeSuccess(forgetData));
+    toast.success("Success Process ✔");
+    setTimeout(() => navigate("/reset-password"), 1800);
+  } catch (error) {
+    toast.error("Invalid Code Please Try Again ");
+    yield put(postVerifiyCodeFailure(error.message));
+    console.log(error);
+  }
+}
+function* watchVerify() {
+  yield takeLatest(POST_VERIFIY_CODE, postVerifiySaga);
+}
+
+//================================ COLLECT ALL WATCHERS TO SEND MAIN SAGA
 function* authSagas() {
-  yield all([fork(watchSignUp), fork(watchLogin), fork(watchForget)]);
+  yield all([
+    fork(watchSignUp),
+    fork(watchLogin),
+    fork(watchForget),
+    fork(watchVerify),
+  ]);
 }
 export default authSagas;

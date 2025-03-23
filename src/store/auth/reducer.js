@@ -8,12 +8,16 @@ import {
   POST_FORGET_PASSWORD,
   POST_FORGET_PASSWORD_SUCCESS,
   POST_FORGET_PASSWORD_FAILURE,
+  POST_VERIFIY_CODE,
+  POST_VERIFIY_CODE_SUCCESS,
+  POST_VERIFIY_CODE_FAILURE,
 } from "./actionTypes";
 
 const initialState = {
   signupData: [],
   loginData: [],
   forgetData: [],
+  verifiyData: [],
   loading: false,
   error: null,
 };
@@ -37,6 +41,12 @@ const authRed = (state = initialState, action) => {
     case POST_FORGET_PASSWORD_SUCCESS:
       return { ...state, forgetData: action.payload, loading: false };
     case POST_FORGET_PASSWORD_FAILURE:
+      return { ...state, error: action.payload, loading: false };
+    case POST_VERIFIY_CODE:
+      return { ...state, loading: true, error: null };
+    case POST_VERIFIY_CODE_SUCCESS:
+      return { ...state, verifiyData: action.payload, loading: false };
+    case POST_VERIFIY_CODE_FAILURE:
       return { ...state, error: action.payload, loading: false };
     default:
       return state;

@@ -2,10 +2,18 @@ export const POST_SIGNUP = "POST_SIGNUP";
 export const POST_SIGNUP_SUCCES = "POST_SIGNUP_SUCCES";
 export const POST_SIGNUP_FAILURE = "POST_SIGNUP_FAILURE";
 //================================ POST LOGIN ==========
+
 export const POST_LOGIN = "POST_LOGIN";
 export const POST_LOGIN_SUCCESS = "POST_LOGIN_SUCCESS";
 export const POST_LOGIN_FAILURE = "POST_LOGIN_FAILURE";
 //================================ POST FORGET PASSWORD ==========
+
 export const POST_FORGET_PASSWORD = "POST_FORGET_PASSWORD";
 export const POST_FORGET_PASSWORD_SUCCESS = "POST_FORGET_PASSWORD_SUCCESS";
 export const POST_FORGET_PASSWORD_FAILURE = "POST_FORGET_PASSWORD_FAILURE";
+
+//================================ POST VERIFIY CODE ==========
+
+export const POST_VERIFIY_CODE = "POST_VERIFIY_CODE";
+export const POST_VERIFIY_CODE_SUCCESS = "POST_VERIFIY_CODE_SUCCESS";
+export const POST_VERIFIY_CODE_FAILURE = "POST_VERIFIY_CODE_FAILURE";
