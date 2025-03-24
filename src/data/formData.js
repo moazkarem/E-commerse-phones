@@ -31,3 +31,18 @@ export const signIn = [
   },
   { type: "password", name: "password", label: "Password", icon: CiLock },
 ];
+
+export const resetPassword = [
+  {
+    type: "email",
+    name: "email",
+    label: "Email",
+    icon: MdOutlineMarkEmailRead,
+  },
+  {
+    type: "password",
+    name: "newPassword",
+    label: "New Password",
+    icon: CiLock,
+  },
+];

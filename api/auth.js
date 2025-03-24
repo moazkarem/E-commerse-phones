@@ -13,15 +13,19 @@ export const postLoginApi = async ({ data }) => {
 };
 
 export const postForgetPassApi = async ({ data }) => {
-
   const response = await server.post("/api/v1/auth/forgotPasswords", data);
   // console.log(response?.data, "from forget pass api");
   return response;
 };
 
 export const postVerifiyCodeApi = async ({ data }) => {
-
   const response = await server.post("/api/v1/auth/verifyResetCode", data);
-  console.log(response?.data, "from verifiy api");
+  // console.log(response?.data, "from verifiy api");
+  return response;
+};
+
+export const postResetPasswordApi = async ({ data }) => {
+  const response = await server.put("/api/v1/auth/resetPassword", data);
+  console.log(response?.data, "reset password api");
   return response;
 };

@@ -2,6 +2,7 @@ import { call, put, takeLatest, all, fork } from "redux-saga/effects";
 import {
   postForgetPassApi,
   postLoginApi,
+  postResetPasswordApi,
   postSignUp,
   postVerifiyCodeApi,
 } from "../../../api/auth";
@@ -10,6 +11,8 @@ import {
   postForgetPasswordSuccess,
   postLoginFailure,
   postLoginSuccess,
+  postResetPasswordFailure,
+  postResetPasswordSuccess,
   postSignUpFailure,
   postSignUpSuccess,
   postVerifiyCodeFailure,
@@ -18,6 +21,7 @@ import {
 import {
   POST_FORGET_PASSWORD,
   POST_LOGIN,
+  POST_RESET_PASSWORD,
   POST_SIGNUP,
   POST_VERIFIY_CODE,
 } from "./actionTypes";
@@ -90,11 +94,30 @@ function* postVerifiySaga({ payload }) {
   } catch (error) {
     toast.error("Invalid Code Please Try Again ");
     yield put(postVerifiyCodeFailure(error.message));
-    console.log(error);
+    // console.log(error);
   }
 }
 function* watchVerify() {
   yield takeLatest(POST_VERIFIY_CODE, postVerifiySaga);
+}
+
+//================================ START VERIFIY CODE SAGAS ==========
+
+function* postResetSaga({ payload }) {
+  const { data, navigate } = payload;
+  try {
+    const forgetData = yield call(postResetPasswordApi, { data });
+    yield put(postResetPasswordSuccess(forgetData));
+    toast.success("Success Process ✔");
+    setTimeout(() => navigate("/login"), 1800);
+  } catch (error) {
+    toast.error("Invalid Procees Please Try Again  ");
+    yield put(postResetPasswordFailure(error.message));
+    // console.log(error);
+  }
+}
+function* watchResetPasword() {
+  yield takeLatest(POST_RESET_PASSWORD, postResetSaga);
 }
 
 //================================ COLLECT ALL WATCHERS TO SEND MAIN SAGA
@@ -104,6 +127,7 @@ function* authSagas() {
     fork(watchLogin),
     fork(watchForget),
     fork(watchVerify),
+    fork(watchResetPasword),
   ]);
 }
 export default authSagas;

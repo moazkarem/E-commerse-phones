@@ -11,6 +11,9 @@ import {
   POST_VERIFIY_CODE,
   POST_VERIFIY_CODE_SUCCESS,
   POST_VERIFIY_CODE_FAILURE,
+  POST_RESET_PASSWORD,
+  POST_RESET_PASSWORD_SUCCESS,
+  POST_RESET_PASSWORD_FAILURE,
 } from "./actionTypes";
 
 const initialState = {
@@ -18,6 +21,7 @@ const initialState = {
   loginData: [],
   forgetData: [],
   verifiyData: [],
+  resetData: [],
   loading: false,
   error: null,
 };
@@ -47,6 +51,12 @@ const authRed = (state = initialState, action) => {
     case POST_VERIFIY_CODE_SUCCESS:
       return { ...state, verifiyData: action.payload, loading: false };
     case POST_VERIFIY_CODE_FAILURE:
+      return { ...state, error: action.payload, loading: false };
+    case POST_RESET_PASSWORD:
+      return { ...state, loading: true, error: null };
+    case POST_RESET_PASSWORD_SUCCESS:
+      return { ...state, resetData: action.payload, loading: false };
+    case POST_RESET_PASSWORD_FAILURE:
       return { ...state, error: action.payload, loading: false };
     default:
       return state;

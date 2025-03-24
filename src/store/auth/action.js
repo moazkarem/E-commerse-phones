@@ -11,6 +11,9 @@ import {
   POST_VERIFIY_CODE,
   POST_VERIFIY_CODE_SUCCESS,
   POST_VERIFIY_CODE_FAILURE,
+  POST_RESET_PASSWORD,
+  POST_RESET_PASSWORD_SUCCESS,
+  POST_RESET_PASSWORD_FAILURE,
 } from "./actionTypes";
 //================================ POST SIGN UP ==========
 export const postSignUp = (data, navigate) => ({
@@ -67,5 +70,19 @@ export const postVerifiyCodeSuccess = (payload) => ({
 });
 export const postVerifiyCodeFailure = (payload) => ({
   type: POST_VERIFIY_CODE_FAILURE,
+  payload,
+});
+
+//================================ POST  RESET PASSWORD ==========
+export const postResetPassword = (data, navigate) => ({
+  type: POST_RESET_PASSWORD,
+  payload: { data, navigate },
+});
+export const postResetPasswordSuccess = (payload) => ({
+  type: POST_RESET_PASSWORD_SUCCESS,
+  payload,
+});
+export const postResetPasswordFailure = (payload) => ({
+  type: POST_RESET_PASSWORD_FAILURE,
   payload,
 });
