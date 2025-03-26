@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useLayoutEffect, useEffect } from "react";
+import { useLayoutEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Footer from "./Components/Layout/Footer/Footer";
 import Header from "./Components/Layout/Header/Header";
@@ -28,7 +28,11 @@ import Register from "./Pages/Register/Register";
 import Verifiy from "./Pages/Verifiy/Verifiy";
 import ForgetPassword from "./Pages/ForgetPassword/Forget";
 import ResetPassword from "./Pages/ResetPasswprd/ResetPassword";
-
+import Profile from "./Pages/Profile/Profile";
+import Whishlist from "./Pages/Profile/Whishlist/Whishlist";
+import Orders from "./Pages/Profile/Orders/Orders";
+import Addresses from "./Pages/Profile/Addresses/Addresses";
+import MyProfile from "./Pages/Profile/MyProfile/MyProfile";
 // Layout wrapper component that includes all layout elements
 function MainLayout({ children }) {
   const location = useLocation().pathname;
@@ -85,6 +89,12 @@ function App() {
                       <Route index element={<Checkout />} />
                       <Route path="payment" element={<Payment />} />
                     </Route>
+                  </Route>
+                  <Route path="profile/*" element={<Profile />}>
+                    <Route index element={<MyProfile />} />
+                    <Route path="orders" element={<Orders />} />
+                    <Route path="whishlist" element={<Whishlist />} />
+                    <Route path="addresses" element={<Addresses />} />
                   </Route>
                   <Route path="brands" element={<Brands />} />
                   <Route path="brands/:id" element={<SingleBrand />} />
