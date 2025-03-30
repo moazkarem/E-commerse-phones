@@ -50,7 +50,6 @@ const Categories = () => {
         <NullScreen msg="Sorry, there are no categories now." />
       </div>
     );
-
   const renderCategoies = categories?.data.map(
     ({ image, name, slug, _id }, idx) => (
       <Link key={idx} to={`/categories/${_id}`}>

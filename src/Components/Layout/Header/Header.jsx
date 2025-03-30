@@ -75,14 +75,27 @@ const Navbar = () => {
                 "About",
                 "Contact",
               ].map((item) => (
-                <li key={item} className="text-lg p-2">
-                  <NavLink
-                    to={`/${item.toLowerCase()}`}
-                    className="text-white hover:text-[#ed1d24] hover:bg-transparent"
-                  >
-                    {item}
-                  </NavLink>
-                </li>
+                <div key={item}>
+                  {item === "Home" ? (
+                    <li  className="text-lg p-2">
+                      <NavLink
+                        to={`/`}
+                        className="text-white hover:text-[#ed1d24] hover:bg-transparent"
+                      >
+                        {item}
+                      </NavLink>
+                    </li>
+                  ) : (
+                    <li  className="text-lg p-2">
+                      <NavLink
+                        to={`/${item.toLowerCase()}`}
+                        className="text-white hover:text-[#ed1d24] hover:bg-transparent"
+                      >
+                        {item}
+                      </NavLink>
+                    </li>
+                  )}
+                </div>
               ))}
             </ul>
           </div>
@@ -90,15 +103,12 @@ const Navbar = () => {
           <div className="flex items-center gap-x-6">
             {userName ? (
               <div className="relative flex items-center gap-x-10">
-               <div className="relative">
-               <BsHandbag
-                  size={31}
-                  className="text-white cursor-pointer"
-                />
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs  px-[6px] py-[2px] rounded-full">
-                  2
-                </span>
-               </div>
+                <div className="relative">
+                  <BsHandbag size={31} className="text-white cursor-pointer" />
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs  px-[6px] py-[2px] rounded-full">
+                    2
+                  </span>
+                </div>
                 <div className="relative">
                   <button
                     onClick={toggleDropdown}
@@ -109,7 +119,10 @@ const Navbar = () => {
                   </button>
                   {isDropdownOpen && (
                     <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-lg overflow-hidden">
-                      <button onClick={()=>navigate('/profile')} className="block w-full text-left px-4 py-2 text-black hover:bg-gray-200">
+                      <button
+                        onClick={() => navigate("/profile")}
+                        className="block w-full text-left px-4 py-2 text-black hover:bg-gray-200"
+                      >
                         Profile
                       </button>
                       <button

@@ -3,12 +3,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css/pagination";
 import "swiper/css";
-import style from "./styles/style.module.scss";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import ProductCard from "./ProductCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllproducts } from "../../../store/actions";
+import { getAllproducts, getWhishlist } from "../../../store/actions";
 import Loading from "../../../Components/Loading/Loading";
 import Error from "../../../Components/Error/Error";
 const OurProducts = () => {
@@ -17,6 +16,7 @@ const OurProducts = () => {
   const { loading, error, products } = useSelector(
     (state) => state.productsRed
   );
+
   useEffect(() => {
     dispatch(getAllproducts());
   }, [dispatch]);
@@ -43,7 +43,7 @@ const OurProducts = () => {
     );
   //============================START JSX ===========
   return (
-    <div className={`pt-28 ${style["products"]}`}>
+    <div className={`pt-28 `}>
       <div className="container">
         <div className=" rounded-[6px] flex flex-col items-center ">
           <div className="text-center w-full ">

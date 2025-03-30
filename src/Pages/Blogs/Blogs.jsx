@@ -7,16 +7,17 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { FaLink } from "react-icons/fa";
 import BreadCrumb from "../../Components/BreadCrump/BreadCrump";
+import {blogsData} from "./data";
 const Blogs = () => {
-  const blogCards = Array.from({ length: 12 }, (_, idx) => (
+  const blogCards = blogsData?.map(({img , title , date}, idx) => (
     <div
       key={idx}
       className="flex flex-col justify-center items-center gap-4 rounded-sm"
     >
-      <div className="bg-[#161819] p-3 rounded-[30px] flex justify-center relative overflow-hidden group">
+      <div className="bg-[#161819] p-3 rounded-[30px] flex justify-center relative overflow-hidden group w-full">
         <img
-          src={img1}
-          className="rounded-[12px] cursor-pointer object-cover w-[80%] transform transition-transform duration-500 group-hover:scale-110"
+          src={img}
+          className="rounded-[12px] cursor-pointer w-full  p-3 transform transition-transform duration-500 group-hover:scale-110 h-64"
         />
 
         <div className="absolute inset-0 bg-black bg-opacity-30 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500  cursor-pointer">
@@ -33,12 +34,12 @@ const Blogs = () => {
         </div>
         <div className="flex justify-center items-center gap-2">
           <img src={calender} className="w-3 h-3" />
-          <span className="text-[14px] text-[#ed1d24]">August 3, 2022</span>
+          <span className="text-[14px] text-[#ed1d24]">{date}</span>
         </div>
       </div>
 
       <h3 className="text-[#a9afc3] text-[16px] capitalize">
-        Blog Title Written here
+        {title}
       </h3>
 
       <button className="px-8 py-2 rounded-full text-[16px] bg-[#ff0000] text-[#fff]">
@@ -49,7 +50,7 @@ const Blogs = () => {
 
   return (
     <div className="">
-      <div >
+      <div>
         <BreadCrumb base={"Home"} page={"Blogs"} />
       </div>
       <div className="">

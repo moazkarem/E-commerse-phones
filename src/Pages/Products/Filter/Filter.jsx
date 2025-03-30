@@ -280,34 +280,6 @@ const Filter = ({
             </div>
           ))}
         </div>
-        {/* <div className="p-4 bg-[#161819] rounded-[10px]">
-          <h1 className="text-[#a9afc3] text-[22px] mb-4">Colors</h1>
-          <form className="flex items-center justify-start  flex-wrap">
-            {colorOptions.map((item) => (
-              <div key={item.id} className={""}>
-                <div className={` oneRow`}>
-                  <div className="w-100 d-flex align-items-center">
-                    <input
-                      id={`radio2-${item.id}`}
-                      className={` radioCustom`}
-                      name="radio-group2"
-                      type="radio"
-                    />
-                    <label
-                      htmlFor={`radio2-${item.id}`}
-                      className={`radioCustomLabel`}
-                    >
-                      <span
-                        style={{ backgroundColor: item.name_en }}
-                        className={`circle`}
-                      ></span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </form>
-        </div> */}
       </div>
     </div>
   );

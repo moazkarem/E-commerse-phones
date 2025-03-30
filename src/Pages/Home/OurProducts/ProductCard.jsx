@@ -1,14 +1,28 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Rate from "rc-rate";
 import "swiper/css/pagination";
 import "swiper/css";
 import { Link } from "react-router-dom";
 import { IoBagCheckOutline } from "react-icons/io5";
-import { CiHeart } from "react-icons/ci";
+import { FaHeart } from "react-icons/fa";
 import { images } from "./data";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToWhishlist,
+  deleteFromWhishlist,
+  getWhishlist,
+} from "../../../store/actions";
 const ProductCard = ({ product, index }) => {
-  const { title, quantity, price, imageCover, slug, ratingsQuantity, _id } =
-    product;
+  const dispatch = useDispatch();
+  const { whishlistData } = useSelector((state) => state.whishlistRed);
+  useEffect(() => {
+    if (!whishlistData?.data) {
+      dispatch(getWhishlist());
+    }
+  }, [dispatch, whishlistData]);
+  console.log(whishlistData);
+  // const [isFav, setIsFav] = useState(false);
+  const { title, quantity, price, slug, ratingsQuantity, _id } = product;
   const randomImage = useMemo(() => {
     let selectedImage;
     do {
@@ -16,6 +30,30 @@ const ProductCard = ({ product, index }) => {
     } while (index > 0 && selectedImage === images[index - 1]);
     return selectedImage;
   }, [index]);
+  //============================HANDEL WHISHLIST  ===========
+  const [isFav, setIsFav] = useState(false);
+  useEffect(() => {
+    const savedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    const whishlistIds =
+      whishlistData?.data?.map((favProduct) => favProduct._id) || savedWishlist;
+    setIsFav(whishlistIds.includes(_id));
+  }, [whishlistData, _id]);
+ 
+  const handelFav = (productId) => {
+    setIsFav((prev) => !prev);
+ 
+    let updatedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+ 
+    if (isFav) {
+      updatedWishlist = updatedWishlist.filter((id) => id !== productId);
+      dispatch(deleteFromWhishlist(productId)); // حذف من المفضلة
+    } else {
+      updatedWishlist.push(productId);
+      dispatch(addToWhishlist(productId)); // إضافة إلى المفضلة
+    }
+ 
+    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist)); // حفظ التحديث
+  };
   return (
     <div className="rounded-[10px]">
       <div className="relative overflow-hidden w-full cursor-pointer rounded-[10px] pt-[100%] group bg-[#111]">
@@ -29,7 +67,7 @@ const ProductCard = ({ product, index }) => {
           </div>
         </Link>
       </div>
-
+ 
       <div className="flex justify-center flex-col">
         <div className="flex justify-between items-center py-5 px-3">
           <div className="rate rc-rate">
@@ -44,17 +82,24 @@ const ProductCard = ({ product, index }) => {
           <h3 className="text-[#a9afc3] text-[16px]">{price}$</h3>
         </div>
         <div className="flex justify-between items-center gap-3 mt-4">
-          <button className="text-[#ed1d24] rounded-[6px] border px-6 max-[380px]:px-1 max-[380px]:justify-center max-[380px]:gap-2 h-12 flex justify-between items-center w-full max-[330px]:text-[16px]">
+          <button className="text-white rounded-[6px] border px-6 max-[380px]:px-1 max-[380px]:justify-center max-[380px]:gap-2 h-12 flex justify-between items-center w-full max-[330px]:text-[16px]">
             <IoBagCheckOutline className="text-[20px] max-[330px]:text-[16px]" />
             Add To Cart
           </button>
-          <button className="text-[#ed1d24] border rounded-[6px] px-6 h-12">
-            <CiHeart className="text-[20px]" />
+          <button
+            onClick={() => handelFav(_id)}
+            className="text-[#ed1d24] border rounded-[6px] px-6 h-12"
+          >
+            <FaHeart
+              className={`text-[20px] ${
+                isFav ? "text-[#ed1d24]" : "text-white"
+              }`}
+            />
           </button>
         </div>
       </div>
     </div>
   );
 };
-
+ 
 export default ProductCard;

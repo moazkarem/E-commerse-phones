@@ -13,7 +13,7 @@ export default function AddButton({
   productTitle,
 }) {
   const [isAdded, setIsAdded] = useState(false);
-  const { addCartItem } = useContext(CartContext);
+  // const { addCartItem } = useContext(CartContext);
 
   function handleCard() {
     addCartItem(productId);
