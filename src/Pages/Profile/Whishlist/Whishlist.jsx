@@ -2,52 +2,81 @@ import React, { useEffect, useMemo } from "react";
 import { BsHandbag } from "react-icons/bs";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { getWhishlist } from "../../../store/actions";
+import { deleteFromWhishlist, getWhishlist } from "../../../store/actions";
 import { images } from "./data";
+import Loading from "../../../Components/Loading/Loading";
+import NullScreen from "../../../Components/NullScreen/NullScreen";
 const Whishlist = () => {
   const dispatch = useDispatch();
-  const { whishlistData } = useSelector((state) => state.whishlistRed);
+  const { whishlistData, loading } = useSelector((state) => state.whishlistRed);
   useEffect(() => {
     if (!whishlistData?.data) {
       dispatch(getWhishlist());
     }
   }, [dispatch, whishlistData]);
-
+  //============================HANDEL DATA ===========
   const renderWhishCards = whishlistData?.data?.map((item) => (
     <div
       key={item._id}
-      className="  flex justify-between items-center px-12 py-4  gap-3 last:border-none max-[500px]:px-3 "
+      className="flex flex-col md:flex-row justify-between items-center p-4 border-b border-gray-700 last:border-none mb-6 md:mb-0"
     >
-      <div className="w-20 h-20">
-
-      <img
-        src={images[Math.floor(Math.random() * images.length)]}
-        alt="product name"
-        className="w-[90%] h-full p-2  rounded-[10px] object-cover border border-[#a9afc3]  max-[500px]:w-16 max-[500px]:h-16"
-      />
+      <div className="w-[90%] h-[300px] md:w-16 md:h-16 lg:w-20 lg:h-20 mb-4 md:mb-0 max-[768px]:w-full">
+        <img
+          src={images[Math.floor(Math.random() * images.length)]}
+          alt="product name"
+          className="w-full h-full p-2 rounded-[10px]  border border-[#a9afc3]"
+        />
       </div>
-      <div className="flex justify-center gap-3 items-center max-[500px]:flex-col max-[500px]:items-start">
-        <span className="capitalize text-[16px] line-clamp-1 text-[#a9afc3]">
+      <div className="w-full flex justify-center gap-3 max-md:justify-between items-center mb-4 md:mb-0 md:w-auto md:flex-grow md:mx-4 md:flex-col lg:flex-row">
+        <span className="capitalize text-[16px] line-clamp-1 text-[#a9afc3] md:mr-3">
           {item.title}
         </span>
         <span className="capitalize text-[16px] text-[#008000]">
           {item.price}$
         </span>
       </div>
-      <button className="bg-[#ff0000cc] py-2 px-8 rounded-[8px] flex justify-center items-center gap-3 max-[1050px]:py-2 max-[1050px]:px-5 max-[1050px]:rounded-[6px] ">
-        <span className="capitalize text-[16px] text-[#fff] max-[1050px]:hidden">
-          Add To cart
-        </span>
-        <span className="">
-          <BsHandbag />
-        </span>
-      </button>
-      <span className="cursor-pointer">
-        <MdDeleteOutline size={24} className="text-[#ff0000cc] " />
-      </span>
+      <div className="w-full flex justify-between gap-8 items-center md:w-auto md:flex-shrink-0">
+        <button className="bg-[#ff0000cc] py-2 px-6 md:px-4 lg:px-8 rounded-[8px] flex items-center justify-center gap-2 flex-shrink-0">
+          <span className="capitalize text-[14px] lg:text-[16px] text-white">
+            Add To Cart
+          </span>
+          <span>
+            <BsHandbag />
+          </span>
+        </button>
+        <div className="flex-shrink-0">
+          <span
+            onClick={() => handelRemove(item._id)}
+            className="cursor-pointer"
+          >
+            <MdDeleteOutline size={24} className="text-[#ff0000cc]" />
+          </span>
+        </div>
+      </div>
     </div>
   ));
-  return <div className="bg-[#161819] py-5">{renderWhishCards}</div>;
+  //============================REMOVE ACTION ===========
+  const handelRemove = (productId) => {
+    dispatch(deleteFromWhishlist(productId));
+  };
+  //============================HANDEL LOADING ===========
+  if (loading) {
+    <div className="w-full h-[100vh] flex justify-center items-center">
+      <Loading />
+    </div>;
+  }
+
+  return (
+    <div className="bg-[#161819] py-5">
+      {!whishlistData?.data || whishlistData?.data?.length === 0 ? (
+        <div className="w-full h-[100vh] flex justify-center items-center">
+          <NullScreen msg="Sorry, there are no products now." />;
+        </div>
+      ) : (
+        renderWhishCards
+      )}
+    </div>
+  );
 };
 
 export default Whishlist;

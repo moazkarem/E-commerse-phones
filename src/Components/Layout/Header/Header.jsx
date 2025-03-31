@@ -27,6 +27,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem(storageKey);
+    localStorage.removeItem("wishlist");
     navigate("/login");
   };
 
@@ -77,7 +78,7 @@ const Navbar = () => {
               ].map((item) => (
                 <div key={item}>
                   {item === "Home" ? (
-                    <li  className="text-lg p-2">
+                    <li className="text-lg p-2">
                       <NavLink
                         to={`/`}
                         className="text-white hover:text-[#ed1d24] hover:bg-transparent"
@@ -86,7 +87,7 @@ const Navbar = () => {
                       </NavLink>
                     </li>
                   ) : (
-                    <li  className="text-lg p-2">
+                    <li className="text-lg p-2">
                       <NavLink
                         to={`/${item.toLowerCase()}`}
                         className="text-white hover:text-[#ed1d24] hover:bg-transparent"

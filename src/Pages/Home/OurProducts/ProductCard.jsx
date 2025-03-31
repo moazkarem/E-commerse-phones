@@ -12,7 +12,12 @@ import {
   deleteFromWhishlist,
   getWhishlist,
 } from "../../../store/actions";
+import toast from "react-hot-toast";
 const ProductCard = ({ product, index }) => {
+  const storageKey = "userData";
+  const userDataString = localStorage.getItem(storageKey);
+  const userData = userDataString ? JSON.parse(userDataString) : null;
+
   const dispatch = useDispatch();
   const { whishlistData } = useSelector((state) => state.whishlistRed);
   useEffect(() => {
@@ -21,7 +26,6 @@ const ProductCard = ({ product, index }) => {
     }
   }, [dispatch, whishlistData]);
   console.log(whishlistData);
-  // const [isFav, setIsFav] = useState(false);
   const { title, quantity, price, slug, ratingsQuantity, _id } = product;
   const randomImage = useMemo(() => {
     let selectedImage;
@@ -38,21 +42,25 @@ const ProductCard = ({ product, index }) => {
       whishlistData?.data?.map((favProduct) => favProduct._id) || savedWishlist;
     setIsFav(whishlistIds.includes(_id));
   }, [whishlistData, _id]);
- 
+
   const handelFav = (productId) => {
-    setIsFav((prev) => !prev);
- 
-    let updatedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
- 
-    if (isFav) {
-      updatedWishlist = updatedWishlist.filter((id) => id !== productId);
-      dispatch(deleteFromWhishlist(productId)); // حذف من المفضلة
+    if (userData) {
+      setIsFav((prev) => !prev);
+
+      let updatedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+      if (isFav) {
+        updatedWishlist = updatedWishlist.filter((id) => id !== productId);
+        dispatch(deleteFromWhishlist(productId));
+      } else {
+        updatedWishlist.push(productId);
+        dispatch(addToWhishlist(productId));
+      }
+
+      localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
     } else {
-      updatedWishlist.push(productId);
-      dispatch(addToWhishlist(productId)); // إضافة إلى المفضلة
+      toast.error("Please Login First To Add Product To Wishlist");
     }
- 
-    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist)); // حفظ التحديث
   };
   return (
     <div className="rounded-[10px]">
@@ -67,7 +75,7 @@ const ProductCard = ({ product, index }) => {
           </div>
         </Link>
       </div>
- 
+
       <div className="flex justify-center flex-col">
         <div className="flex justify-between items-center py-5 px-3">
           <div className="rate rc-rate">
@@ -101,5 +109,5 @@ const ProductCard = ({ product, index }) => {
     </div>
   );
 };
- 
+
 export default ProductCard;

@@ -74,7 +74,7 @@ const AllProducts = () => {
   const handelPage = (page) => setCurrentPage(page);
   const pageCount = products?.paginationResult?.numberOfPages || 0;
 
-  //============================HANDEL DATA ===========
+  //============================HANDEL LOADING ===========
   if (loading) {
     <div className="w-full h-[100vh] flex justify-center items-center">
       <Loading />

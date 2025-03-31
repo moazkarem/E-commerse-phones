@@ -9,7 +9,11 @@ import {
   deleteFromWhishlist,
   getWhishlist,
 } from "../../../store/actions";
+import toast from "react-hot-toast";
 const SingleCard = ({ product, index }) => {
+  const storageKey = "userData";
+  const userDataString = localStorage.getItem(storageKey);
+  const userData = userDataString ? JSON.parse(userDataString) : null;
   const dispatch = useDispatch();
   const { whishlistData } = useSelector((state) => state.whishlistRed);
   useEffect(() => {
@@ -41,28 +45,30 @@ const SingleCard = ({ product, index }) => {
       );
     });
 
+  //============================HANDEL WHISHLIST  ===========
   const [isFav, setIsFav] = useState(false);
   useEffect(() => {
-    const savedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    const savedFavs = JSON.parse(localStorage.getItem("wishlist")) || [];
     const whishlistIds =
-      whishlistData?.data?.map((favProduct) => favProduct._id) || savedWishlist;
+      whishlistData?.data?.map((favProduct) => favProduct._id) || savedFavs;
     setIsFav(whishlistIds.includes(_id));
   }, [whishlistData, _id]);
 
   const handelFav = (productId) => {
-    setIsFav((prev) => !prev);
-
-    let updatedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-
-    if (isFav) {
-      updatedWishlist = updatedWishlist.filter((id) => id !== productId);
-      dispatch(deleteFromWhishlist(productId)); // حذف من المفضلة
+    if (userData) {
+      setIsFav((prev) => !prev);
+      let updatedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+      if (isFav) {
+        updatedWishlist = updatedWishlist.filter((id) => id !== productId);
+        dispatch(deleteFromWhishlist(productId));
+      } else {
+        updatedWishlist.push(productId);
+        dispatch(addToWhishlist(productId));
+      }
+      localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
     } else {
-      updatedWishlist.push(productId);
-      dispatch(addToWhishlist(productId)); // إضافة إلى المفضلة
+      toast.error("Please Login First To Add Product To Wishlist");
     }
-
-    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist)); // حفظ التحديث
   };
   return (
     <div className="rounded-[10px] p-4">
