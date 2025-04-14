@@ -33,6 +33,7 @@ import Whishlist from "./Pages/Profile/Whishlist/Whishlist";
 import Orders from "./Pages/Profile/Orders/Orders";
 import Addresses from "./Pages/Profile/Addresses/Addresses";
 import MyProfile from "./Pages/Profile/MyProfile/MyProfile";
+import ChangePass from "./Pages/Profile/ChangePass/ChangePass";
 // Layout wrapper component that includes all layout elements
 function MainLayout({ children }) {
   const location = useLocation().pathname;
@@ -95,6 +96,7 @@ function App() {
                     <Route path="orders" element={<Orders />} />
                     <Route path="whishlist" element={<Whishlist />} />
                     <Route path="addresses" element={<Addresses />} />
+                    <Route path="changepassword" element={<ChangePass />} />
                   </Route>
                   <Route path="brands" element={<Brands />} />
                   <Route path="brands/:id" element={<SingleBrand />} />
