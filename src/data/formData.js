@@ -46,3 +46,51 @@ export const resetPassword = [
     icon: CiLock,
   },
 ];
+
+export const editAddressForm = [
+  {
+    id: "address",
+    label: "Address",
+    placeholder: "Enter new address",
+    name:"alias" ,
+    type: "text",
+    col: 12,
+    isTextarea: false,
+  },
+  {
+    id: "details",
+    label: "Details",
+    placeholder: "Enter phone number",
+    name:"details" ,
+    type: "text",
+    col: 12,
+    isTextarea: true,
+  },
+  {
+    id: "city",
+    label: "City",
+    placeholder: "Enter city",
+    name:"city" ,
+    type: "text",
+    col: 6,
+    isTextarea: false,
+  },
+  {
+    id: "postal_code",
+    label: "Postal Code",
+    placeholder: "Enter postal code",
+    name:"postalCode" ,
+    type: "text",
+    col: 6,
+    isTextarea: false,
+  },
+  {
+    id: "phone",
+    label: "Phone",
+    placeholder: "Enter phone number",
+    name:"phone" ,
+    type: "text",
+    col: 12,
+    isTextarea: false,
+  },
+];
