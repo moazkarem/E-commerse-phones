@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import EditModal from "./EditModal";
@@ -8,6 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllAddresses } from "../../../store/Addresses/actions";
 
 const Addresses = () => {
+  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [delAddress, setdeletedAddress] = useState(null);
+
   const { getAddresses, loading, error } = useSelector(
     (state) => state.addressesRed
   );
@@ -18,11 +21,23 @@ const Addresses = () => {
     dispatch(getAllAddresses());
   }, [dispatch]);
 
-  const {data} = getAddresses || [];
-console.log(data?.data , 'from comp')
+  const { data } = getAddresses || [];
+
+  const edutHandeler = (address) => {
+    const current_address = localStorage.setItem(
+      "currentAddressId",
+      address._id
+    );
+    setSelectedAddress(address);
+    document.getElementById("edit_modal").showModal();
+  };
+
+  const delHandeler = (address) => {
+    document.getElementById("delete_modal").showModal();
+    setdeletedAddress(address);
+  };
   return (
     <>
-      {/* Add Button */}
       <div className="text-end mb-6">
         <button
           onClick={() => document.getElementById("add_modal").showModal()}
@@ -32,11 +47,10 @@ console.log(data?.data , 'from comp')
         </button>
       </div>
 
-      {/* Addresses List */}
       <div className="grid grid-cols-12 gap-5">
         {data?.data?.map((address) => (
           <div
-            key={address.id}
+            key={address._id}
             className="col-span-12 flex flex-col gap-5 bg-[#161819] p-4 border border-[#6c757d] rounded-md"
           >
             <div className="flex justify-between items-center gap-3">
@@ -47,20 +61,18 @@ console.log(data?.data , 'from comp')
                 </span>
               </div>
               <div className="flex justify-center items-center gap-4">
-                <FaRegEdit
-                  size={20}
-                  className="hover:scale-125 hover:-translate-y-1 hover:text-[#ff0000cc] transition-all duration-300 cursor-pointer"
-                  onClick={() =>
-                    document.getElementById("edit_modal").showModal()
-                  }
-                />
-                <MdDeleteOutline
-                  size={20}
-                  className="hover:scale-125 hover:-translate-y-1 hover:text-[#ff0000cc] transition-all duration-300 cursor-pointer"
-                  onClick={() =>
-                    document.getElementById("delete_modal").showModal()
-                  }
-                />
+                <span
+                  className="hover:scale-125 p-2  rounded-sm  hover:bg-[#111] transition-all duration-300 cursor-pointer"
+                  onClick={() => edutHandeler(address)}
+                >
+                  <FaRegEdit />
+                </span>
+                <span
+                  className="hover:scale-125 p-2  rounded-sm  hover:bg-[#111] transition-all duration-300 cursor-pointer"
+                  onClick={() => delHandeler(address)}
+                >
+                  <MdDeleteOutline />
+                </span>
               </div>
             </div>
 
@@ -100,8 +112,8 @@ console.log(data?.data , 'from comp')
 
       {/* Modals */}
       <AddModal />
-      <EditModal />
-      <DeleteModal />
+      <EditModal address={selectedAddress} />
+      <DeleteModal delAddress={delAddress} />
     </>
   );
 };
