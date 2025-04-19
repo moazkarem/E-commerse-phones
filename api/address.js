@@ -47,13 +47,13 @@ export const delAddressApi = async ({ address }) => {
   const token = userData?.data?.token;
   const response = await server.delete(
     `/api/v1/addresses/${address._id}`,
-  
+
     {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     }
   );
-  console.log(response?.data, "delete data api ");
+  // console.log(response?.data, "delete data api ");
   return response;
 };

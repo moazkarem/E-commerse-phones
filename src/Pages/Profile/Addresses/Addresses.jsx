@@ -6,23 +6,20 @@ import DeleteModal from "./DeleteModal";
 import AddModal from "./AddModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllAddresses } from "../../../store/Addresses/actions";
-
+import Loading from "../../../Components/Loading/Loading";
+import Error from "../../../Components/Error/Error";
+import NullScreen from "../../../Components/NullScreen/NullScreen";
 const Addresses = () => {
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [delAddress, setdeletedAddress] = useState(null);
-
   const { getAddresses, loading, error } = useSelector(
     (state) => state.addressesRed
   );
-
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getAllAddresses());
   }, [dispatch]);
-
   const { data } = getAddresses || [];
-
   const edutHandeler = (address) => {
     const current_address = localStorage.setItem(
       "currentAddressId",
@@ -31,11 +28,32 @@ const Addresses = () => {
     setSelectedAddress(address);
     document.getElementById("edit_modal").showModal();
   };
-
   const delHandeler = (address) => {
     document.getElementById("delete_modal").showModal();
     setdeletedAddress(address);
   };
+  //============================HANDEL LOADING ===========
+  if (loading)
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <Loading />
+      </div>
+    );
+  //============================HANDEL ERROR ===========
+  if (error)
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <Error msg={error} />
+      </div>
+    );
+
+  //============================HANDEL NULL SCREEN ===========
+  if (!data?.data || data?.data === 0)
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <NullScreen msg="Sorry, there are no categories now." />
+      </div>
+    );
   return (
     <>
       <div className="text-end mb-6">
