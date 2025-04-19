@@ -21,6 +21,7 @@ import {
   EDIT_ADDREESSE,
   GET_ALL_ADDREESSES,
 } from "./actionTypes";
+import toast from "react-hot-toast";
 
 function* getAllAddressesSaga() {
   try {
@@ -41,13 +42,16 @@ function* editAddressSaga({ payload }) {
   try {
     const data = yield call(editAddressApi, { address, selectedAddress });
     yield put(editAddressActionSuccess(data));
+    toast.success("Addreess Updated Successfully ✔");
   } catch (error) {
     yield put(editAddressActionFailure(error.message));
+    toast.error("Failed To Edit This Address ");
   }
 }
 
 function* watcherEditAddresseSaga() {
   yield takeLatest(EDIT_ADDREESSE, editAddressSaga);
+  
 }
 
 //============================== ADD ADDRESS SAGA ==========
@@ -57,8 +61,10 @@ function* addAddressSaga({ payload }) {
   try {
     const addAddressData = yield call(addAddressApi, { address });
     yield put(addAddressActionSuccess(addAddressData));
+    toast.success("Addreess Added Successfully ✔");
   } catch (error) {
     yield put(addAddressActionFailure(error.message));
+    toast.error("Failed To Add This Address ");
   }
 }
 
@@ -66,14 +72,16 @@ function* watcherAddAddresseSaga() {
   yield takeLatest(ADD_ADDREESSE, addAddressSaga);
 }
 
-//============================== EDIT ADDRESS SAGA ==========
+//============================== DELETE ADDRESS SAGA ==========
 function* delAddressSaga({ payload }) {
   const { address } = payload;
   try {
     const data = yield call(delAddressApi, { address });
     yield put(delAddressActionSuccess(data));
+    toast.success("Addreess Deleted Successfully ✔");
   } catch (error) {
     yield put(delAddressActionFailure(error.message));
+    toast.error("Failed Deleted ");
   }
 }
 
