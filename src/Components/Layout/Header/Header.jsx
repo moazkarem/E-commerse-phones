@@ -104,7 +104,7 @@ const Navbar = () => {
           <div className="flex items-center gap-x-6">
             {userName ? (
               <div className="relative flex items-center gap-x-10">
-                <div className="relative">
+                <div onClick={()=>navigate('/cart')} className="relative">
                   <BsHandbag size={31} className="text-white cursor-pointer" />
                   <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs  px-[6px] py-[2px] rounded-full">
                     2
