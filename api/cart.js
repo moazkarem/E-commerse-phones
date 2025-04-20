@@ -11,7 +11,7 @@ export const getProductsCartApi = async () => {
     },
   });
   console.log(response?.data, "from get cart api function");
-  return response;
+  return response?.data;
 };
 
 //====================================== ADD PRODUCT TO CART

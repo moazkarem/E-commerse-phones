@@ -4,3 +4,4 @@ export * from "./Products/actions";
 export * from "./auth/action";
 export * from "./whishlist/actions";
 export * from "./Addresses/actions";
+export * from "./cart/actions";

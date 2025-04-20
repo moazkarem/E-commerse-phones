@@ -16,9 +16,9 @@ import {
   CLEAR_PRODUCT_CART_FAILURE,
 } from "./actionTypes";
 
-export const getCartAction = (payload) => ({
+export const getCartAction = () => ({
   type: GET_PRODUCTS_CART,
-  payload,
+
 });
 
 export const getCartActionSuccess = (payload) => ({

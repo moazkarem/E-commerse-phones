@@ -1,7 +1,6 @@
-import { useContext } from "react";
+
 import CartList from "../../Components/Sub_Components/Cart_Components/Cart_List/CartList";
 import CartSummary from "../../Components/Sub_Components/Cart_Components/Cart_Summary/CartSummary";
-import { CartContext } from "../../Components/Contexts/CartProvider";
 import { BsCartX } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Seo from "../../Components/Seo/Seo";

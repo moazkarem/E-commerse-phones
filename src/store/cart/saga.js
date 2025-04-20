@@ -91,7 +91,7 @@ function* updateCartSaga() {
   }
 }
 
-function* watchClearCart() {
+function* watchUpdateCart() {
   yield takeLatest(UPDATE_PRODUCT_CONTATY, updateCartSaga);
 }
 
@@ -101,6 +101,7 @@ function* allCartSaga() {
     fork(watchAddCart),
     fork(watchDelCart),
     fork(watchClearCart),
+    fork(watchUpdateCart)
   ]);
 }
 
