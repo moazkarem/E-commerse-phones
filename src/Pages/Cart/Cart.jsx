@@ -5,7 +5,13 @@ import { BsCartX } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Seo from "../../Components/Seo/Seo";
 import BreadCrump from '../../Components/BreadCrump/BreadCrump'
+import { useDispatch } from 'react-redux';
+import { clearCartAction } from "../../store/cart/actions";
 export default function Cart() {
+  const dispatch = useDispatch()
+  const clearHandeler = ()=>{
+     dispatch(clearCartAction())
+  }
   return (
     <>
      <div>
@@ -25,8 +31,11 @@ export default function Cart() {
         </div>
       ) : (
         <>
+        <>
           <CartList />
           <CartSummary />
+        <button onClick={clearHandeler} className="bg-[#FF0000] text-[16px] text-white rounded-md">Clear All</button>
+        </>
         </>
       )}
     </div>
