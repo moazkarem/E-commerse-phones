@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { call, put, takeLatest, fork, all } from "redux-saga/effects";
 import {
   addToCartApi,
@@ -54,10 +55,12 @@ function* watchAddCart() {
 }
 
 //================ DEL CART SAGA
-function* delCartSaga() {
+function* delCartSaga({ payload }) {
+  const { productId } = payload;
   try {
-    const cartData = yield call(delFromCartApi);
+    const cartData = yield call(delFromCartApi, productId);
     yield put(delCartActionSuccess(cartData));
+    toast.success("Product Removed From Cart Successfully");
   } catch (error) {
     yield put(delCartActionFailure(error.message));
   }
@@ -101,7 +104,7 @@ function* allCartSaga() {
     fork(watchAddCart),
     fork(watchDelCart),
     fork(watchClearCart),
-    fork(watchUpdateCart)
+    fork(watchUpdateCart),
   ]);
 }
 

@@ -10,7 +10,7 @@ export const getProductsCartApi = async () => {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log(response?.data, "from get cart api function");
+  // console.log(response?.data, "from get cart api function");
   return response?.data;
 };
 
@@ -33,12 +33,12 @@ export const addToCartApi = async () => {
 };
 
 //====================================== DELETE FROM CART
-export const delFromCartApi = async ({ selectedProduct }) => {
+export const delFromCartApi = async (productId) => {
   const storedKey = localStorage.getItem("userData");
   const userData = storedKey ? JSON.parse(storedKey) : null;
   const token = userData?.data?.token;
   const response = await server.delete(
-    `/api/v1/cart/${selectedProduct}`,
+    `/api/v1/cart/${productId}`,
 
     {
       headers: {

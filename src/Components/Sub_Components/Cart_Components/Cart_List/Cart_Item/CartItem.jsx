@@ -4,10 +4,19 @@ import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { memo } from "react";
 import PropTypes from "prop-types";
 import { images } from "./data";
+import { useDispatch } from 'react-redux';
+import { delCartAction } from './../../../../../store/cart/actions';
 
 function CartItem({ item }) {
   images[Math.floor(Math.random() * images.length)];
-  const {} = item?.product;
+
+  const dispatch = useDispatch()
+ 
+  const removeCartItem = (productId)=>{
+  // console.log(productId , 'from cart item delete')
+    dispatch(delCartAction(productId))
+  } 
+
   return (
     <>
       <li className="w-full  flex gap-4  border-b-[1px] border-[#ffffff30] py-6  md:max-h-[200px]">
@@ -18,14 +27,14 @@ function CartItem({ item }) {
           />
         </Link>
         <div className="flex flex-col w-3/5 md:w-4/5 relative gap-2 justify-center">
-          <Link
-            to={`/product-details/${item?.product?._id}`}
+          <p
+          
             className="item-description text-main w-3/4 md:w-auto"
             href="#"
           >
             {item?.product?.title} <br />
-            {/* {itemInfo} */}
-          </Link>
+          
+          </p>
           <div className="prices">
             <h3 className="text-main">${item?.price.toLocaleString()}</h3>
             <del className="text-muted">
@@ -36,7 +45,7 @@ function CartItem({ item }) {
 
           <button
             className="remove-button"
-            // onClick={() => removeCartItem(itemId)}
+            onClick={() => removeCartItem(item?._id)}
           >
             <MdOutlineRemoveShoppingCart />
           </button>
