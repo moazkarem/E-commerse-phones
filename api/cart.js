@@ -56,7 +56,7 @@ export const clearCartApi = async () => {
   const storedKey = localStorage.getItem("userData");
   const userData = storedKey ? JSON.parse(storedKey) : null;
   const token = userData?.data?.token;
-  const response = await server.delete(`/api/v1/cart/${selectedProduct}`, {
+  const response = await server.delete(`/api/v1/cart`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

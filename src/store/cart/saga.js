@@ -75,6 +75,7 @@ function* clearCartSaga() {
   try {
     const cartData = yield call(clearCartApi);
     yield put(clearCartActionSuccess(cartData));
+    toast.success("All Product Removed From Cart Successfully");
   } catch (error) {
     yield put(clearCartActionFailure(error.message));
   }
