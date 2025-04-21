@@ -50,9 +50,9 @@ export const addCartActionFailure = (payload) => ({
 
 //==================================
 
-export const delCartAction = (payload) => ({
+export const delCartAction = (productId) => ({
   type: DELETE_PRODUCT_CART,
-  payload,
+  payload:{productId}
 });
 
 export const delCartActionSuccess = (payload) => ({
