@@ -67,12 +67,12 @@ export const clearCartApi = async () => {
 };
 
 //====================================== UPDATE CART CONATTY
-export const updataCartContatyApi = async ({ selectedProduct, count }) => {
+export const updataCartContatyApi = async ( {productId, count} ) => {
   const storedKey = localStorage.getItem("userData");
   const userData = storedKey ? JSON.parse(storedKey) : null;
   const token = userData?.data?.token;
   const response = await server.put(
-    `/api/v1/cart/${selectedProduct}`,
+    `/api/v1/cart/${productId}`,
     { count },
     {
       headers: {

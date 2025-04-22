@@ -84,9 +84,9 @@ export const clearCartActionFailure = (payload) => ({
 
 //==================================
 
-export const updateCartAction = (payload) => ({
+export const updateCartAction = (productId ,count) => ({
   type: UPDATE_PRODUCT_CONTATY,
-  payload,
+  payload:{productId ,count}
 });
 
 export const updateCartActionSuccess = (payload) => ({
