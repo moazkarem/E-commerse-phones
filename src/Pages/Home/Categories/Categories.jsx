@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategories } from "../../../store/actions";
 import Loading from "../../../Components/Loading/Loading";
+import { images } from "./data";
 const Categories = () => {
   const swiperRef = useRef(null);
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const Categories = () => {
         <div className="flex flex-col justify-center items-center gap-8 mb-12 group cursor-pointer">
           <div className="bg-[#111] flex justify-center items-center p-2 w-48 h-48 border border-[#ed1d24] shadow-md shadow-[#454a4d] rounded-full">
             <img
-              src={image}
+              src={images[Math.floor(Math.random() * images.length)]}
               className=" w-[90%] h-[90%] p-4 transform transition-all duration-300 group-hover:scale-105"
               alt={slug}
             />

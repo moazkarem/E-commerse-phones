@@ -15,13 +15,13 @@ export const getProductsCartApi = async () => {
 };
 
 //====================================== ADD PRODUCT TO CART
-export const addToCartApi = async () => {
+export const addToCartApi = async (productId) => {
   const storedKey = localStorage.getItem("userData");
   const userData = storedKey ? JSON.parse(storedKey) : null;
   const token = userData?.data?.token;
   const response = await server.post(
     "/api/v1/cart",
-    { data },
+    { productId },
     {
       headers: {
         Authorization: `Bearer ${token}`,
