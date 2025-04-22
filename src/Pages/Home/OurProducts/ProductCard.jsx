@@ -8,6 +8,7 @@ import { FaHeart } from "react-icons/fa";
 import { images } from "./data";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  addtCartAction,
   addToWhishlist,
   deleteFromWhishlist,
   getWhishlist,
@@ -62,6 +63,11 @@ const ProductCard = ({ product, index }) => {
       toast.error("Please Login First To Add Product To Wishlist");
     }
   };
+
+    //============================HANDEL ADD TO CART  =========== 
+    const addToCart = (productId)=>{
+      dispatch(addtCartAction(productId))
+    }
   return (
     <div className="rounded-[10px]">
       <div className="relative overflow-hidden w-full cursor-pointer rounded-[10px] pt-[100%] group bg-[#111]">
@@ -90,7 +96,7 @@ const ProductCard = ({ product, index }) => {
           <h3 className="text-[#a9afc3] text-[16px]">{price}$</h3>
         </div>
         <div className="flex justify-between items-center gap-3 mt-4">
-          <button className="text-white rounded-[6px] border px-6 max-[380px]:px-1 max-[380px]:justify-center max-[380px]:gap-2 h-12 flex justify-between items-center w-full max-[330px]:text-[16px]">
+          <button onClick={()=>addToCart(_id)} className="text-white rounded-[6px] border px-6 max-[380px]:px-1 max-[380px]:justify-center max-[380px]:gap-2 h-12 flex justify-between items-center w-full max-[330px]:text-[16px]">
             <IoBagCheckOutline className="text-[20px] max-[330px]:text-[16px]" />
             Add To Cart
           </button>
