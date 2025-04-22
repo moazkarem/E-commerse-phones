@@ -89,12 +89,15 @@ function* watchClearCart() {
 }
 
 //================ UPDATE  CART SAGA
-function* updateCartSaga() {
+function* updateCartSaga({payload}) {
+  const {productId , count} = payload
   try {
-    const cartData = yield call(updataCartContatyApi);
+    const cartData = yield call(updataCartContatyApi , {productId , count});
     yield put(updateCartActionSuccess(cartData));
+    toast.success("Quantity Updated Successfully");
   } catch (error) {
     yield put(updateCartActionFailure(error.message));
+    toast.error("Failed to update quantity");
   }
 }
 
