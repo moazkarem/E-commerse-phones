@@ -66,6 +66,7 @@ function* delCartSaga({ payload }) {
     toast.success("Product Removed From Cart Successfully");
   } catch (error) {
     yield put(delCartActionFailure(error.message));
+    toast.error("Failed To Remove Product  From Cart");
   }
 }
 
@@ -81,6 +82,7 @@ function* clearCartSaga() {
     toast.success("All Product Removed From Cart Successfully");
   } catch (error) {
     yield put(clearCartActionFailure(error.message));
+    toast.error("Failed To Clear All From Cart");
   }
 }
 
@@ -89,10 +91,10 @@ function* watchClearCart() {
 }
 
 //================ UPDATE  CART SAGA
-function* updateCartSaga({payload}) {
-  const {productId , count} = payload
+function* updateCartSaga({ payload }) {
+  const { productId, count } = payload;
   try {
-    const cartData = yield call(updataCartContatyApi , {productId , count});
+    const cartData = yield call(updataCartContatyApi, { productId, count });
     yield put(updateCartActionSuccess(cartData));
     toast.success("Quantity Updated Successfully");
   } catch (error) {
