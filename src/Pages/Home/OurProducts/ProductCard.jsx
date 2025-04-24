@@ -2,19 +2,22 @@ import React, { useEffect, useMemo, useState } from "react";
 import Rate from "rc-rate";
 import "swiper/css/pagination";
 import "swiper/css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { IoBagCheckOutline } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa";
 import { images } from "./data";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addtCartAction,
   addToWhishlist,
   deleteFromWhishlist,
+  getSingleProd,
   getWhishlist,
 } from "../../../store/actions";
 import toast from "react-hot-toast";
 const ProductCard = ({ product, index }) => {
+  const navigate = useNavigate();
+  const {id} = useParams()
+  console.log(id , 'from my id ');
   const storageKey = "userData";
   const userDataString = localStorage.getItem(storageKey);
   const userData = userDataString ? JSON.parse(userDataString) : null;
@@ -64,10 +67,11 @@ const ProductCard = ({ product, index }) => {
     }
   };
 
-    //============================HANDEL ADD TO CART  =========== 
-    const addToCart = (productId)=>{
-      dispatch(addtCartAction(productId))
-    }
+  //============================HANDEL  SINGLE PRODUCT NAVIGATION ===========
+  const singleProdHandel = (productId) => {
+    dispatch(getSingleProd(productId));
+    navigate(`/products/${productId}`);
+  };
   return (
     <div className="rounded-[10px]">
       <div className="relative overflow-hidden w-full cursor-pointer rounded-[10px] pt-[100%] group bg-[#111]">
@@ -96,9 +100,11 @@ const ProductCard = ({ product, index }) => {
           <h3 className="text-[#a9afc3] text-[16px]">{price}$</h3>
         </div>
         <div className="flex justify-between items-center gap-3 mt-4">
-          <button onClick={()=>addToCart(_id)} className="text-white rounded-[6px] border px-6 max-[380px]:px-1 max-[380px]:justify-center max-[380px]:gap-2 h-12 flex justify-between items-center w-full max-[330px]:text-[16px]">
-            <IoBagCheckOutline className="text-[20px] max-[330px]:text-[16px]" />
-            Add To Cart
+          <button
+            onClick={() => singleProdHandel(_id)}
+            className="text-white rounded-[6px] border px-6 max-[380px]:px-1 max-[380px]:justify-center max-[380px]:gap-2 h-12 flex justify-between items-center w-full max-[330px]:text-[16px]"
+          >
+            More Details
           </button>
           <button
             onClick={() => handelFav(_id)}

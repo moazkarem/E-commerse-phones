@@ -7,10 +7,16 @@ import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import ProductCard from "./ProductCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllproducts, getWhishlist } from "../../../store/actions";
+import {
+  getAllproducts,
+  getSingleProd,
+  getWhishlist,
+} from "../../../store/actions";
 import Loading from "../../../Components/Loading/Loading";
 import Error from "../../../Components/Error/Error";
+import { useNavigate } from "react-router-dom";
 const OurProducts = () => {
+  const navigate = useNavigate();
   const swiperRef = useRef(null);
   const dispatch = useDispatch();
   const { loading, error, products } = useSelector(
@@ -42,6 +48,9 @@ const OurProducts = () => {
       </div>
     );
   //============================START JSX ===========
+
+
+
   return (
     <div className={`pt-28 `}>
       <div className="container">

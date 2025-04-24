@@ -1,11 +1,24 @@
 import { put, call, takeLatest, fork, all } from "redux-saga/effects";
-import { getAllproductsFailure, getAllproductsSuccess } from "./actions";
-import { GET_ALL_PRODUCTS } from "./actionTypes";
-import { getProductsApi } from "../../../api/products";
+import {
+  getAllproductsFailure,
+  getAllproductsSuccess,
+  getSingleProdFailure,
+  getSingleProdSuccess,
+} from "./actions";
+import { GET_ALL_PRODUCTS, GET_SINGLE_PRODUCT } from "./actionTypes";
+import { getProductsApi, getSingleProductApi } from "../../../api/products";
 
 function* getAllproductsSaga({ payload }) {
-  const { limit, page, search, catQuery, brandQuery, priceFrom, priceTo , sort } =
-    payload;
+  const {
+    limit,
+    page,
+    search,
+    catQuery,
+    brandQuery,
+    priceFrom,
+    priceTo,
+    sort,
+  } = payload;
   if (!navigator.onLine) {
     yield put(getAllproductsFailure("You Are Offline , Please Try Againe"));
   }
@@ -18,7 +31,7 @@ function* getAllproductsSaga({ payload }) {
       brandQuery,
       priceFrom,
       priceTo,
-      sort
+      sort,
     });
     yield put(getAllproductsSuccess(data));
   } catch (error) {
@@ -30,8 +43,24 @@ function* productsWatcher() {
   yield takeLatest(GET_ALL_PRODUCTS, getAllproductsSaga);
 }
 
+//============================== GET SINGLE PRODUCT
+
+function* getSingleProductSaga({ payload }) {
+  const { productId } = payload;
+  try {
+    const whishData = yield call(getSingleProductApi, productId);
+    yield put(getSingleProdSuccess(whishData));
+  } catch (error) {
+    yield put(getSingleProdFailure(error?.message));
+  }
+}
+
+function* getSingleWatcher() {
+  yield takeLatest(GET_SINGLE_PRODUCT, getSingleProductSaga);
+}
+
 function* productsSaga() {
-  yield all([fork(productsWatcher)]);
+  yield all([fork(productsWatcher), fork(getSingleWatcher)]);
 }
 
 export default productsSaga;
