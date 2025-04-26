@@ -17,7 +17,6 @@ import toast from "react-hot-toast";
 const ProductCard = ({ product, index }) => {
   const navigate = useNavigate();
   const {id} = useParams()
-  console.log(id , 'from my id ');
   const storageKey = "userData";
   const userDataString = localStorage.getItem(storageKey);
   const userData = userDataString ? JSON.parse(userDataString) : null;
@@ -29,7 +28,6 @@ const ProductCard = ({ product, index }) => {
       dispatch(getWhishlist());
     }
   }, [dispatch, whishlistData]);
-  console.log(whishlistData);
   const { title, quantity, price, slug, ratingsQuantity, _id } = product;
   const randomImage = useMemo(() => {
     let selectedImage;

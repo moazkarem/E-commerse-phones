@@ -42,6 +42,21 @@ export const delProductReviewApi = async (productId) => {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log(response, "del revies api function");
+  // console.log(response, "del revies api function");
+  return response;
+};
+
+//===============UPDATE REVIEW ON PRODUCT
+
+export const updateProductReviewApi = async ({ data, productId }) => {
+  // console.log(data , 'from api add fun');
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  const token = userData?.data?.token;
+  const response = await server.put(`/api/v1/reviews/${productId}`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  console.log(response, "update revies api function");
   return response;
 };

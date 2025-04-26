@@ -8,6 +8,9 @@ import {
   DELETE_PRODUCT_REVIEW,
   DELETE_PRODUCT_REVIEW_SUCCESS,
   DELETE_PRODUCT_REVIEW_FAILURE,
+  UPDATE_PRODUCT_REVIEW,
+  UPDATE_PRODUCT_REVIEW_SUCCESS,
+  UPDATE_PRODUCT_REVIEW_FAILURE,
 } from "./actionTypes";
 
 //=====================GET ALL REVIEWS
@@ -55,5 +58,21 @@ export const delProductReviewSuccess = (payload) => ({
 
 export const delProductReviewFailure = (payload) => ({
   type: DELETE_PRODUCT_REVIEW_FAILURE,
+  payload,
+});
+
+//===================== UPDATE REVIEW ON PRODUCT
+export const updateProductReviewAction = (data , productId) => ({
+  type: UPDATE_PRODUCT_REVIEW,
+  payload: {data , productId },
+});
+
+export const updateProductReviewSuccess = (payload) => ({
+  type: UPDATE_PRODUCT_REVIEW_SUCCESS,
+  payload,
+});
+
+export const updateProductReviewFailure = (payload) => ({
+  type: UPDATE_PRODUCT_REVIEW_FAILURE,
   payload,
 });

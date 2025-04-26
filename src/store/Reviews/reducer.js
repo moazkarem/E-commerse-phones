@@ -8,6 +8,9 @@ import {
   DELETE_PRODUCT_REVIEW,
   DELETE_PRODUCT_REVIEW_SUCCESS,
   DELETE_PRODUCT_REVIEW_FAILURE,
+  UPDATE_PRODUCT_REVIEW,
+  UPDATE_PRODUCT_REVIEW_SUCCESS,
+  UPDATE_PRODUCT_REVIEW_FAILURE,
 } from "./actionTypes";
 
 const initialState = {
@@ -15,6 +18,7 @@ const initialState = {
   getReviews: [],
   addReview: [],
   delReview: [],
+  updateReview: [],
   error: null,
 };
 
@@ -39,6 +43,13 @@ const reviewsRed = (state = initialState, action) => {
     case DELETE_PRODUCT_REVIEW_SUCCESS:
       return { ...state, delReview: action.payload, loading: false };
     case DELETE_PRODUCT_REVIEW_FAILURE:
+      return { ...state, loading: false, error: action.payload };
+
+    case UPDATE_PRODUCT_REVIEW:
+      return { ...state, loading: true, error: null };
+    case UPDATE_PRODUCT_REVIEW_SUCCESS:
+      return { ...state, updateReview: action.payload, loading: false };
+    case UPDATE_PRODUCT_REVIEW_FAILURE:
       return { ...state, loading: false, error: action.payload };
 
     default:

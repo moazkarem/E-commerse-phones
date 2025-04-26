@@ -12,13 +12,13 @@ import AddReview from "./AddReview";
 import Loading from "../../../../Loading/Loading";
 import { formatDate } from "../../../../../helpers/validDate";
 import DelReview from "./DelReview";
+import EditReview from "./EditReview";
 export default function ReviewsTab() {
   const { id } = useParams();
   const storageKey = "userData";
   const userDataString = localStorage.getItem(storageKey);
   const userData = userDataString ? JSON.parse(userDataString) : null;
   const loggedUser = userData?.data?.data?._id;
-  console.log(loggedUser, "test my user");
   const { getReviews, loading } = useSelector((state) => state.reviewsRed);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,12 +26,19 @@ export default function ReviewsTab() {
   }, [dispatch]);
 
   const reviews = getReviews?.data?.data;
-
+ //============================HANDEL EDIT REVIEW  ===========
   const [deltedReview, setDeletedReview] = useState("");
   const delReviewHandeler = (reviewId) => {
     document.getElementById("delete_review_modal").showModal();
     setDeletedReview(reviewId);
   };
+
+   //============================HANDEL DELETE REVIEW  ===========
+   const [editedReview , setEditedReview] = useState('')
+   const editReviewHandeler = (review)=>{
+    document.getElementById("edit_review_modal").showModal()
+    setEditedReview(review)
+   }
   //============================HANDEL LOADING ===========
   if (loading)
     return (
@@ -43,9 +50,9 @@ export default function ReviewsTab() {
     <>
       <div className="grid grid-cols-12 gap-8 w-full">
         {Array.isArray(reviews) && reviews.length > 0 ? (
-          reviews?.map(({ review, rating, createdAt, user, _id }, idx) => (
+          reviews?.map((review, idx) => (
             <div
-              key={_id}
+              key={review?._id}
               className="col-span-12 max-[400px]:col-span-10 flex items-start gap-3"
             >
               <Fade delay={idx * 50} className="w-full">
@@ -55,15 +62,15 @@ export default function ReviewsTab() {
                       <FaRegCircleUser className="text-red-600" size={35} />
                       <div>
                         <h1 className="text-white text-[16px] capitalize">
-                          {user?.name}
+                          {review?.user?.name}
                         </h1>
                         <span className="text-[#596268]">
-                          {formatDate(createdAt)}
+                          {formatDate(review?.createdAt)}
                         </span>
                       </div>
                     </div>
                     <div className="flex items-start gap-1 max-[400px]:ps-[53px]">
-                      {Array.from({ length: Math.ceil(rating) }).map(
+                      {Array.from({ length: Math.ceil(review?.rating) }).map(
                         (item, idx) => (
                           <LiaStarSolid key={idx} color="#ed1d24" />
                         )
@@ -73,18 +80,19 @@ export default function ReviewsTab() {
 
                   <div className="ps-[91px] max-[400px]:ps-[68px] pe-10 pb-8">
                     <h4 className="text-[14px] text-[#a9afc3] capitalize max-[400px]:line-clamp-4">
-                      {review}
+                      {review?.review}
                     </h4>
                   </div>
-                  {loggedUser === user?._id && (
+                  {loggedUser === review?.user?._id && (
                     <div className="flex justify-end pe-10 pb-5 gap-4">
                       <button>
                         <FaRegEdit
+                        onClick={()=>editReviewHandeler(review)}
                           className="text-[#a9afc3] hover:text-[#008000]"
                           size={18}
                         />
                       </button>
-                      <button onClick={() => delReviewHandeler(_id)}>
+                      <button onClick={() => delReviewHandeler(review?._id)}>
                         <MdDeleteOutline
                           className="text-[#a9afc3] hover:text-red-500"
                           size={20}
@@ -104,6 +112,7 @@ export default function ReviewsTab() {
 
         <AddReview />
         <DelReview deltedReview={deltedReview} />
+        <EditReview editedReview={editedReview}/>
       </div>
     </>
   );

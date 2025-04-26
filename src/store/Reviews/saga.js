@@ -6,12 +6,15 @@ import {
   delProductReviewSuccess,
   getAllReviewsActionFailure,
   getAllReviewsActionSuccess,
+  updateProductReviewFailure,
+  updateProductReviewSuccess,
 } from "./actions";
 
 import {
   ADD_PRODUCT_REVIEW,
   DELETE_PRODUCT_REVIEW,
   GET_ALL_REVIEWS,
+  UPDATE_PRODUCT_REVIEW,
 } from "./actionTypes";
 import toast from "react-hot-toast";
 import {
@@ -19,6 +22,7 @@ import {
   delProductReviewApi,
   
   getReviewsApi,
+  updateProductReviewApi,
 } from "../../../api/reviews";
 
 //================================ GET  ALL REVIEWS ON PRODUCT==========
@@ -70,11 +74,29 @@ function* watchDeleteReviewSaga() {
   yield takeLatest(DELETE_PRODUCT_REVIEW, delProductReviewSaga);
 }
 
+//================================ UPDATE REVIEW ON PRODUCT ==========
+function* updateProductReviewSaga({ payload }) {
+  const { data, productId } = payload;
+  try {
+    const addreviewData = yield call(updateProductReviewApi, { data, productId });
+    yield put(updateProductReviewSuccess(addreviewData));
+    toast.success("Review Updated Successfully");
+  } catch (error) {
+    yield put(updateProductReviewFailure(error?.message));
+    toast.error("Faield To Update Your Review. ");
+  }
+}
+
+function* watchUpdateReviewSaga() {
+  yield takeLatest(UPDATE_PRODUCT_REVIEW, updateProductReviewSaga);
+}
+
 function* reviewsSagas() {
   yield all([
     fork(watchGetAllReviewsSaga),
     fork(watchAddReviewSaga),
     fork(watchDeleteReviewSaga),
+    fork(watchUpdateReviewSaga)
   ]);
 }
 export default reviewsSagas;
