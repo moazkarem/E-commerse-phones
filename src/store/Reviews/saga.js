@@ -1,0 +1,80 @@
+import { all, call, fork, put, takeLatest } from "redux-saga/effects";
+import {
+  addProductReviewFailure,
+  addProductReviewSuccess,
+  delProductReviewFailure,
+  delProductReviewSuccess,
+  getAllReviewsActionFailure,
+  getAllReviewsActionSuccess,
+} from "./actions";
+
+import {
+  ADD_PRODUCT_REVIEW,
+  DELETE_PRODUCT_REVIEW,
+  GET_ALL_REVIEWS,
+} from "./actionTypes";
+import toast from "react-hot-toast";
+import {
+  addReviewsApi,
+  delProductReviewApi,
+  
+  getReviewsApi,
+} from "../../../api/reviews";
+
+//================================ GET  ALL REVIEWS ON PRODUCT==========
+
+function* getReviewsSaga({ payload }) {
+  const { productId } = payload;
+  try {
+    const reviewsData = yield call(getReviewsApi, productId);
+    yield put(getAllReviewsActionSuccess(reviewsData));
+  } catch (error) {
+    yield put(getAllReviewsActionFailure(error?.message));
+  }
+}
+
+function* watchGetAllReviewsSaga() {
+  yield takeLatest(GET_ALL_REVIEWS, getReviewsSaga);
+}
+//================================ ADD REVIEW ON PRODUCT ==========
+function* addProductReviewSaga({ payload }) {
+  const { data, productId } = payload;
+  try {
+    const addreviewData = yield call(addReviewsApi, { data, productId });
+    yield put(addProductReviewSuccess(addreviewData));
+    toast.success("Review Added Successfully");
+  } catch (error) {
+    yield put(addProductReviewFailure(error?.message));
+    toast.error("Faield To Add Your Review. ");
+  }
+}
+
+function* watchAddReviewSaga() {
+  yield takeLatest(ADD_PRODUCT_REVIEW, addProductReviewSaga);
+}
+
+//================================ DEL REVIEW ON PRODUCT ==========
+function* delProductReviewSaga({ payload }) {
+  const { productId } = payload;
+  try {
+    const delreviewData = yield call(delProductReviewApi, productId);
+    yield put(delProductReviewSuccess(delreviewData));
+    toast.success("Review Removed Successfully");
+  } catch (error) {
+    yield put(delProductReviewFailure(error?.message));
+    toast.error("Faield To Remove Your Review. ");
+  }
+}
+
+function* watchDeleteReviewSaga() {
+  yield takeLatest(DELETE_PRODUCT_REVIEW, delProductReviewSaga);
+}
+
+function* reviewsSagas() {
+  yield all([
+    fork(watchGetAllReviewsSaga),
+    fork(watchAddReviewSaga),
+    fork(watchDeleteReviewSaga),
+  ]);
+}
+export default reviewsSagas;

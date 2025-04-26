@@ -25,6 +25,6 @@ export const getProductsApi = async ({
 
 export const getSingleProductApi = async (productId) => {
   const response = await server.get(`/api/v1/products/${productId}`);
-  console.log(response?.data);
+  // console.log(response?.data);
   return response;
 };

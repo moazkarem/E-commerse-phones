@@ -6,12 +6,11 @@ import Loading from "../../../../Loading/Loading";
 import Error from "../../../../Error/Error";
 import { LiaStarSolid } from "react-icons/lia";
 import Correct from "../../../../../assets/Correct.svg";
-import AddButton from "../../../Buttons/Add_Button/AddButton";
 
 export default function ProductInfo() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const [selectedColor, setSelectedColor] = useState(""); // ✅ لون مختار
+  const [selectedColor, setSelectedColor] = useState("");
 
   const { singleProduct, loading, error } = useSelector(
     (state) => state.productsRed
@@ -73,8 +72,17 @@ export default function ProductInfo() {
             ))}
           </div>
           <p className="text-large text-muted pl-2">
-            {product?.ratingsQuantity} Ratings
+            {Math.ceil(product?.ratingsQuantity)} Ratings
           </p>
+        </div>
+        <div className="mt-3 flex items-center gap-1 w-full">
+          <span className="text-[#008000] text-[14px] capitalize ">
+            Average Rate : {product?.ratingsAverage || 0}
+          </span>
+          <span>
+            {" "}
+            <LiaStarSolid color="#008000" size={14} />
+          </span>
         </div>
       </div>
 

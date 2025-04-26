@@ -6,6 +6,7 @@ import authRed from "./auth/reducer";
 import whishlistRed from "./whishlist/reducer";
 import addressesRed from "./Addresses/reducer";
 import cartRed from "./cart/reducer";
+import reviewsRed from "./Reviews/reducer";
 const rootReducer = combineReducers({
   categoriesRed,
   brandsRed,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   whishlistRed,
   addressesRed,
   cartRed,
+  reviewsRed
 });
 
 export default rootReducer;
