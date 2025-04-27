@@ -28,8 +28,10 @@ const OurProducts = () => {
   }, [dispatch]);
   //============================HANDEL DATA ===========
   const { data } = products;
-  const renderSlides = data?.slice(0, 8)?.map((product, index) => (
-    <SwiperSlide key={product._id}>
+  
+  
+  const renderSlides = data?.slice(0 ,8)?.map((product, index) => (
+    <SwiperSlide key={index}>
       <ProductCard product={product} index={index} />
     </SwiperSlide>
   ));
@@ -48,8 +50,6 @@ const OurProducts = () => {
       </div>
     );
   //============================START JSX ===========
-
-
 
   return (
     <div className={`pt-28 `}>

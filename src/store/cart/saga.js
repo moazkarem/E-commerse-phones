@@ -42,9 +42,9 @@ function* watchGetCart() {
 
 //================ ADD CART SAGA
 function* addCartSaga({ payload }) {
-  const { productId } = payload;
+  const { productId , color } = payload;
   try {
-    const cartData = yield call(addToCartApi, productId);
+    const cartData = yield call(addToCartApi, {productId , color});
     yield put(addCartActionSuccess(cartData));
     toast.success("Product  Added To Cart Successfully");
   } catch (error) {

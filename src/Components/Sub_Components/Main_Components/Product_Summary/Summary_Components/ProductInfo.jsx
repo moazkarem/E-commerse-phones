@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react"; // ✅ أضف useState
-import { getSingleProd } from "../../../../../store/actions";
+import { addtCartAction, getSingleProd } from "../../../../../store/actions";
 import Loading from "../../../../Loading/Loading";
 import Error from "../../../../Error/Error";
 import { LiaStarSolid } from "react-icons/lia";
 import Correct from "../../../../../assets/Correct.svg";
+import toast from "react-hot-toast";
 
 export default function ProductInfo() {
   const { id } = useParams();
@@ -44,13 +45,16 @@ export default function ProductInfo() {
     .join(",")
     .split(" ")
     ?.map((color, idx) => {
+      console.log(color, "my colo");
       return (
         color.length > 2 && (
           <span
             key={idx}
             onClick={() => setSelectedColor(color)}
             className={`w-6 h-6 rounded-full cursor-pointer border-2 ${
-              selectedColor === color ? "border-black" : "border-transparent"
+              selectedColor === color
+                ? "border-black !border-3"
+                : "border-transparent"
             }`}
             style={{ backgroundColor: color }}
           />
@@ -58,6 +62,22 @@ export default function ProductInfo() {
       );
     });
 
+  //============ ADD TO CART HANDELER
+
+  const addToCartHandeler = (productId) => {
+    console.log(product?.availableColors, "colors in this ");
+    if (product?.availableColors?.length > 0) {
+      if (!selectedColor) {
+        toast.error("Please Select Color First");
+        return;
+      } else {
+        dispatch(addtCartAction(productId, selectedColor));
+      }
+    } else {
+      setSelectedColor("");
+      dispatch(addtCartAction(productId, selectedColor));
+    }
+  };
   return (
     <section className="flex flex-col w-full lg:w-2/5">
       <div className="flex flex-col border-b-[1px] border-[#ffffff30] py-6">
@@ -116,7 +136,12 @@ export default function ProductInfo() {
       </div>
 
       <div className="py-6">
-        <button className={`single-button`}>Add To Cart</button>
+        <button
+          onClick={() => addToCartHandeler(product?._id)}
+          className={`single-button`}
+        >
+          Add To Cart
+        </button>
       </div>
     </section>
   );

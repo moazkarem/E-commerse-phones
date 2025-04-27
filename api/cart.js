@@ -15,20 +15,21 @@ export const getProductsCartApi = async () => {
 };
 
 //====================================== ADD PRODUCT TO CART
-export const addToCartApi = async (productId) => {
+export const addToCartApi = async ({productId, color}) => {
+  console.log(color , 'my color');
   const storedKey = localStorage.getItem("userData");
   const userData = storedKey ? JSON.parse(storedKey) : null;
   const token = userData?.data?.token;
   const response = await server.post(
     "/api/v1/cart",
-    { productId },
+    { productId, color },
     {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     }
   );
-  console.log(response?.data, "from add to cart api function");
+  console.log(response, "from add to cart api function");
   return response;
 };
 
@@ -67,7 +68,7 @@ export const clearCartApi = async () => {
 };
 
 //====================================== UPDATE CART CONATTY
-export const updataCartContatyApi = async ( {productId, count} ) => {
+export const updataCartContatyApi = async ({ productId, count }) => {
   const storedKey = localStorage.getItem("userData");
   const userData = storedKey ? JSON.parse(storedKey) : null;
   const token = userData?.data?.token;

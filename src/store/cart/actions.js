@@ -33,9 +33,9 @@ export const getCartActionFailure = (payload) => ({
 
 //==================================
 
-export const addtCartAction = (productId) => ({
+export const addtCartAction = (productId , color) => ({
   type: ADD_PRODUCTS_CART,
-  payload:{productId}
+  payload:{productId , color}
 });
 
 export const addCartActionSuccess = (payload) => ({
