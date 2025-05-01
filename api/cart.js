@@ -15,8 +15,8 @@ export const getProductsCartApi = async () => {
 };
 
 //====================================== ADD PRODUCT TO CART
-export const addToCartApi = async ({productId, color}) => {
-  console.log(color , 'my color');
+export const addToCartApi = async ({ productId, color }) => {
+  console.log(color, "my color");
   const storedKey = localStorage.getItem("userData");
   const userData = storedKey ? JSON.parse(storedKey) : null;
   const token = userData?.data?.token;
@@ -63,12 +63,13 @@ export const clearCartApi = async () => {
     },
   });
 
-  console.log(response?.data, "from clear api function");
+  // console.log(response?.data, "from clear api function");
   return response;
 };
 
 //====================================== UPDATE CART CONATTY
 export const updataCartContatyApi = async ({ productId, count }) => {
+  // console.log(  count , "test payload in udate");
   const storedKey = localStorage.getItem("userData");
   const userData = storedKey ? JSON.parse(storedKey) : null;
   const token = userData?.data?.token;
@@ -82,6 +83,6 @@ export const updataCartContatyApi = async ({ productId, count }) => {
     }
   );
 
-  console.log(response?.data, "from update contaty");
+  // console.log(response, "from update contaty");
   return response;
 };

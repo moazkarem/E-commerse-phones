@@ -1,7 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react"; // ✅ أضف useState
-import { addtCartAction, getSingleProd } from "../../../../../store/actions";
+import {
+  addtCartAction,
+  getCartAction,
+  getSingleProd,
+  updateCartAction,
+} from "../../../../../store/actions";
 import Loading from "../../../../Loading/Loading";
 import Error from "../../../../Error/Error";
 import { LiaStarSolid } from "react-icons/lia";
@@ -20,9 +25,11 @@ export default function ProductInfo() {
   useEffect(() => {
     if (!singleProduct || singleProduct?.data?.data?._id !== id) {
       dispatch(getSingleProd(id));
+      dispatch(getCartAction());
     }
   }, [id, dispatch, singleProduct]);
-
+  const { getCart } = useSelector((state) => state.cartRed);
+  const productsCart = getCart?.data?.products;
   if (loading)
     return (
       <div className="w-full h-[100vh] flex justify-center items-center">
@@ -45,7 +52,6 @@ export default function ProductInfo() {
     .join(",")
     .split(" ")
     ?.map((color, idx) => {
-      console.log(color, "my colo");
       return (
         color.length > 2 && (
           <span
@@ -65,19 +71,35 @@ export default function ProductInfo() {
   //============ ADD TO CART HANDELER
 
   const addToCartHandeler = (productId) => {
-    console.log(product?.availableColors, "colors in this ");
-    if (product?.availableColors?.length > 0) {
+    const existProductSameColor = productsCart?.find(
+      (item) =>
+        item?.product?._id === productId && item?.color === selectedColor
+    );
+    if (product?.availableColors.length > 0) {
       if (!selectedColor) {
         toast.error("Please Select Color First");
-        return;
       } else {
-        dispatch(addtCartAction(productId, selectedColor));
+        if (existProductSameColor) {
+          const count = existProductSameColor?.count + 1;
+          dispatch(updateCartAction(existProductSameColor?._id, count));
+        } else {
+          dispatch(addtCartAction(productId, selectedColor));
+        }
       }
     } else {
-      setSelectedColor("");
-      dispatch(addtCartAction(productId, selectedColor));
+      const existProductNoColor = productsCart?.find(
+        (item) => item?.product?._id === productId && item?.color === ""
+      );
+      if (existProductNoColor) {
+        const count = existProductNoColor?.count + 1;
+        dispatch(updateCartAction(existProductNoColor?._id, count));
+      } else {
+        setSelectedColor("");
+        dispatch(addtCartAction(productId, selectedColor));
+      }
     }
   };
+
   return (
     <section className="flex flex-col w-full lg:w-2/5">
       <div className="flex flex-col border-b-[1px] border-[#ffffff30] py-6">

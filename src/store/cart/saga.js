@@ -98,7 +98,8 @@ function* updateCartSaga({ payload }) {
     yield put(updateCartActionSuccess(cartData));
     toast.success("Quantity Updated Successfully");
   } catch (error) {
-    yield put(updateCartActionFailure(error.message));
+    console.log(error.message , 'my saga updated ');
+    yield put(updateCartActionFailure(error));
     toast.error("Failed to update quantity");
   }
 }

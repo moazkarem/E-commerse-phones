@@ -53,7 +53,7 @@ function CartItem({ item }) {
                 className="px-1 rounded-[10px]"
                 style={{ backgroundColor: `${item?.color}` }}
               >
-                {item?.color}
+                {item?.color || "NoT Found Colors"} 
               </span>
             </div>
           </div>
