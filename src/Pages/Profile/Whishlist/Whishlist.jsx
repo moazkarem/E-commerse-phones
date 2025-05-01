@@ -36,13 +36,11 @@ const Whishlist = () => {
         </span>
       </div>
       <div className="w-full flex justify-between gap-8 items-center md:w-auto md:flex-shrink-0">
-        <button className="bg-[#ff0000cc] py-2 px-6 md:px-4 lg:px-8 rounded-[8px] flex items-center justify-center gap-2 flex-shrink-0">
+        <button className="bg-[#008000] py-2 px-6 md:px-4 lg:px-8 rounded-[8px] flex items-center justify-center gap-2 flex-shrink-0">
           <span className="capitalize text-[14px] lg:text-[16px] text-white">
-            Add To Cart
+            View
           </span>
-          <span>
-            <BsHandbag />
-          </span>
+          
         </button>
         <div className="flex-shrink-0">
           <span

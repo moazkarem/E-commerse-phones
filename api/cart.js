@@ -69,7 +69,7 @@ export const clearCartApi = async () => {
 
 //====================================== UPDATE CART CONATTY
 export const updataCartContatyApi = async ({ productId, count }) => {
-  // console.log(  count , "test payload in udate");
+  console.log(  count , "test payload in udate");
   const storedKey = localStorage.getItem("userData");
   const userData = storedKey ? JSON.parse(storedKey) : null;
   const token = userData?.data?.token;
@@ -83,6 +83,6 @@ export const updataCartContatyApi = async ({ productId, count }) => {
     }
   );
 
-  // console.log(response, "from update contaty");
+  console.log(response, "from update contaty");
   return response;
 };

@@ -8,6 +8,7 @@ import { getAllproducts } from "../../store/actions";
 import BreadCrumb from "../../Components/BreadCrump/BreadCrump";
 import Pagination from "../../Components/pagination/Pagination";
 import NullScreen from "../../Components/NullScreen/NullScreen";
+import QuickeModal from "../../Components/QuickeViewModal/QuickeModal";
 
 const AllProducts = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -65,9 +66,15 @@ const AllProducts = () => {
     priceTo,
     sort,
   ]);
+ 
+  const [viewedProduct , setViewedProduct] = useState('')
+  const handelQuickView = (product)=>{
+    document.getElementById("Quicke_view").showModal()
+    setViewedProduct(product)
+  }
 
   const renderProducts = products?.data?.map((product, index) => (
-    <SingleCard product={product} key={product._id} index={index} />
+    <SingleCard product={product} key={product._id} index={index} handelQuickView={handelQuickView}/>
   ));
 
   //============================HANDEL PAGINATION ===========
@@ -129,6 +136,7 @@ const AllProducts = () => {
             </div>
           )}
         </div>
+        <QuickeModal product={viewedProduct}/>
       </div>
     </>
   );

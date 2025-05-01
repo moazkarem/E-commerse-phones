@@ -14,9 +14,10 @@ import {
   getWhishlist,
 } from "../../../store/actions";
 import toast from "react-hot-toast";
-const ProductCard = ({ product, index }) => {
+import QuickeModal from "../../../Components/QuickeViewModal/QuickeModal";
+const ProductCard = ({ product, index , quickeViewHandeler}) => {
   const navigate = useNavigate();
-  const {id} = useParams()
+  const { id } = useParams();
   const storageKey = "userData";
   const userDataString = localStorage.getItem(storageKey);
   const userData = userDataString ? JSON.parse(userDataString) : null;
@@ -66,10 +67,7 @@ const ProductCard = ({ product, index }) => {
   };
 
   //============================HANDEL  SINGLE PRODUCT NAVIGATION ===========
-  const singleProdHandel = (productId) => {
-    dispatch(getSingleProd(productId));
-    navigate(`/products/${productId}`);
-  };
+  
   return (
     <div className="rounded-[10px]">
       <div className="relative overflow-hidden w-full cursor-pointer rounded-[10px] pt-[100%] group bg-[#111]">
@@ -99,10 +97,10 @@ const ProductCard = ({ product, index }) => {
         </div>
         <div className="flex justify-between items-center gap-3 mt-4">
           <button
-            onClick={() => singleProdHandel(_id)}
+            onClick={()=>quickeViewHandeler(product)}
             className="text-white rounded-[6px] border px-6 max-[380px]:px-1 max-[380px]:justify-center max-[380px]:gap-2 h-12 flex justify-between items-center w-full max-[330px]:text-[16px]"
           >
-            More Details
+            Quicke View
           </button>
           <button
             onClick={() => handelFav(_id)}
@@ -116,6 +114,7 @@ const ProductCard = ({ product, index }) => {
           </button>
         </div>
       </div>
+      
     </div>
   );
 };

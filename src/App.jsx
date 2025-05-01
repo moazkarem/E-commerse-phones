@@ -123,6 +123,7 @@ function App() {
             fontSize: "16px",
             borderRadius: "10px",
             padding: "15px",
+            zIndex:999999,
           },
           duration: 1500,
         }}

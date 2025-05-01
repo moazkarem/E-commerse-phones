@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css/pagination";
@@ -15,6 +15,7 @@ import {
 import Loading from "../../../Components/Loading/Loading";
 import Error from "../../../Components/Error/Error";
 import { useNavigate } from "react-router-dom";
+import QuickeModal from "../../../Components/QuickeViewModal/QuickeModal";
 const OurProducts = () => {
   const navigate = useNavigate();
   const swiperRef = useRef(null);
@@ -29,10 +30,17 @@ const OurProducts = () => {
   //============================HANDEL DATA ===========
   const { data } = products;
   
-  
+ 
+  const [viewedProduct, setViewedProduct] = useState("");
+  const quickeViewHandeler = (product) => {
+    document.getElementById("Quicke_view").showModal();
+    setViewedProduct(product);
+  };
+
+
   const renderSlides = data?.slice(0 ,8)?.map((product, index) => (
     <SwiperSlide key={index}>
-      <ProductCard product={product} index={index} />
+      <ProductCard product={product} index={index} quickeViewHandeler={quickeViewHandeler}/>
     </SwiperSlide>
   ));
   //============================HANDEL LOADING ===========
@@ -50,6 +58,8 @@ const OurProducts = () => {
       </div>
     );
   //============================START JSX ===========
+
+
 
   return (
     <div className={`pt-28 `}>
@@ -112,6 +122,7 @@ const OurProducts = () => {
           </div>
         </div>
       </div>
+      <QuickeModal product={viewedProduct} />
     </div>
   );
 };
