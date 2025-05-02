@@ -94,12 +94,15 @@ const SingleCard = ({ product, index, handelQuickView }) => {
         </div>
 
         <div className="flex justify-between items-center group w-full">
-          <Link to={`/products/${_id}`} className="flex justify-between items-center gap-2 w-full">
+          <Link
+            to={`/products/${_id}`}
+            className="flex justify-between items-center gap-2 w-full"
+          >
             <span className="text-[18px] text-[#a9afc3] line-clamp-1">
               {title}
             </span>
             <span className="text-md text-[#008000] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              Details  ?
+              Details ?
             </span>
           </Link>
         </div>

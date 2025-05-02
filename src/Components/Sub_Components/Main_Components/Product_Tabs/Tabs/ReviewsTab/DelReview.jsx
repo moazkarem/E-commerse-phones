@@ -1,8 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import Modal from "../../../../../Ui/Modal";
-import { delProductReviewAction } from "../../../../../store/actions";
+import Modal from "../../../../../../Ui/Modal";
+import { delProductReviewAction } from "../../../../../../store/actions";
 const DelReview = ({ deltedReview }) => {
   const dispatch = useDispatch();
   const { handleSubmit } = useForm();

@@ -66,7 +66,7 @@ const AllProducts = () => {
     priceTo,
     sort,
   ]);
- 
+ //============================QUICKE VIEW MODAL ===========
   const [viewedProduct , setViewedProduct] = useState('')
   const handelQuickView = (product)=>{
     document.getElementById("Quicke_view").showModal()

@@ -7,12 +7,13 @@ import { MdDeleteOutline } from "react-icons/md";
 import "rc-rate/assets/index.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getAllReviewsAction } from "../../../../../store/actions";
+import { getAllReviewsAction } from "../../../../../../store/actions";
 import AddReview from "./AddReview";
-import Loading from "../../../../Loading/Loading";
-import { formatDate } from "../../../../../helpers/validDate";
+import Loading from "../../../../../Loading/Loading";
+import { formatDate } from "../../../../../../helpers/validDate";
 import DelReview from "./DelReview";
 import EditReview from "./EditReview";
+import Pagination from "../../../../../../Components/pagination/Pagination";
 export default function ReviewsTab() {
   const { id } = useParams();
   const storageKey = "userData";
@@ -21,24 +22,26 @@ export default function ReviewsTab() {
   const loggedUser = userData?.data?.data?._id;
   const { getReviews, loading } = useSelector((state) => state.reviewsRed);
   const dispatch = useDispatch();
+  const limit = 2;
+  const [currentPage, setCurrenntPage] = useState(1);
   useEffect(() => {
-    dispatch(getAllReviewsAction(id));
-  }, [dispatch]);
+    dispatch(getAllReviewsAction(id, limit, currentPage));
+  }, [dispatch, limit, currentPage]);
 
   const reviews = getReviews?.data?.data;
- //============================HANDEL EDIT REVIEW  ===========
+  //============================HANDEL EDIT REVIEW  ===========
   const [deltedReview, setDeletedReview] = useState("");
   const delReviewHandeler = (reviewId) => {
     document.getElementById("delete_review_modal").showModal();
     setDeletedReview(reviewId);
   };
 
-   //============================HANDEL DELETE REVIEW  ===========
-   const [editedReview , setEditedReview] = useState('')
-   const editReviewHandeler = (review)=>{
-    document.getElementById("edit_review_modal").showModal()
-    setEditedReview(review)
-   }
+  //============================HANDEL DELETE REVIEW  ===========
+  const [editedReview, setEditedReview] = useState("");
+  const editReviewHandeler = (review) => {
+    document.getElementById("edit_review_modal").showModal();
+    setEditedReview(review);
+  };
   //============================HANDEL LOADING ===========
   if (loading)
     return (
@@ -46,6 +49,15 @@ export default function ReviewsTab() {
         <Loading />
       </div>
     );
+  //============================HANDEL PAGINATION ===========
+  let pageCount = 0;
+  if (getReviews?.data?.paginationResult) {
+    pageCount = getReviews?.data?.paginationResult?.numberOfPages;
+  }
+
+  const handelPages = (page) => {
+    setCurrenntPage(page);
+  };
   return (
     <>
       <div className="grid grid-cols-12 gap-8 w-full">
@@ -87,7 +99,7 @@ export default function ReviewsTab() {
                     <div className="flex justify-end pe-10 pb-5 gap-4">
                       <button>
                         <FaRegEdit
-                        onClick={()=>editReviewHandeler(review)}
+                          onClick={() => editReviewHandeler(review)}
                           className="text-[#a9afc3] hover:text-[#008000]"
                           size={18}
                         />
@@ -109,10 +121,17 @@ export default function ReviewsTab() {
             No comments exist for this product. Be the first to comment!
           </h4>
         )}
+        <div className="w-full flex justify-center col-span-12">
 
+          <Pagination
+            currentPage={currentPage}
+            onPress={handelPages}
+            pageCount={pageCount}
+          />
+        </div>
         <AddReview />
         <DelReview deltedReview={deltedReview} />
-        <EditReview editedReview={editedReview}/>
+        <EditReview editedReview={editedReview} />
       </div>
     </>
   );

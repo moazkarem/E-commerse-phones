@@ -1,13 +1,17 @@
 import server from "./server";
 
-export const getReviewsApi = async (productId) => {
+export const getReviewsApi = async ({ productId, limit, currentPage }) => {
+  console.log(limit , currentPage);
   const userData = JSON.parse(localStorage.getItem("userData"));
   const token = userData?.data?.token;
-  const response = await server.get(`/api/v1/products/${productId}/reviews`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const response = await server.get(
+    `/api/v1/products/${productId}/reviews?limit=${limit}&page=${currentPage}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   // console.log(response.data, "get all revies api function");
   return response;
 };

@@ -6,7 +6,9 @@ import { deleteFromWhishlist, getWhishlist } from "../../../store/actions";
 import { images } from "./data";
 import Loading from "../../../Components/Loading/Loading";
 import NullScreen from "../../../Components/NullScreen/NullScreen";
+import { useNavigate } from "react-router-dom";
 const Whishlist = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const { whishlistData, loading } = useSelector((state) => state.whishlistRed);
   useEffect(() => {
@@ -36,7 +38,9 @@ const Whishlist = () => {
         </span>
       </div>
       <div className="w-full flex justify-between gap-8 items-center md:w-auto md:flex-shrink-0">
-        <button className="bg-[#008000] py-2 px-6 md:px-4 lg:px-8 rounded-[8px] flex items-center justify-center gap-2 flex-shrink-0">
+        <button
+        onClick={()=>navigate(`/products/${item?._id}`)}
+        className="bg-[#008000] py-2 px-6 md:px-4 lg:px-8 rounded-[8px] flex items-center justify-center gap-2 flex-shrink-0">
           <span className="capitalize text-[14px] lg:text-[16px] text-white">
             View
           </span>

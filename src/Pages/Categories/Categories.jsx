@@ -8,6 +8,7 @@ import Pagination from "../../Components/pagination/Pagination";
 import { useMemo } from "react";
 import Error from "../../Components/Error/Error";
 import { Link } from "react-router-dom";
+import { images } from "./data";
 
 const Categories = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const Categories = () => {
     (state) => state.categoriesRed
   );
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 4;
+  const limit = 10;
 
   useEffect(() => {
     dispatch(getAllCategories(limit, currentPage));
@@ -56,7 +57,7 @@ const Categories = () => {
         <div className="flex flex-col justify-center items-center gap-6 mb-10">
           <div className="border border-[#596268] p-3 rounded-[10px] overflow-hidden group">
             <img
-              src={image}
+              src={images[Math.floor(Math.random() * images.length)]}
               alt={slug}
               className="w-full h-[260px] max-h-[300px] object-cover transform transition-transform duration-300 group-hover:scale-105 cursor-pointer"
             />

@@ -14,9 +14,9 @@ import {
 } from "./actionTypes";
 
 //=====================GET ALL REVIEWS
-export const getAllReviewsAction = (productId) => ({
+export const getAllReviewsAction = (productId , limit , currentPage) => ({
   type: GET_ALL_REVIEWS,
-  payload: { productId },
+  payload: { productId , limit , currentPage },
 });
 
 export const getAllReviewsActionSuccess = (payload) => ({

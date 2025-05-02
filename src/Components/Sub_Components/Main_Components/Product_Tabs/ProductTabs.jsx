@@ -5,7 +5,7 @@ import { useState } from "react";
 // Tabs
 import SpecificationsTab from "./Tabs/SpecificationsTab";
 import OverviewTab from "./Tabs/OverviewTab";
-import ReviewsTab from "./Tabs/ReviewsTab";
+import ReviewsTab from "./Tabs/ReviewsTab/ReviewsTab";
 // React Reveal
 import { Fade } from "react-awesome-reveal";
 

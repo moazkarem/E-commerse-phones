@@ -20,7 +20,6 @@ import toast from "react-hot-toast";
 import {
   addReviewsApi,
   delProductReviewApi,
-  
   getReviewsApi,
   updateProductReviewApi,
 } from "../../../api/reviews";
@@ -28,9 +27,13 @@ import {
 //================================ GET  ALL REVIEWS ON PRODUCT==========
 
 function* getReviewsSaga({ payload }) {
-  const { productId } = payload;
+  const { productId, limit, currentPage } = payload;
   try {
-    const reviewsData = yield call(getReviewsApi, productId);
+    const reviewsData = yield call(getReviewsApi, {
+      productId,
+      limit,
+      currentPage,
+    });
     yield put(getAllReviewsActionSuccess(reviewsData));
   } catch (error) {
     yield put(getAllReviewsActionFailure(error?.message));
@@ -78,7 +81,10 @@ function* watchDeleteReviewSaga() {
 function* updateProductReviewSaga({ payload }) {
   const { data, productId } = payload;
   try {
-    const addreviewData = yield call(updateProductReviewApi, { data, productId });
+    const addreviewData = yield call(updateProductReviewApi, {
+      data,
+      productId,
+    });
     yield put(updateProductReviewSuccess(addreviewData));
     toast.success("Review Updated Successfully");
   } catch (error) {
@@ -96,7 +102,7 @@ function* reviewsSagas() {
     fork(watchGetAllReviewsSaga),
     fork(watchAddReviewSaga),
     fork(watchDeleteReviewSaga),
-    fork(watchUpdateReviewSaga)
+    fork(watchUpdateReviewSaga),
   ]);
 }
 export default reviewsSagas;

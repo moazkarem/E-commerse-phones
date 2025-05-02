@@ -73,6 +73,7 @@ const ProductCard = ({ product, index , quickeViewHandeler}) => {
       <div className="relative overflow-hidden w-full cursor-pointer rounded-[10px] pt-[100%] group bg-[#111]">
         <Link to={`products/${_id}`}>
           <div className="flex justify-center items-center w-full mx-auto ">
+           
             <img
               src={randomImage}
               alt={slug}

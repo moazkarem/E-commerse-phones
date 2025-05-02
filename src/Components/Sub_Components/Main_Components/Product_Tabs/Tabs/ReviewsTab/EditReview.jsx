@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import Modal from "../../../../../Ui/Modal";
+import Modal from "../../../../../../Ui/Modal";
 import { LiaStarSolid } from "react-icons/lia";
-import { updateProductReviewAction } from "../../../../../store/actions";
+import { updateProductReviewAction } from "../../../../../../store/actions";
 
 const EditReview = ({ editedReview }) => {
   const [hoverValue, setHoverValue] = useState(undefined);

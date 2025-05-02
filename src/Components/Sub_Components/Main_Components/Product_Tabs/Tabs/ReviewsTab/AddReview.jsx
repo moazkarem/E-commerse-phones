@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { LiaStarSolid } from "react-icons/lia";
 import { useForm } from "react-hook-form";
-import { addProductReviewAction } from "../../../../../store/actions";
+import { addProductReviewAction } from "../../../../../../store/actions";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 const AddReview = () => {
