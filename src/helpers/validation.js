@@ -45,3 +45,9 @@ export const ResetSchema = yup
       .min(4, "Password must be at least 4 characters "),
   })
   .required();
+
+export const couponSchema = yup
+  .object({
+    couponName: yup.string().required("Coupon Name  is required"),
+  })
+  .required();

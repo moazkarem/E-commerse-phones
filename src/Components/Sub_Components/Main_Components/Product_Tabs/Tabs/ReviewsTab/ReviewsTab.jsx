@@ -22,7 +22,7 @@ export default function ReviewsTab() {
   const loggedUser = userData?.data?.data?._id;
   const { getReviews, loading } = useSelector((state) => state.reviewsRed);
   const dispatch = useDispatch();
-  const limit = 2;
+  const limit = 5;
   const [currentPage, setCurrenntPage] = useState(1);
   useEffect(() => {
     dispatch(getAllReviewsAction(id, limit, currentPage));

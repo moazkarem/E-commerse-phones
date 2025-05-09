@@ -2,6 +2,7 @@ import toast from "react-hot-toast";
 import { call, put, takeLatest, fork, all } from "redux-saga/effects";
 import {
   addToCartApi,
+  applyUserCouponApi,
   clearCartApi,
   delFromCartApi,
   getProductsCartApi,
@@ -10,6 +11,8 @@ import {
 import {
   addCartActionFailure,
   addCartActionSuccess,
+  applyUserCouponActionFailure,
+  applyUserCouponActionSuccess,
   clearCartActionFailure,
   clearCartActionSuccess,
   delCartActionFailure,
@@ -21,6 +24,7 @@ import {
 } from "./actions";
 import {
   ADD_PRODUCTS_CART,
+  APPLY_USER_COUPON_CART,
   CLEAR_PRODUCT_CART,
   DELETE_PRODUCT_CART,
   GET_PRODUCTS_CART,
@@ -42,9 +46,9 @@ function* watchGetCart() {
 
 //================ ADD CART SAGA
 function* addCartSaga({ payload }) {
-  const { productId , color } = payload;
+  const { productId, color } = payload;
   try {
-    const cartData = yield call(addToCartApi, {productId , color});
+    const cartData = yield call(addToCartApi, { productId, color });
     yield put(addCartActionSuccess(cartData));
     toast.success("Product  Added To Cart Successfully");
   } catch (error) {
@@ -98,7 +102,7 @@ function* updateCartSaga({ payload }) {
     yield put(updateCartActionSuccess(cartData));
     toast.success("Quantity Updated Successfully");
   } catch (error) {
-    console.log(error.message , 'my saga updated ');
+    console.log(error.message, "my saga updated ");
     yield put(updateCartActionFailure(error));
     toast.error("Failed to update quantity");
   }
@@ -108,6 +112,23 @@ function* watchUpdateCart() {
   yield takeLatest(UPDATE_PRODUCT_CONTATY, updateCartSaga);
 }
 
+//================ APPLY USER COUPON
+function* applyUserCouponSaga({ payload }) {
+  try {
+    const { couponName } = payload;
+    const couponData = yield call(applyUserCouponApi, couponName);
+    yield put(applyUserCouponActionSuccess(couponData));
+    toast.success("Coupon Added Successfully");
+  } catch (err) {
+    yield put(applyUserCouponActionFailure(err.message));
+    toast.error("Invalid Coupon Name");
+  }
+}
+
+function* watchApplycoupon() {
+  yield takeLatest(APPLY_USER_COUPON_CART, applyUserCouponSaga);
+}
+
 function* allCartSaga() {
   yield all([
     fork(watchGetCart),
@@ -115,6 +136,7 @@ function* allCartSaga() {
     fork(watchDelCart),
     fork(watchClearCart),
     fork(watchUpdateCart),
+    fork(watchApplycoupon),
   ]);
 }
 

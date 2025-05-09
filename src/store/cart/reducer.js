@@ -14,6 +14,9 @@ import {
   CLEAR_PRODUCT_CART,
   CLEAR_PRODUCT_CART_SUCCESS,
   CLEAR_PRODUCT_CART_FAILURE,
+  APPLY_USER_COUPON_CART,
+  APPLY_USER_COUPON_CART_SUCCESS,
+  APPLY_USER_COUPON_CART_FAILURE,
 } from "./actionTypes";
 
 const initialState = {
@@ -23,6 +26,7 @@ const initialState = {
   delCart: [],
   updateCart: [],
   clearCart: [],
+  couponData: [],
   error: null,
 };
 
@@ -61,6 +65,13 @@ const cartRed = (state = initialState, action) => {
     case CLEAR_PRODUCT_CART_SUCCESS:
       return { ...state, clearCart: action.payload, loading: false };
     case CLEAR_PRODUCT_CART_FAILURE:
+      return { ...state, error: action.payload, loading: false };
+
+    case APPLY_USER_COUPON_CART:
+      return { ...state, loading: true, error: null };
+    case APPLY_USER_COUPON_CART_SUCCESS:
+      return { ...state, couponData: action.payload, loading: false };
+    case APPLY_USER_COUPON_CART_FAILURE:
       return { ...state, error: action.payload, loading: false };
 
     default:
