@@ -1,6 +1,6 @@
 import server from "./server";
 
-//====================================== ADD PRODUCT TO CART
+//====================================== GET PRODUCT TO CART
 export const getProductsCartApi = async () => {
   const storedKey = localStorage.getItem("userData");
   const userData = storedKey ? JSON.parse(storedKey) : null;
@@ -29,7 +29,7 @@ export const addToCartApi = async ({ productId, color }) => {
       },
     }
   );
-  console.log(response, "from add to cart api function");
+  // console.log(response, "from add to cart api function");
   return response;
 };
 
@@ -48,7 +48,7 @@ export const delFromCartApi = async (productId) => {
     }
   );
 
-  console.log(response?.data, "from delete api function");
+  // console.log(response?.data, "from delete api function");
   return response;
 };
 
