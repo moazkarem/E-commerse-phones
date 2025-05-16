@@ -8,6 +8,7 @@ import AllAddreessesSagas from "./Addresses/saga";
 import allCartSaga from "./cart/saga";
 import reviewsSagas from "./Reviews/saga";
 import allOrdersSaga from "./orders/saga";
+import allCheckoutSaga from "./checkout/saga";
 function* rootSaga() {
   yield all([
     categorieSaga(),
@@ -18,7 +19,8 @@ function* rootSaga() {
     AllAddreessesSagas(),
     allCartSaga(),
     reviewsSagas(),
-    allOrdersSaga()
+    allOrdersSaga() ,
+    allCheckoutSaga()
   ]);
 }
 export default rootSaga;

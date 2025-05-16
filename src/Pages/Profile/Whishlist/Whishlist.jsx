@@ -8,7 +8,7 @@ import Loading from "../../../Components/Loading/Loading";
 import NullScreen from "../../../Components/NullScreen/NullScreen";
 import { useNavigate } from "react-router-dom";
 const Whishlist = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { whishlistData, loading } = useSelector((state) => state.whishlistRed);
   useEffect(() => {
@@ -39,12 +39,12 @@ const Whishlist = () => {
       </div>
       <div className="w-full flex justify-between gap-8 items-center md:w-auto md:flex-shrink-0">
         <button
-        onClick={()=>navigate(`/products/${item?._id}`)}
-        className="bg-[#008000] py-2 px-6 md:px-4 lg:px-8 rounded-[8px] flex items-center justify-center gap-2 flex-shrink-0">
+          onClick={() => navigate(`/products/${item?._id}`)}
+          className="bg-[#008000] py-2 px-6 md:px-4 lg:px-8 rounded-[8px] flex items-center justify-center gap-2 flex-shrink-0"
+        >
           <span className="capitalize text-[14px] lg:text-[16px] text-white">
             View
           </span>
-          
         </button>
         <div className="flex-shrink-0">
           <span
@@ -63,9 +63,11 @@ const Whishlist = () => {
   };
   //============================HANDEL LOADING ===========
   if (loading) {
-    <div className="w-full h-[100vh] flex justify-center items-center">
-      <Loading />
-    </div>;
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <Loading />
+      </div>
+    );
   }
 
   return (

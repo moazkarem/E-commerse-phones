@@ -66,15 +66,20 @@ const AllProducts = () => {
     priceTo,
     sort,
   ]);
- //============================QUICKE VIEW MODAL ===========
-  const [viewedProduct , setViewedProduct] = useState('')
-  const handelQuickView = (product)=>{
-    document.getElementById("Quicke_view").showModal()
-    setViewedProduct(product)
-  }
+  //============================QUICKE VIEW MODAL ===========
+  const [viewedProduct, setViewedProduct] = useState("");
+  const handelQuickView = (product) => {
+    document.getElementById("Quicke_view").showModal();
+    setViewedProduct(product);
+  };
 
   const renderProducts = products?.data?.map((product, index) => (
-    <SingleCard product={product} key={product._id} index={index} handelQuickView={handelQuickView}/>
+    <SingleCard
+      product={product}
+      key={product._id}
+      index={index}
+      handelQuickView={handelQuickView}
+    />
   ));
 
   //============================HANDEL PAGINATION ===========
@@ -83,16 +88,20 @@ const AllProducts = () => {
 
   //============================HANDEL LOADING ===========
   if (loading) {
-    <div className="w-full h-[100vh] flex justify-center items-center">
-      <Loading />
-    </div>;
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <Loading />
+      </div>
+    );
   }
 
   //============================HANDEL ERROR ===========
   if (error) {
-    <div className="w-full h-[100vh] flex justify-center items-center">
-      <Error msg={msg} />
-    </div>;
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <Error msg={msg} />
+      </div>
+    );
   }
 
   //============================START JSX ===========
@@ -136,7 +145,7 @@ const AllProducts = () => {
             </div>
           )}
         </div>
-        <QuickeModal product={viewedProduct}/>
+        <QuickeModal product={viewedProduct} />
       </div>
     </>
   );

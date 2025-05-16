@@ -18,6 +18,7 @@ const Orders = () => {
         <Loading />
       </div>
     );
+    console.log(getOrders?.data , 'orders')
   return (
     <>
       {getOrders?.data?.length > 0 ? (
@@ -40,7 +41,9 @@ const Orders = () => {
                 <th className="text-left px-4 py-3 whitespace-nowrap">
                   Delivered
                 </th>
-
+                <th className="text-left px-4 py-3 whitespace-nowrap">
+                 Address
+                </th>
                 <th className="text-left px-4 py-3 whitespace-nowrap">
                   Payment Type
                 </th>
@@ -83,7 +86,9 @@ const Orders = () => {
                       </span>
                     )}
                   </td>
-
+                  <td className="px-4 py-3 text-[#a9afc3] capitalize">
+                    {order?.shippingAddress?.city}
+                  </td>
                   <td className="px-4 py-3 text-[#a9afc3] capitalize">
                     {order?.paymentMethodType}
                   </td>

@@ -14,8 +14,7 @@ import {
   getWhishlist,
 } from "../../../store/actions";
 import toast from "react-hot-toast";
-import QuickeModal from "../../../Components/QuickeViewModal/QuickeModal";
-const ProductCard = ({ product, index , quickeViewHandeler}) => {
+const ProductCard = ({ product, index, quickeViewHandeler }) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const storageKey = "userData";
@@ -67,13 +66,12 @@ const ProductCard = ({ product, index , quickeViewHandeler}) => {
   };
 
   //============================HANDEL  SINGLE PRODUCT NAVIGATION ===========
-  
+
   return (
     <div className="rounded-[10px]">
       <div className="relative overflow-hidden w-full cursor-pointer rounded-[10px] pt-[100%] group bg-[#111]">
         <Link to={`products/${_id}`}>
           <div className="flex justify-center items-center w-full mx-auto ">
-           
             <img
               src={randomImage}
               alt={slug}
@@ -98,7 +96,7 @@ const ProductCard = ({ product, index , quickeViewHandeler}) => {
         </div>
         <div className="flex justify-between items-center gap-3 mt-4">
           <button
-            onClick={()=>quickeViewHandeler(product)}
+            onClick={() => quickeViewHandeler(product)}
             className="text-white rounded-[6px] border px-6 max-[380px]:px-1 max-[380px]:justify-center max-[380px]:gap-2 h-12 flex justify-between items-center w-full max-[330px]:text-[16px]"
           >
             Quicke View
@@ -115,7 +113,6 @@ const ProductCard = ({ product, index , quickeViewHandeler}) => {
           </button>
         </div>
       </div>
-      
     </div>
   );
 };

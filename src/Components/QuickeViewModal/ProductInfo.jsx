@@ -14,6 +14,9 @@ import {
 } from "../../store/actions";
 
 export default function ProductInfo({ product }) {
+  const storageKey = "userData";
+  const userDataString = localStorage.getItem(storageKey);
+  const userData = userDataString ? JSON.parse(userDataString) : null;
   const dispatch = useDispatch();
   const [selectedColor, setSelectedColor] = useState("");
 
@@ -53,32 +56,36 @@ export default function ProductInfo({ product }) {
   //============ ADD TO CART HANDELER
 
   const addToCartHandeler = (productId) => {
-    const existProductSameColor = productsCart?.find(
-      (item) =>
-        item?.product?._id === productId && item?.color === selectedColor
-    );
-    if (product?.availableColors.length > 0) {
-      if (!selectedColor) {
-        toast.error("Please Select Color First");
-      } else {
-        if (existProductSameColor) {
-          const count = existProductSameColor?.count + 1;
-          dispatch(updateCartAction(existProductSameColor?._id, count));
+    if (userData) {
+      const existProductSameColor = productsCart?.find(
+        (item) =>
+          item?.product?._id === productId && item?.color === selectedColor
+      );
+      if (product?.availableColors.length > 0) {
+        if (!selectedColor) {
+          toast.error("Please Select Color First");
         } else {
+          if (existProductSameColor) {
+            const count = existProductSameColor?.count + 1;
+            dispatch(updateCartAction(existProductSameColor?._id, count));
+          } else {
+            dispatch(addtCartAction(productId, selectedColor));
+          }
+        }
+      } else {
+        const existProductNoColor = productsCart?.find(
+          (item) => item?.product?._id === productId && item?.color === ""
+        );
+        if (existProductNoColor) {
+          const count = existProductNoColor?.count + 1;
+          dispatch(updateCartAction(existProductNoColor?._id, count));
+        } else {
+          setSelectedColor("");
           dispatch(addtCartAction(productId, selectedColor));
         }
       }
     } else {
-      const existProductNoColor = productsCart?.find(
-        (item) => item?.product?._id === productId && item?.color === ""
-      );
-      if (existProductNoColor) {
-        const count = existProductNoColor?.count + 1;
-        dispatch(updateCartAction(existProductNoColor?._id, count));
-      } else {
-        setSelectedColor("");
-        dispatch(addtCartAction(productId, selectedColor));
-      }
+      toast.error("Please Login First");
     }
   };
 
