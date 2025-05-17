@@ -14,6 +14,9 @@ import {
   POST_RESET_PASSWORD,
   POST_RESET_PASSWORD_SUCCESS,
   POST_RESET_PASSWORD_FAILURE,
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_SUCCESS,
+  CHANGE_PASSWORD_FAILURE,
 } from "./actionTypes";
 //================================ POST SIGN UP ==========
 export const postSignUp = (data, navigate) => ({
@@ -84,5 +87,19 @@ export const postResetPasswordSuccess = (payload) => ({
 });
 export const postResetPasswordFailure = (payload) => ({
   type: POST_RESET_PASSWORD_FAILURE,
+  payload,
+});
+
+//================================ CHANGE PASSWORD  ==========
+export const changePassAction = (payload) => ({
+  type: CHANGE_PASSWORD,
+  payload,
+});
+export const changePassActionSuccess = (payload) => ({
+  type: CHANGE_PASSWORD_SUCCESS,
+  payload,
+});
+export const changePassActionFailure = (payload) => ({
+  type: CHANGE_PASSWORD_FAILURE,
   payload,
 });

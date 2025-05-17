@@ -51,3 +51,17 @@ export const couponSchema = yup
     couponName: yup.string().required("Coupon Name  is required"),
   })
   .required();
+
+export const changePassSchema = yup
+  .object({
+    currentPassword: yup.string().required("Current password is required"),
+    password: yup
+      .string()
+      .required("Password is required")
+      .min(4, "Password must be at least 4 characters "),
+    passwordConfirm: yup
+      .string()
+      .oneOf([yup.ref("password")], "Passwords must match")
+      .required("Confirm Password is required"),
+  })
+  .required();
