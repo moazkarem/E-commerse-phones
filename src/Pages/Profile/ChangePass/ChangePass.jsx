@@ -30,8 +30,7 @@ const ChangePass = () => {
   });
 
   //============================HANDEL FIELDS LOOP ===========
-  const renderFields = changePass?.map(
-  ({ type, name, placeholder, classname }) => {
+  const renderFields = changePass?.map(({ name, placeholder, classname }) => {
     let showPassword = false;
     let setShowPassword;
 
@@ -66,9 +65,7 @@ const ChangePass = () => {
         )}
       </div>
     );
-  }
-);
-
+  });
 
   //============================HANDEL SUBMIT DATA ===========
   const onSubmit = (data) => {

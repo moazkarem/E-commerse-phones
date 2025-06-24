@@ -6,6 +6,9 @@ import Categories from "./Categories/Categories";
 import OurProducts from "./OurProducts/OurProducts";
 import { getWhishlist } from "../../store/actions";
 import { useEffect } from "react";
+import Reviews from "./Reviews/Reviews";
+import TopRated from "./TopRated/TopRated";
+import LatestBlogs from "./Blogs/Blogs";
 
 export default function Home() {
  
@@ -16,6 +19,9 @@ export default function Home() {
       <Categories />
       <Brands />
       <OurProducts />
+      <Reviews />
+      <TopRated />
+      <LatestBlogs />
     </div>
   );
 }
