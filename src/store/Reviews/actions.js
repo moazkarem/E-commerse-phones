@@ -11,6 +11,9 @@ import {
   UPDATE_PRODUCT_REVIEW,
   UPDATE_PRODUCT_REVIEW_SUCCESS,
   UPDATE_PRODUCT_REVIEW_FAILURE,
+  GET_ALL_PRODUCTS_REVIEWS,
+  GET_ALL_PRODUCTS_REVIEWS_SUCCESS,
+  GET_ALL_PRODUCTS_REVIEWS_FAILURE,
 } from "./actionTypes";
 
 //=====================GET ALL REVIEWS
@@ -74,5 +77,21 @@ export const updateProductReviewSuccess = (payload) => ({
 
 export const updateProductReviewFailure = (payload) => ({
   type: UPDATE_PRODUCT_REVIEW_FAILURE,
+  payload,
+});
+
+//===================== GET ALL REVIES ALLL PRODUCTS
+export const getAllProductsReviewAction = () => ({
+  type: GET_ALL_PRODUCTS_REVIEWS,
+  
+});
+
+export const getAllProductsReviewSuccess = (payload) => ({
+  type: GET_ALL_PRODUCTS_REVIEWS_SUCCESS,
+  payload,
+});
+
+export const getAllProductsReviewFailure = (payload) => ({
+  type: GET_ALL_PRODUCTS_REVIEWS_FAILURE,
   payload,
 });

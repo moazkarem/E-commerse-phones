@@ -4,6 +4,8 @@ import {
   addProductReviewSuccess,
   delProductReviewFailure,
   delProductReviewSuccess,
+  getAllProductsReviewFailure,
+  getAllProductsReviewSuccess,
   getAllReviewsActionFailure,
   getAllReviewsActionSuccess,
   updateProductReviewFailure,
@@ -13,6 +15,7 @@ import {
 import {
   ADD_PRODUCT_REVIEW,
   DELETE_PRODUCT_REVIEW,
+  GET_ALL_PRODUCTS_REVIEWS,
   GET_ALL_REVIEWS,
   UPDATE_PRODUCT_REVIEW,
 } from "./actionTypes";
@@ -20,6 +23,7 @@ import toast from "react-hot-toast";
 import {
   addReviewsApi,
   delProductReviewApi,
+  getAllReviewsApi,
   getReviewsApi,
   updateProductReviewApi,
 } from "../../../api/reviews";
@@ -43,6 +47,22 @@ function* getReviewsSaga({ payload }) {
 function* watchGetAllReviewsSaga() {
   yield takeLatest(GET_ALL_REVIEWS, getReviewsSaga);
 }
+
+//================================ GET  ALL REVIEWS ON PRODUCT==========
+
+function* getAllProductsReviesSaga({ payload }) {
+  try {
+    const reviewsData = yield call(getAllReviewsApi);
+    yield put(getAllProductsReviewSuccess(reviewsData));
+  } catch (err) {
+    yield put(getAllProductsReviewFailure(err?.message));
+  }
+}
+
+function* watchAllProductsReviews() {
+  yield takeLatest(GET_ALL_PRODUCTS_REVIEWS, getAllProductsReviesSaga);
+}
+
 //================================ ADD REVIEW ON PRODUCT ==========
 function* addProductReviewSaga({ payload }) {
   const { data, productId } = payload;
@@ -103,6 +123,7 @@ function* reviewsSagas() {
     fork(watchAddReviewSaga),
     fork(watchDeleteReviewSaga),
     fork(watchUpdateReviewSaga),
+    fork(watchAllProductsReviews),
   ]);
 }
 export default reviewsSagas;

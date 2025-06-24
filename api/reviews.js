@@ -1,7 +1,7 @@
 import server from "./server";
 
 export const getReviewsApi = async ({ productId, limit, currentPage }) => {
-  console.log(limit , currentPage);
+  console.log(limit, currentPage);
   const userData = JSON.parse(localStorage.getItem("userData"));
   const token = userData?.data?.token;
   const response = await server.get(
@@ -13,6 +13,19 @@ export const getReviewsApi = async ({ productId, limit, currentPage }) => {
     }
   );
   // console.log(response.data, "get all revies api function");
+  return response;
+};
+
+//===============ADD ALL REVIEWS
+export const getAllReviewsApi = async () => {
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  const token = userData?.data?.token;
+  const response = await server.get("/api/v1/reviews", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  console.log(response?.data, "from alll reviews ");
   return response;
 };
 

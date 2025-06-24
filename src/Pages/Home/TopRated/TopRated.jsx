@@ -73,7 +73,7 @@ const columns = [
 
 const TopRated = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-10">
+    <div className="grid max-md:grid-cols-1 max-lg:grid-cols-2 grid-cols-3 gap-6 px-4 py-10">
       {columns.map((column, idx) => (
         <div key={idx} className="flex flex-col gap-4">
           <h3 className="text-[#ed1d24] text-[18px] ">{column.title}</h3>

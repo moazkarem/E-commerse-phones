@@ -1,21 +1,55 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { AiFillStar } from "react-icons/ai";
-
-const reviews = [
-  {
-    id: 1,
-    text: "Amazing product and great service! Amazing product and great service!Amazing product and great service!Amazing product and great service!Amazing product and great service!Amazing product and great service!",
-    name: "John Doe",
-  },
-  { id: 2, text: "Really loved it! Highly recommended.", name: "Jane Smith" },
-  { id: 3, text: "Decent quality for the price.", name: "Ali Hassan" },
-  { id: 4, text: "Exceeded my expectations!", name: "Salma Adel" },
-  { id: 5, text: "Fast delivery and quality is top!", name: "Omar Khaled" },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProductsReviewAction } from "../../../store/Reviews/actions";
+import Loading from "../../../Components/Loading/Loading";
+import Error from "../../../Components/Error/Error";
 
 const Reviews = () => {
+  const dispatch = useDispatch();
+  const { getAllProductReview, loading, error } = useSelector(
+    (state) => state.reviewsRed
+  );
+  useEffect(() => {
+    dispatch(getAllProductsReviewAction());
+  }, [dispatch]);
+
+  const renderReviesSlides = getAllProductReview?.data?.data.map(
+    ({ review, rating, user }, idx) => (
+      <SwiperSlide key={idx} className="cursor-grab">
+        <div className="bg-[#161819] rounded-[10px] p-4 flex flex-col justify-start items-start h-full w-full">
+          <div className="flex-grow">
+            <div className="flex gap-1 mb-[10px]">
+              {Array.from({ length: rating }).map((_, i) => (
+                <AiFillStar key={i} className="text-[#ed1d24]" size={20} />
+              ))}
+            </div>
+            <p className="text-[#a9afc3] text-[16px] mb-[10px]">{review}</p>
+          </div>
+          <h4 className="text-white text-[14px]">{user?.name}</h4>
+        </div>
+      </SwiperSlide>
+    )
+  );
+
+  //============================HANDEL LOADING ===========
+  if (loading)
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <Loading />
+      </div>
+    );
+  //============================HANDEL ERROR ===========
+  if (error)
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <Error msg={error} />
+      </div>
+    );
+  //============================START JSX ===========
+
   return (
     <div className="px-4 py-10">
       <Swiper
@@ -27,28 +61,7 @@ const Reviews = () => {
         }}
         className="!items-stretch [&_.swiper-wrapper]:!items-stretch [&_.swiper-slide]:!h-auto [&_.swiper-slide]:!flex"
       >
-        {reviews.map((review) => (
-          <SwiperSlide key={review.id} className="cursor-grab">
-            <div className="bg-[#161819] rounded-[10px] p-4 flex flex-col justify-start items-start h-full w-full">
-              <div className="flex-grow">
-                {/* Stars */}
-                <div className="flex gap-1 mb-[10px]">
-                  {Array.from({ length: 4 }).map((_, i) => (
-                    <AiFillStar key={i} className="text-[#ed1d24]" size={20} />
-                  ))}
-                </div>
-
-                {/* Review Text */}
-                <p className="text-[#a9afc3] text-[16px] mb-[10px]">
-                  {review.text}
-                </p>
-               <h4 className="text-white text-[14px]">{review.name}</h4>
-              </div>
-
-          
-            </div>
-          </SwiperSlide>
-        ))}
+        {renderReviesSlides}
       </Swiper>
     </div>
   );
