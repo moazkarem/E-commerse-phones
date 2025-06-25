@@ -13,13 +13,13 @@ const OrderSumury = ({ getCart, loading }) => {
         <img
           src={images[Math.floor(Math.random() * images.length)]}
           alt="product image"
-          className="w-24 h-24 rounded-[12px] p-1 object-cover border "
+          className="w-24 h-24 rounded-[12px] p-2 object-cover border "
         />
         <div className="flex flex-col gap-1">
           <h4 className="text-md line-clamp-1 text-[#a9afc3]">
             {product?.title.length > 15
-              ? product.title.slice(0, 15) + "..."
-              : product.title}
+              ? product?.title.slice(0, 15) + "..."
+              : product?.title}
           </h4>
         </div>
         <h3 className="text-sm  text-[#a9afc3]">{count}</h3>
@@ -45,7 +45,8 @@ const OrderSumury = ({ getCart, loading }) => {
         <div className="flex justify-between items-center gap-2 mb-8">
           <h5 className="text-sm text-[#fff]">Total</h5>
           <h5 className="text-sm  text-[#ed1d24]">
-            {getCart?.data?.totalCartPrice} $
+            {getCart?.data?.totalAfterDiscount ?getCart?.data?.totalAfterDiscount :getCart?.data?.totalCartPrice }
+            $
           </h5>
         </div>
       </div>

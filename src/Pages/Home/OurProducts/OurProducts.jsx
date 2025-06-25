@@ -16,6 +16,7 @@ import Loading from "../../../Components/Loading/Loading";
 import Error from "../../../Components/Error/Error";
 import { useNavigate } from "react-router-dom";
 import QuickeModal from "../../../Components/QuickeViewModal/QuickeModal";
+import HeadSec from "../../../Components/HeadSec/HeadSec";
 const OurProducts = () => {
   const navigate = useNavigate();
   const swiperRef = useRef(null);
@@ -29,18 +30,20 @@ const OurProducts = () => {
   }, [dispatch]);
   //============================HANDEL DATA ===========
   const { data } = products;
-  
- 
+
   const [viewedProduct, setViewedProduct] = useState("");
   const quickeViewHandeler = (product) => {
     document.getElementById("Quicke_view").showModal();
     setViewedProduct(product);
   };
 
-
-  const renderSlides = data?.slice(0 ,8)?.map((product, index) => (
+  const renderSlides = data?.slice(0, 8)?.map((product, index) => (
     <SwiperSlide key={index}>
-      <ProductCard product={product} index={index} quickeViewHandeler={quickeViewHandeler}/>
+      <ProductCard
+        product={product}
+        index={index}
+        quickeViewHandeler={quickeViewHandeler}
+      />
     </SwiperSlide>
   ));
   //============================HANDEL LOADING ===========
@@ -59,16 +62,12 @@ const OurProducts = () => {
     );
   //============================START JSX ===========
 
-
-
   return (
-    <div className={`pt-28 `}>
+    <div className="pb-40">
       <div className="container">
         <div className=" rounded-[6px] flex flex-col items-center ">
           <div className="text-center w-full ">
-            <div className="flex flex-col justify-center items-center gap-4 mb-16">
-              <h3 className="text-[28px] text-[#a9afc3] ">Best Seller</h3>
-            </div>
+            <HeadSec title={"Our Products"} />
           </div>
           <div className="mb-6 w-full">
             <div className="container max-[350px]:p-0">
@@ -103,7 +102,7 @@ const OurProducts = () => {
                 >
                   {renderSlides}
                 </Swiper>
-                <div className="flex justify-center items-center gap-6 pt-16">
+                <div className="flex justify-center items-center gap-6 pt-16 min-[992px]:hidden">
                   <button
                     onClick={() => swiperRef.current?.swiper.slidePrev()}
                     className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"

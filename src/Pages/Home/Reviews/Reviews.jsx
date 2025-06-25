@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProductsReviewAction } from "../../../store/Reviews/actions";
 import Loading from "../../../Components/Loading/Loading";
 import Error from "../../../Components/Error/Error";
-
+import { Autoplay } from "swiper/modules";
+import HeadSec from "../../../Components/HeadSec/HeadSec";
 const Reviews = () => {
   const dispatch = useDispatch();
   const { getAllProductReview, loading, error } = useSelector(
@@ -51,8 +52,13 @@ const Reviews = () => {
   //============================START JSX ===========
 
   return (
-    <div className="px-4 py-10">
+    <div className=" pb-40">
+      <HeadSec title={"Customer Reviews"} />
       <Swiper
+        modules={[Autoplay]}
+        autoplay={{
+          delay: 3000,
+        }}
         spaceBetween={20}
         breakpoints={{
           320: { slidesPerView: 1.3 },

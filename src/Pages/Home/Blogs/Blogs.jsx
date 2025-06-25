@@ -3,7 +3,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { FiArrowRight } from "react-icons/fi";
 import img1 from "../../../../public/images/brands/blogs.jpg";
-
+import { Autoplay } from "swiper/modules";
+import HeadSec from "../../../Components/HeadSec/HeadSec";
 const blogs = [
   {
     id: 1,
@@ -44,8 +45,13 @@ const blogs = [
 
 const LatestBlogs = () => {
   return (
-    <div className="px-4 py-10">
+    <div className=" pb-40">
+      <HeadSec title={"Latest News"} />
       <Swiper
+        modules={[Autoplay]}
+        autoplay={{
+          delay: 3000,
+        }}
         spaceBetween={20}
         breakpoints={{
           320: { slidesPerView: 1.2 },
@@ -65,9 +71,7 @@ const LatestBlogs = () => {
               />
 
               {/* Title */}
-              <h3 className="text-white text-[18px] ">
-                {blog.title}
-              </h3>
+              <h3 className="text-white text-[18px] ">{blog.title}</h3>
 
               {/* Description */}
               <p className="text-[#a9afc3] text-[16px] leading-snug">
