@@ -29,7 +29,10 @@ body {
 .container {
   padding-inline: 20px;
 }
+// body{
+//   background-image: linear-gradient(to bottom, #000000, #3d0000);
 
+// }
 .blocker {
   position: fixed;
   display: flex;
@@ -167,12 +170,12 @@ del {
       color: #d6d6d6;
       &.rc-rate-star-half {
         .rc-rate-star-first {
-          color: #f5b634;
+          color: #ed1d24;
         }
       }
       &.rc-rate-star-full {
         .rc-rate-star-second {
-          color: #f5b634;
+          color: #ed1d24;
         }
       }
     }
@@ -215,13 +218,13 @@ del {
       }
       &.rc-rate-star-half {
         .rc-rate-star-first {
-          color: #f5b634;
+          color: #ed1d24;
           opacity: 1;
         }
       }
       &.rc-rate-star-full {
         .rc-rate-star-second {
-          color: #f5b634;
+          color: #ed1d24;
         }
       }
     }

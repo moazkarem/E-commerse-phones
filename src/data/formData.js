@@ -52,7 +52,7 @@ export const editAddressForm = [
     id: "address",
     label: "Address",
     placeholder: "Enter new address",
-    name:"alias" ,
+    name: "alias",
     type: "text",
     col: 12,
     isTextarea: false,
@@ -61,7 +61,7 @@ export const editAddressForm = [
     id: "details",
     label: "Details",
     placeholder: "Enter phone number",
-    name:"details" ,
+    name: "details",
     type: "text",
     col: 12,
     isTextarea: true,
@@ -70,7 +70,7 @@ export const editAddressForm = [
     id: "city",
     label: "City",
     placeholder: "Enter city",
-    name:"city" ,
+    name: "city",
     type: "text",
     col: 6,
     isTextarea: false,
@@ -79,7 +79,7 @@ export const editAddressForm = [
     id: "postal_code",
     label: "Postal Code",
     placeholder: "Enter postal code",
-    name:"postalCode" ,
+    name: "postalCode",
     type: "text",
     col: 6,
     isTextarea: false,
@@ -88,9 +88,35 @@ export const editAddressForm = [
     id: "phone",
     label: "Phone",
     placeholder: "Enter phone number",
-    name:"phone" ,
+    name: "phone",
     type: "text",
     col: 12,
     isTextarea: false,
+  },
+];
+
+export const changePass = [
+  {
+    type: "password",
+    name: "currentPassword",
+    placeholder: "Enter Current Password",
+    classname:
+      "col-span-12 w-full ",
+  },
+
+  {
+    type: "password",
+    name: "password",
+    placeholder: "Enter New Password",
+    classname:
+      " col-span-12 md:col-span-12 lg:col-span-6 w-full ",
+  },
+
+  {
+    type: "password",
+    name: "passwordConfirm",
+    placeholder: "New Password Confirmation",
+    classname:
+      "col-span-12 md:col-span-12 lg:col-span-6   w-full ",
   },
 ];

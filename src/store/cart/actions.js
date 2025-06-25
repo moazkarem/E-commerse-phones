@@ -14,11 +14,13 @@ import {
   CLEAR_PRODUCT_CART,
   CLEAR_PRODUCT_CART_SUCCESS,
   CLEAR_PRODUCT_CART_FAILURE,
+  APPLY_USER_COUPON_CART,
+  APPLY_USER_COUPON_CART_SUCCESS,
+  APPLY_USER_COUPON_CART_FAILURE,
 } from "./actionTypes";
 
 export const getCartAction = () => ({
   type: GET_PRODUCTS_CART,
-
 });
 
 export const getCartActionSuccess = (payload) => ({
@@ -33,9 +35,9 @@ export const getCartActionFailure = (payload) => ({
 
 //==================================
 
-export const addtCartAction = (productId) => ({
+export const addtCartAction = (productId, color) => ({
   type: ADD_PRODUCTS_CART,
-  payload:{productId}
+  payload: { productId, color },
 });
 
 export const addCartActionSuccess = (payload) => ({
@@ -52,7 +54,7 @@ export const addCartActionFailure = (payload) => ({
 
 export const delCartAction = (productId) => ({
   type: DELETE_PRODUCT_CART,
-  payload:{productId}
+  payload: { productId },
 });
 
 export const delCartActionSuccess = (payload) => ({
@@ -84,9 +86,9 @@ export const clearCartActionFailure = (payload) => ({
 
 //==================================
 
-export const updateCartAction = (productId ,count) => ({
+export const updateCartAction = (productId, count) => ({
   type: UPDATE_PRODUCT_CONTATY,
-  payload:{productId ,count}
+  payload: { productId, count },
 });
 
 export const updateCartActionSuccess = (payload) => ({
@@ -96,5 +98,22 @@ export const updateCartActionSuccess = (payload) => ({
 
 export const updateCartActionFailure = (payload) => ({
   type: UPDATE_PRODUCT_CONTATY_FAILURE,
+  payload,
+});
+
+//==================================
+
+export const applyUserCouponAction = (couponName) => ({
+  type: APPLY_USER_COUPON_CART,
+  payload: { couponName },
+});
+
+export const applyUserCouponActionSuccess = (payload) => ({
+  type: APPLY_USER_COUPON_CART_SUCCESS,
+  payload,
+});
+
+export const applyUserCouponActionFailure = (payload) => ({
+  type: APPLY_USER_COUPON_CART_FAILURE,
   payload,
 });

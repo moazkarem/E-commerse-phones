@@ -29,3 +29,22 @@ export const postResetPasswordApi = async ({ data }) => {
   console.log(response?.data, "reset password api");
   return response;
 };
+
+export const changePasswordApi = async (payload) => {
+  const storedKey = localStorage.getItem("userData");
+  const userData = storedKey ? JSON.parse(storedKey) : null;
+  const token = userData?.data?.token;
+  const { userId, data } = payload;
+  const response = await server.put(
+    `/api/v1/users/change-password/${userId}`,
+    data,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  console.log(response?.data, "change password api");
+  console.log(response?.data, "change pass api ");
+  return response;
+};

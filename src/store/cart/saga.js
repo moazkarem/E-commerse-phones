@@ -2,6 +2,7 @@ import toast from "react-hot-toast";
 import { call, put, takeLatest, fork, all } from "redux-saga/effects";
 import {
   addToCartApi,
+  applyUserCouponApi,
   clearCartApi,
   delFromCartApi,
   getProductsCartApi,
@@ -10,6 +11,8 @@ import {
 import {
   addCartActionFailure,
   addCartActionSuccess,
+  applyUserCouponActionFailure,
+  applyUserCouponActionSuccess,
   clearCartActionFailure,
   clearCartActionSuccess,
   delCartActionFailure,
@@ -21,6 +24,7 @@ import {
 } from "./actions";
 import {
   ADD_PRODUCTS_CART,
+  APPLY_USER_COUPON_CART,
   CLEAR_PRODUCT_CART,
   DELETE_PRODUCT_CART,
   GET_PRODUCTS_CART,
@@ -42,9 +46,9 @@ function* watchGetCart() {
 
 //================ ADD CART SAGA
 function* addCartSaga({ payload }) {
-  const { productId } = payload;
+  const { productId, color } = payload;
   try {
-    const cartData = yield call(addToCartApi, productId);
+    const cartData = yield call(addToCartApi, { productId, color });
     yield put(addCartActionSuccess(cartData));
     toast.success("Product  Added To Cart Successfully");
   } catch (error) {
@@ -66,6 +70,7 @@ function* delCartSaga({ payload }) {
     toast.success("Product Removed From Cart Successfully");
   } catch (error) {
     yield put(delCartActionFailure(error.message));
+    toast.error("Failed To Remove Product  From Cart");
   }
 }
 
@@ -81,6 +86,7 @@ function* clearCartSaga() {
     toast.success("All Product Removed From Cart Successfully");
   } catch (error) {
     yield put(clearCartActionFailure(error.message));
+    toast.error("Failed To Clear All From Cart");
   }
 }
 
@@ -89,20 +95,38 @@ function* watchClearCart() {
 }
 
 //================ UPDATE  CART SAGA
-function* updateCartSaga({payload}) {
-  const {productId , count} = payload
+function* updateCartSaga({ payload }) {
+  const { productId, count } = payload;
   try {
-    const cartData = yield call(updataCartContatyApi , {productId , count});
+    const cartData = yield call(updataCartContatyApi, { productId, count });
     yield put(updateCartActionSuccess(cartData));
     toast.success("Quantity Updated Successfully");
   } catch (error) {
-    yield put(updateCartActionFailure(error.message));
+    console.log(error.message, "my saga updated ");
+    yield put(updateCartActionFailure(error));
     toast.error("Failed to update quantity");
   }
 }
 
 function* watchUpdateCart() {
   yield takeLatest(UPDATE_PRODUCT_CONTATY, updateCartSaga);
+}
+
+//================ APPLY USER COUPON
+function* applyUserCouponSaga({ payload }) {
+  try {
+    const { couponName } = payload;
+    const couponData = yield call(applyUserCouponApi, couponName);
+    yield put(applyUserCouponActionSuccess(couponData));
+    toast.success("Coupon Added Successfully");
+  } catch (err) {
+    yield put(applyUserCouponActionFailure(err.message));
+    toast.error("Invalid Coupon Name");
+  }
+}
+
+function* watchApplycoupon() {
+  yield takeLatest(APPLY_USER_COUPON_CART, applyUserCouponSaga);
 }
 
 function* allCartSaga() {
@@ -112,6 +136,7 @@ function* allCartSaga() {
     fork(watchDelCart),
     fork(watchClearCart),
     fork(watchUpdateCart),
+    fork(watchApplycoupon),
   ]);
 }
 

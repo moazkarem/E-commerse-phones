@@ -1,5 +1,6 @@
 import { call, put, takeLatest, all, fork } from "redux-saga/effects";
 import {
+  changePasswordApi,
   postForgetPassApi,
   postLoginApi,
   postResetPasswordApi,
@@ -7,6 +8,8 @@ import {
   postVerifiyCodeApi,
 } from "../../../api/auth";
 import {
+  changePassActionFailure,
+  changePassActionSuccess,
   postForgetPasswordFailure,
   postForgetPasswordSuccess,
   postLoginFailure,
@@ -19,6 +22,7 @@ import {
   postVerifiyCodeSuccess,
 } from "./action";
 import {
+  CHANGE_PASSWORD,
   POST_FORGET_PASSWORD,
   POST_LOGIN,
   POST_RESET_PASSWORD,
@@ -120,6 +124,26 @@ function* watchResetPasword() {
   yield takeLatest(POST_RESET_PASSWORD, postResetSaga);
 }
 
+//================================ START CHANGE PASS SAGAS ==========
+
+function* changePassSaga({ payload }) {
+  const { navigate } = payload;
+  try {
+    const changeData = yield call(changePasswordApi, payload);
+    yield put(changePassActionSuccess(changeData));
+    toast.success("Password Changed Successfully");
+
+    setTimeout(() => navigate("/login"), 1800);
+  } catch (error) {
+    toast.error("Invalid  Password  Please Try Again ");
+    yield put(changePassActionFailure(error.message));
+  }
+}
+
+function* watchChnge() {
+  yield takeLatest(CHANGE_PASSWORD, changePassSaga);
+}
+
 //================================ COLLECT ALL WATCHERS TO SEND MAIN SAGA
 function* authSagas() {
   yield all([
@@ -128,6 +152,7 @@ function* authSagas() {
     fork(watchForget),
     fork(watchVerify),
     fork(watchResetPasword),
+    fork(watchChnge),
   ]);
 }
 export default authSagas;

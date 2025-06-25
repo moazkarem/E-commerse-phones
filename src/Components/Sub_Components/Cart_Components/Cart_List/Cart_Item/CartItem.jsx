@@ -5,7 +5,10 @@ import { memo } from "react";
 import PropTypes from "prop-types";
 import { images } from "./data";
 import { useDispatch } from "react-redux";
-import { delCartAction, updateCartAction } from "./../../../../../store/cart/actions";
+import {
+  delCartAction,
+  updateCartAction,
+} from "./../../../../../store/cart/actions";
 import { useState } from "react";
 
 function CartItem({ item }) {
@@ -14,14 +17,13 @@ function CartItem({ item }) {
   const dispatch = useDispatch();
 
   const removeCartItem = (productId) => {
-    // console.log(productId , 'from cart item delete')
     dispatch(delCartAction(productId));
   };
 
   const [count, setCount] = useState(item?.count);
-  const updateCount = (productId)=>{
-    dispatch(updateCartAction(productId ,count))
-  }
+  const updateCount = (productId) => {
+    dispatch(updateCartAction(productId, count));
+  };
   return (
     <>
       <li className="w-full  flex gap-4  border-b-[1px] border-[#ffffff30] py-6  md:max-h-[200px]">
@@ -44,13 +46,30 @@ function CartItem({ item }) {
               ${(item?.price * 1.4).toLocaleString()}
             </del>
           </div>
-          <div className="flex items-center justifiy-center">
+          <div>
+            <div className=" flex items-center gap-2 mb-3">
+              <span className="text-[16px] mb-0 text-main">Color : </span>
+              <span
+                className="px-1 rounded-[10px]"
+                style={{ backgroundColor: `${item?.color}` }}
+              >
+                {item?.color || "NoT Found Colors"} 
+              </span>
+            </div>
+          </div>
+          <div className="relative">
             <input
-              className="w-20 h-12 border outline-none"
+              className="w-full  py-2 rounded-[10px] ps-3 border outline-none"
               value={count}
               onChange={(e) => setCount(e.target.value)}
             />
-            <button onClick={()=>updateCount(item?._id)} className="px-2 py-1 bg-white text-red-500"> Add</button>
+            <button
+              onClick={() => updateCount(item?._id)}
+              className="text-white absolute right-4 top-1/2 -translate-y-1/2 px-5 py-[2px] rounded-[8px] bg-[#ff0000cc] bg-"
+            >
+              {" "}
+              Update
+            </button>
           </div>
 
           <button

@@ -34,7 +34,8 @@ import Orders from "./Pages/Profile/Orders/Orders";
 import Addresses from "./Pages/Profile/Addresses/Addresses";
 import MyProfile from "./Pages/Profile/MyProfile/MyProfile";
 import ChangePass from "./Pages/Profile/ChangePass/ChangePass";
-// Layout wrapper component that includes all layout elements
+import ProtectedRoute from "./auth/ProtectedRoute";
+
 function MainLayout({ children }) {
   const location = useLocation().pathname;
 
@@ -59,7 +60,9 @@ function MainLayout({ children }) {
 
 function App() {
   const location = useLocation().pathname;
-
+  const storageKey = "userData";
+  const userDataString = localStorage.getItem(storageKey);
+  const userData = userDataString ? JSON.parse(userDataString) : null;
   // Scroll to top on route change
   useLayoutEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -85,18 +88,108 @@ function App() {
                   <Route path="about" element={<About />} />
                   <Route path="categories/:id" element={<SingleCategory />} />
                   <Route path="cart">
-                    <Route index element={<Cart />} />
+                    <Route
+                      index
+                      element={
+                        <ProtectedRoute
+                          isAllowed={userData}
+                          redirectedPath={"/login"}
+                        >
+                          <Cart />
+                        </ProtectedRoute>
+                      }
+                    />
                     <Route path="checkout">
-                      <Route index element={<Checkout />} />
-                      <Route path="payment" element={<Payment />} />
+                      <Route
+                        index
+                        element={
+                          <ProtectedRoute
+                            isAllowed={userData}
+                            redirectedPath={"/login"}
+                          >
+                            <Checkout />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="payment"
+                        element={
+                          <ProtectedRoute
+                            isAllowed={userData}
+                            redirectedPath={"/login"}
+                          >
+                            <Payment />
+                          </ProtectedRoute>
+                        }
+                      />
                     </Route>
                   </Route>
-                  <Route path="profile/*" element={<Profile />}>
-                    <Route index element={<MyProfile />} />
-                    <Route path="orders" element={<Orders />} />
-                    <Route path="whishlist" element={<Whishlist />} />
-                    <Route path="addresses" element={<Addresses />} />
-                    <Route path="changepassword" element={<ChangePass />} />
+                  <Route
+                    path="profile/*"
+                    element={
+                      <ProtectedRoute
+                        isAllowed={userData}
+                        redirectedPath={"/login"}
+                      >
+                        <Profile />
+                      </ProtectedRoute>
+                    }
+                  >
+                    <Route
+                      index
+                      element={
+                        <ProtectedRoute
+                          isAllowed={userData}
+                          redirectedPath={"/login"}
+                        >
+                          <MyProfile />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="orders"
+                      element={
+                        <ProtectedRoute
+                          isAllowed={userData}
+                          redirectedPath={"/login"}
+                        >
+                          <Orders />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="whishlist"
+                      element={
+                        <ProtectedRoute
+                          isAllowed={userData}
+                          redirectedPath={"/login"}
+                        >
+                          <Whishlist />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="addresses"
+                      element={
+                        <ProtectedRoute
+                          isAllowed={userData}
+                          redirectedPath={"/login"}
+                        >
+                          <Addresses />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="changepassword"
+                      element={
+                        <ProtectedRoute
+                          isAllowed={userData}
+                          redirectedPath={"/login"}
+                        >
+                          <ChangePass />
+                        </ProtectedRoute>
+                      }
+                    />
                   </Route>
                   <Route path="brands" element={<Brands />} />
                   <Route path="brands/:id" element={<SingleBrand />} />
@@ -123,6 +216,7 @@ function App() {
             fontSize: "16px",
             borderRadius: "10px",
             padding: "15px",
+            zIndex: 999999,
           },
           duration: 1500,
         }}

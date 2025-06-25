@@ -9,6 +9,7 @@ import { getAllbrands } from "../../../store/actions";
 import Loading from "../../../Components/Loading/Loading";
 import { images } from "./data";
 import { Link } from "react-router-dom";
+import HeadSec from "../../../Components/HeadSec/HeadSec";
 const Brands = () => {
   const swiperRef = useRef(null);
   const dispatch = useDispatch();
@@ -48,10 +49,8 @@ const Brands = () => {
     );
   //============================ START JSX ===========
   return (
-    <div className="pt-28 relative">
-      <h3 className="text-[28px] text-[#a9afc3] text-center mb-16 ">
-        Popular Brands
-      </h3>
+    <div className="pb-40 relative">
+      <HeadSec title={"  Popular Brands"} />
       <Swiper
         ref={swiperRef}
         modules={[Navigation]}
@@ -60,13 +59,13 @@ const Brands = () => {
           0: { slidesPerView: 1.5, spaceBetween: 10 },
           450: { slidesPerView: 2.4, spaceBetween: 10 },
           768: { slidesPerView: 3.4, spaceBetween: 10 },
-          912: { slidesPerView: 6, spaceBetween: 10 },
+          992: { slidesPerView: 6, spaceBetween: 10 },
         }}
         className="swiper-container"
       >
         {renderBrands}
       </Swiper>
-      <div className="flex justify-center items-center gap-6 pt-7">
+      <div className="flex justify-center items-center gap-6 pt-7 min-[992px]:hidden">
         <button
           onClick={() => swiperRef.current?.swiper.slidePrev()}
           className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"

@@ -22,6 +22,7 @@ const initialState = {
   forgetData: [],
   verifiyData: [],
   resetData: [],
+  changePass: [],
   loading: false,
   error: null,
 };

@@ -20,6 +20,7 @@ const Addresses = () => {
     dispatch(getAllAddresses());
   }, [dispatch]);
   const { data } = getAddresses || [];
+  //================  EDIT MODAL HANDELER ==============
   const edutHandeler = (address) => {
     const current_address = localStorage.setItem(
       "currentAddressId",
@@ -28,6 +29,8 @@ const Addresses = () => {
     setSelectedAddress(address);
     document.getElementById("edit_modal").showModal();
   };
+  //================  DEL MODAL HANDELER ==============
+
   const delHandeler = (address) => {
     document.getElementById("delete_modal").showModal();
     setdeletedAddress(address);
