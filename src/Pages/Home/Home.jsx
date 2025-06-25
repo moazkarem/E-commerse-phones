@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import Reviews from "./Reviews/Reviews";
 import TopRated from "./TopRated/TopRated";
 import LatestBlogs from "./Blogs/Blogs";
+import BannerOne from "./BannerOne/Banner";
 
 export default function Home() {
  
@@ -19,6 +20,7 @@ export default function Home() {
       <Categories />
       <Brands />
       <OurProducts />
+      <BannerOne />
       <Reviews />
       <TopRated />
       <LatestBlogs />
