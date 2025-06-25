@@ -28,7 +28,7 @@ const Reviews = () => {
             </div>
             <p className="text-[#a9afc3] text-[16px] mb-[10px]">{review}</p>
           </div>
-          <h4 className="text-white text-[14px]">{user?.name}</h4>
+          <h4 className="text-white text-[14px] capitalize">{user?.name}</h4>
         </div>
       </SwiperSlide>
     )

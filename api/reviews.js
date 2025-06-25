@@ -25,7 +25,7 @@ export const getAllReviewsApi = async () => {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log(response?.data, "from alll reviews ");
+  // console.log(response?.data, "from alll reviews ");
   return response;
 };
 

@@ -16,49 +16,7 @@ const Filter = ({
   priceTo,
   setSort,
 }) => {
-  const [colorOptions, setColorOptions] = useState([
-    {
-      id: 1,
-      name_en: "#D9D9D9",
-      checked: true,
-    },
-    {
-      id: 2,
-      name_en: "#2B2993",
-    },
-    {
-      id: 3,
-      name_en: "#FF7513",
-    },
-    {
-      id: 4,
-      name_en: "#009CDE",
-    },
-    {
-      id: 5,
-      name_en: "#FF0000",
-    },
-    {
-      id: 6,
-      name_en: "#BFFFD9",
-    },
-    {
-      id: 7,
-      name_en: "#605A35",
-    },
-    {
-      id: 8,
-      name_en: "#FFD571",
-    },
-    {
-      id: 9,
-      name_en: "#1877F2",
-    },
-    {
-      id: 10,
-      name_en: "#F429EC",
-    },
-  ]);
+
 
   //============================HANDEL GET ALL CATEGORIES ===========
   const dispatch = useDispatch();
