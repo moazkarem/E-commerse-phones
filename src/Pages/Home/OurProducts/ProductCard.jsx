@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
-import Rate from "rc-rate";
+
 import "swiper/css/pagination";
 import "swiper/css";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { IoBagCheckOutline } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa";
 import { images } from "./data";
@@ -11,7 +11,6 @@ import { FaEye } from "react-icons/fa";
 import {
   addToWhishlist,
   deleteFromWhishlist,
-  getSingleProd,
   getWhishlist,
 } from "../../../store/actions";
 import toast from "react-hot-toast";
@@ -29,7 +28,8 @@ const ProductCard = ({ product, index, quickeViewHandeler }) => {
       dispatch(getWhishlist());
     }
   }, [dispatch, whishlistData]);
-  const { title, quantity, price, slug, ratingsQuantity, _id , description } = product;
+  const { title, quantity, price, slug, ratingsQuantity, _id, description } =
+    product;
   const randomImage = useMemo(() => {
     let selectedImage;
     do {
@@ -69,16 +69,16 @@ const ProductCard = ({ product, index, quickeViewHandeler }) => {
   //============================HANDEL  SINGLE PRODUCT NAVIGATION ===========
 
   return (
-    <div className="relative bg-[#111] rounded-[50px] p-6 w-full text-center text-white pb-20 mb-8">
+    <div className="relative bg-[#111] rounded-[50px] pt-12 px-6 w-full text-center text-white pb-20 mb-8">
       <div
         className="absolute top-[30px] left-[30px] cursor-pointer p-3 flex justify-center items-center bg-[#161819] rounded-full "
         onClick={() => quickeViewHandeler(product)}
       >
         <FaEye className="text-[#fff] text-xl" />
       </div>
-      <div className="absolute top-[30px] right-[30px] p-3 flex justify-center items-center bg-[#161819] rounded-full ">
+      {/* <div className="absolute top-[30px] right-[30px] p-3 flex justify-center items-center bg-[#161819] rounded-full ">
         <IoBagCheckOutline className="text-[#fff] text-xl" />
-      </div>
+      </div> */}
 
       <div className="flex justify-center mt-6">
         <img

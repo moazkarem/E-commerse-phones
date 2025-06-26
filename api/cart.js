@@ -16,7 +16,6 @@ export const getProductsCartApi = async () => {
 
 //====================================== ADD PRODUCT TO CART
 export const addToCartApi = async ({ productId, color }) => {
-  console.log(color, "my color");
   const storedKey = localStorage.getItem("userData");
   const userData = storedKey ? JSON.parse(storedKey) : null;
   const token = userData?.data?.token;

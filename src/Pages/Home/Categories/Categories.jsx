@@ -52,7 +52,23 @@ const Categories = () => {
   //============================ START JSX ===========
   return (
     <div className="pt-40 pb-40 relative">
-     <HeadSec title={'main categories'}/>
+      <div className="w-full flex justify-between items-center mb-16">
+        <HeadSec title={"main categories"} />
+        <div className="flex justify-center items-center gap-6  max-md:hidden">
+          <button
+            onClick={() => swiperRef.current?.swiper.slidePrev()}
+            className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
+          >
+            <IoIosArrowBack className="text-[25px]" />
+          </button>
+          <button
+            onClick={() => swiperRef.current?.swiper.slideNext()}
+            className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
+          >
+            <IoIosArrowForward className="text-[25px]" />
+          </button>
+        </div>
+      </div>
       <Swiper
         ref={swiperRef}
         modules={[Navigation]}
@@ -67,20 +83,6 @@ const Categories = () => {
       >
         {renderCategories}
       </Swiper>
-      <div className="flex justify-center items-center gap-6 pt-7 min-[992px]:hidden">
-        <button
-          onClick={() => swiperRef.current?.swiper.slidePrev()}
-          className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
-        >
-          <IoIosArrowBack className="text-[25px]" />
-        </button>
-        <button
-          onClick={() => swiperRef.current?.swiper.slideNext()}
-          className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
-        >
-          <IoIosArrowForward className="text-[25px]" />
-        </button>
-      </div>
     </div>
   );
 };

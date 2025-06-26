@@ -53,7 +53,9 @@ const Reviews = () => {
 
   return (
     <div className=" pb-40">
-      <HeadSec title={"Customer Reviews"} />
+    <div className="mb-16">
+    <HeadSec title={"Customer Reviews"} />
+    </div>
       <Swiper
         modules={[Autoplay]}
         autoplay={{
