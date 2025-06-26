@@ -50,7 +50,23 @@ const Brands = () => {
   //============================ START JSX ===========
   return (
     <div className="pb-40 relative">
+      <div className="w-full flex justify-between items-center mb-16">
       <HeadSec title={"  Popular Brands"} />
+      <div className="flex justify-center items-center gap-6  min-[992px]:hidden">
+        <button
+          onClick={() => swiperRef.current?.swiper.slidePrev()}
+          className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
+        >
+          <IoIosArrowBack className="text-[25px]" />
+        </button>
+        <button
+          onClick={() => swiperRef.current?.swiper.slideNext()}
+          className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
+        >
+          <IoIosArrowForward className="text-[25px]" />
+        </button>
+      </div>
+      </div>
       <Swiper
         ref={swiperRef}
         modules={[Navigation]}
@@ -65,20 +81,7 @@ const Brands = () => {
       >
         {renderBrands}
       </Swiper>
-      <div className="flex justify-center items-center gap-6 pt-7 min-[992px]:hidden">
-        <button
-          onClick={() => swiperRef.current?.swiper.slidePrev()}
-          className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
-        >
-          <IoIosArrowBack className="text-[25px]" />
-        </button>
-        <button
-          onClick={() => swiperRef.current?.swiper.slideNext()}
-          className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
-        >
-          <IoIosArrowForward className="text-[25px]" />
-        </button>
-      </div>
+    
     </div>
   );
 };

@@ -45,8 +45,10 @@ const blogs = [
 
 const LatestBlogs = () => {
   return (
-    <div className=" pb-40">
+    <div className=" pb-36">
+      <div className="mb-16">
       <HeadSec title={"Latest News"} />
+      </div>
       <Swiper
         modules={[Autoplay]}
         autoplay={{

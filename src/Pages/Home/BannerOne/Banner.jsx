@@ -1,7 +1,9 @@
 import React from "react";
 import img6 from "../../../../public/images/homebrands/Banner 2.png";
+import { useNavigate } from "react-router-dom";
 
 const BannerOne = () => {
+  const navigate = useNavigate()
   return (
     <div className="pb-40">
 
@@ -13,13 +15,13 @@ const BannerOne = () => {
       />
 
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 gap-4">
-        <h1 className="text-white text-[50px] mb-0 " style={{letterSpacing:'7px'}}>
+        <h1 className="text-white text-[50px] mb-0 max-md:text-[30px] " style={{letterSpacing:'7px'}}>
           Big Summer Sale
         </h1>
         <p className="text-[#a9afc3] text-[18px] mb-4" >
           Grab your favorite items at unbeatable prices all summer long!
         </p>
-        <button className="text-white border border-[#fff] px-16 py-3 rounded  transition">
+        <button onClick={()=>navigate('/products')}  className="text-white border border-[#fff] px-16 py-3 rounded  transition">
           Shop Now
         </button>
       </div>

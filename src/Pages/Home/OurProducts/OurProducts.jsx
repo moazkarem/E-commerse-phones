@@ -67,7 +67,23 @@ const OurProducts = () => {
       <div className="container">
         <div className=" rounded-[6px] flex flex-col items-center ">
           <div className="text-center w-full ">
-            <HeadSec title={"Our Products"} />
+            <div className="w-full flex justify-between items-center mb-16">
+              <HeadSec title={"Our Products"} />
+              <div className="flex justify-center items-center gap-6  min-[992px]:hidden">
+                <button
+                  onClick={() => swiperRef.current?.swiper.slidePrev()}
+                  className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
+                >
+                  <IoIosArrowBack className="text-[25px]" />
+                </button>
+                <button
+                  onClick={() => swiperRef.current?.swiper.slideNext()}
+                  className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
+                >
+                  <IoIosArrowForward className="text-[25px]" />
+                </button>
+              </div>
+            </div>
           </div>
           <div className="mb-6 w-full">
             <div className="container max-[350px]:p-0">
@@ -102,20 +118,6 @@ const OurProducts = () => {
                 >
                   {renderSlides}
                 </Swiper>
-                <div className="flex justify-center items-center gap-6 pt-16 min-[992px]:hidden">
-                  <button
-                    onClick={() => swiperRef.current?.swiper.slidePrev()}
-                    className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
-                  >
-                    <IoIosArrowBack className="text-[25px]" />
-                  </button>
-                  <button
-                    onClick={() => swiperRef.current?.swiper.slideNext()}
-                    className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
-                  >
-                    <IoIosArrowForward className="text-[25px]" />
-                  </button>
-                </div>
               </div>
             </div>
           </div>
