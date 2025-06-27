@@ -14,19 +14,3 @@ export const getAllOrdersApi = async () => {
   return response?.data;
 };
 
-//====================================== ADD ORDER
-export const addOrderApi = async (cartId, data) => {
-  const storedKey = localStorage.getItem("userData");
-  const userData = storedKey ? JSON.parse(storedKey) : null;
-  const token = userData?.data?.token;
-
-  const response = await server.post(
-    `/api/v1/orders/${cartId}`,
-    { shippingAddress: data },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-};
