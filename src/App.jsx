@@ -51,7 +51,7 @@ function MainLayout({ children }) {
       <Header />
       {location === "/" && <Slider />}
       {children}
-      <Services />
+      {/* <Services /> */}
       <TopButton />
       <Footer />
     </div>
