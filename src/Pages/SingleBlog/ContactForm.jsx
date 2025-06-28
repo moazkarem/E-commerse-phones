@@ -2,18 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 const ContactForm = ({ blogData }) => {
+  const storageKey = "userData";
+  const userDataString = localStorage.getItem(storageKey);
+  const userData = userDataString ? JSON.parse(userDataString) : null;
+  const userName = userData?.data?.data.name;
   const [allComments, setAllComments] = useState([]);
   const id = blogData?.id;
   useEffect(() => {
     const storedComments = localStorage.getItem(`comment-${id}`);
-    const blogComments = storedComments ? JSON.parse(storedComments) : null;
+    const blogComments = storedComments ? JSON.parse(storedComments) : [];
     setAllComments(blogComments);
   }, [id]);
 
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
     try {
-      const updateComments = [...allComments, data];
+      const newComment = { ...data, name: userName };
+      const updateComments = [...allComments, newComment];
       setAllComments(updateComments);
       localStorage.setItem(`comment-${id}`, JSON.stringify(updateComments));
       toast.success("Comment added successfully");
@@ -21,6 +26,7 @@ const ContactForm = ({ blogData }) => {
       console.log(updateComments);
     } catch (err) {
       toast.error("Error: Comment could not be added");
+      // console.log(err , 'errr');
     }
   };
   return (
@@ -32,23 +38,23 @@ const ContactForm = ({ blogData }) => {
         onSubmit={handleSubmit(onSubmit)}
         className=" w-full grid grid-cols-1 md:grid-cols-12 gap-4"
       >
-        <div className="md:col-span-6 col-span-12">
+        {/* <div className="md:col-span-6 col-span-12">
           <input
             {...register("name")}
             type="text"
             placeholder="Your Name"
             className="w-full h-[45px] md:h-[55px] px-4 rounded-[8px] bg-[#222] text-white outline-none border border-[#444] text-[14px] md:text-[16px]"
           />
-        </div>
+        </div> */}
 
-        <div className="md:col-span-6 col-span-12">
+        {/* <div className="md:col-span-6 col-span-12">
           <input
             {...register("email")}
             type="text"
             placeholder="Your Email"
             className="w-full h-[45px] md:h-[55px] px-4 rounded-[8px] bg-[#222] text-white outline-none border border-[#444] text-[14px] md:text-[16px]"
           />
-        </div>
+        </div> */}
 
         <div className="col-span-12">
           <textarea
