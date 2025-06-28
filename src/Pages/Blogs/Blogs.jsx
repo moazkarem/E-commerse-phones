@@ -7,53 +7,51 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { FaLink } from "react-icons/fa";
 import BreadCrumb from "../../Components/BreadCrump/BreadCrump";
-import {blogsData} from "./data";
+import { FiArrowRight } from "react-icons/fi";
+import { blogs } from "../../data/blogs";
+import { FaUser, FaCalendarAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Blogs = () => {
-  const blogCards = blogsData?.map(({img , title , date}, idx) => (
-    <div
-      key={idx}
-      className="flex flex-col justify-center items-center gap-4 rounded-sm"
-    >
-      <div className="bg-[#161819] p-3 rounded-[30px] flex justify-center relative overflow-hidden group w-full">
+  const blogCards = blogs?.map(
+    ({ author, image, title, id, description, date }, idx) => (
+      <div className="bg-[#161819] rounded-[10px] p-5 flex flex-col gap-4 h-full w-full transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-lg cursor-pointer">
         <img
-          src={img}
-          className="rounded-[12px] cursor-pointer w-full  p-3 transform transition-transform duration-500 group-hover:scale-110 h-64"
+          src={image || img1}
+          alt={title}
+          className="w-full h-[180px] object-contain rounded-[10px] border border-1 border-[#a9afc355]  px-2 py-3"
         />
 
-        <div className="absolute inset-0 bg-black bg-opacity-30 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500  cursor-pointer">
-          <span className="text-white text-2xl font-bold">
-            <FaLink className="text-white" />
-          </span>
+        <div className="flex items-center gap-4 text-[#a9afc3] text-[14px]">
+          <div className="flex items-center gap-2">
+            <FaUser />
+            <span>{author}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <FaCalendarAlt />
+            <span>{date}</span>
+          </div>
         </div>
+
+        <h3 className="text-white text-[18px] ">{title}</h3>
+
+        <p className="text-[#a9afc3] text-[16px] leading-snug">{description}</p>
+
+        <Link
+          to={`/blogs/${id}`}
+          className="text-[#ed1d24] text-[16px] font-medium inline-flex items-center gap-1 mt-auto"
+        >
+          Read More <FiArrowRight size={16} />
+        </Link>
       </div>
-
-      <div className="flex justify-center items-center gap-2">
-        <div className="flex justify-center items-center gap-2">
-          <img src={user} className="w-3 h-3" />
-          <span className="text-[16px] text-[#ed1d24]">Admin</span>
-        </div>
-        <div className="flex justify-center items-center gap-2">
-          <img src={calender} className="w-3 h-3" />
-          <span className="text-[14px] text-[#ed1d24]">{date}</span>
-        </div>
-      </div>
-
-      <h3 className="text-[#a9afc3] text-[16px] capitalize">
-        {title}
-      </h3>
-
-      <button className="px-8 py-2 rounded-full text-[16px] bg-[#ff0000] text-[#fff]">
-        Read More
-      </button>
-    </div>
-  ));
+    )
+  );
 
   return (
     <div className="">
       <div>
         <BreadCrumb base={"Home"} page={"Blogs"} />
       </div>
-      <div className="">
+      <div className="pb-40">
         <div className="hidden sm:grid grid-cols-12 gap-4">
           {blogCards.map((card, idx) => (
             <div key={idx} className="col-span-4 mb-10 max-md:col-span-6">
