@@ -27,7 +27,7 @@ const SingleBlog = () => {
           <RecentlyBlogs blogs={blogs}/>
         </div>
       </div>
-      <Services />
+      {/* <Services /> */}
     </div>
   );
 };

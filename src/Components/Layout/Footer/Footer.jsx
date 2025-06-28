@@ -1,99 +1,148 @@
-import { footMenu, footSocial } from "../../../data/footerData";
-import { Link } from "react-router-dom";
-import { Formik, Form } from "formik";
-import FormField from "../../Forms/Form_Field/FormField";
-import { subscriptionSchema } from "../../Forms/Validation_Schema/ValidationSchema";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaWhatsapp,
+  FaPinterestP,
+  FaLocationDot,
+  FaPhone,
+  FaRegEnvelope,
+} from "react-icons/fa6";
 
-export default function Footer() {
+const Footer = () => {
   return (
-    <footer className="footer bg-black">
-      <div className="container m-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  gap-12 py-6 ">
-        <div className="flex flex-col">
-          <div className=" mr-auto mb-4">
-            <Link to={"/"} className="text-main logo">
-              X-Beat
-            </Link>
-          </div>
-          <div className="flex flex-col gap-4">
-            <p className="text-small text-muted ">
-              Subscribe to our Email alerts to receive early discount offers,
-              and new products info.
+    <footer>
+      <div className="bg-[#000] bg-fixed relative mt-10 py-20 flex justify-between flex-wrap max-sm:px-[1rem] sm:px-[2.5rem] md:px-[3rem] lg:px-[4rem] xl:px-[12rem]">
+        {/* <div className="absolute inset-0 bg-[#ed1d24]/40 backdrop-blur-md backdrop-brightness-75 z-0"></div> */}
+        <div className="relative z-10 max-sm:w-10/12 sm:w-5/12 md:w-5/12 lg:w-5/12 xl:w-3/12 max-sm:flex max-sm:justify-center mt-5">
+          <div className="space-y-5">
+            <h2 className="text-white text-4xl font-bold capitalize mb-0">
+              Z-LINE
+            </h2>
+            <p className="text-gray-300 text-base capitalize">
+              The Perfect Place For Every Contemporary Furniture Store And
+              Manufacturer. This Is Furnival
             </p>
-            <Formik
-              initialValues={{
-                subscription_mail: "",
-              }}
-              validationSchema={subscriptionSchema}
-              onSubmit={(values, { resetForm }) => {
-                resetForm();
-                console.log(values);
-                alert(
-                  "Thankyou, you are subscribed to receive our daily newsletter"
-                );
-              }}
-            >
-              <Form className="flex flex-col gap-6">
-                <FormField
-                  fieldType={"email"}
-                  fieldName={"subscription_mail"}
-                  fieldLabel={"Email address"}
-                  labelClass={"subscribe-Label"}
-                />
-                <button type="submit" className="single-button w-max">
-                  Subscribe
-                </button>
-              </Form>
-            </Formik>
+            <div className="flex space-x-1">
+              <span className="rounded-md bg-gray-500 bg-opacity-50 text-white py-2 hover:bg-[#ff0000cc] hover:bg-opacity-100 transition duration-700 cursor-pointer group w-10 text-center flex justify-center">
+                <FaFacebookF />
+              </span>
+              <span className="rounded-md bg-gray-500 bg-opacity-50 text-white py-2 hover:bg-[#ff0000cc] hover:bg-opacity-100 transition duration-700 cursor-pointer group w-10 text-center flex justify-center">
+                <FaTwitter />
+              </span>
+              <span className="rounded-md bg-gray-500 bg-opacity-50 text-white py-2 hover:bg-[#ff0000cc] hover:bg-opacity-100 transition duration-700 cursor-pointer group w-10 text-center flex justify-center">
+                <FaInstagram />
+              </span>
+              <span className="rounded-md bg-gray-500 bg-opacity-50 text-white py-2 hover:bg-[#ff0000cc] hover:bg-opacity-100 transition duration-700 cursor-pointer group w-10 text-center flex justify-center">
+                <FaWhatsapp />
+              </span>
+           
+            </div>
           </div>
         </div>
-        {footMenu.map((item) => (
-          <div key={item.id} className="lg:m-auto">
-            <h4 className="text-main mb-6">{item.title}</h4>
-            <ul className="flex flex-col gap-3">
-              {item.menu.map((subItem, index) => (
-                <li key={index}>
-                  <Link
-                    to={subItem.path}
-                    className="text-large text-muted link-hover"
-                  >
-                    {subItem.link}
-                  </Link>
-                </li>
-              ))}
+
+        <div className="relative z-10 max-sm:w-10/12 sm:w-5/12 md:w-5/12 lg:w-5/12 xl:w-2/12 xl:ms-5 space-y-5 max-sm:my-5 mt-5">
+          <h3 className="font text-white font-semibold text-xl capitalize" style={{letterSpacing:'2px'}}>
+            quick links
+          </h3>
+          <hr className="border-gray-300 w-14" />
+          <div>
+            <ul className=" text-gray-300 font-semibold list-disc px-3 ">
+              <li className=" hover:text-[#ff0000cc] hover:translate-x-3 duration-300 cursor-pointer">
+                About Us
+              </li>
+              <li className=" hover:text-[#ff0000cc] hover:translate-x-3 duration-300 cursor-pointer">
+                Blogs & Articles
+              </li>
+              <li className=" hover:text-[#ff0000cc] hover:translate-x-3 duration-300 cursor-pointer">
+                Our Products
+              </li>
+              <li className=" hover:text-[#ff0000cc] hover:translate-x-3 duration-300 cursor-pointer">
+               Brands
+              </li>
+              <li className=" hover:text-[#ff0000cc] hover:translate-x-3 duration-300 cursor-pointer">
+                Contact Us
+              </li>
             </ul>
           </div>
-        ))}
-      </div>
-      <div className="flex  border-t-[1px] border-[#ffffff30] py-6 ">
-        <div className="container m-auto flex flex-col lg:flex-row lg:items-center gap-y-5 flex-col-reverse">
-          <span className="flex flex-col sm:flex-row mr-auto">
-            <p className="text-large text-muted break-words">
-              2023 | XBeat. All Rights Reserved. Built by |&nbsp;
-            </p>
-            <a
-              className="text-large text-muted link-hover"
-              href="https://www.linkedin.com/in/muhammad96osama/"
-            >
-              Muhammad Osama
-            </a>
-          </span>
-          <span>
-            <ul className="flex gap-6">
-              {footSocial.map((item) => (
-                <li key={item.id}>
-                  <a
-                    className="text-muted text-[20px] link-hover"
-                    href={item.path}
-                  >
-                    {item.icon}
-                  </a>
+        </div>
+
+        <div className="relative z-10 max-sm:w-10/12 sm:w-5/12 md:w-5/12 lg:w-5/12 xl:w-3/12 xl:ms-5 space-y-5 max-sm:my-5 mt-5">
+          <h3 className="font text-white font-semibold text-xl capitalize" style={{letterSpacing:'2px'}}>
+            categories
+          </h3>
+          <hr className="border-gray-300 w-14" />
+          <div>
+            <div>
+              <ul className=" text-gray-300 font-semibold list-disc px-3 grid grid-cols-2">
+                <li className=" hover:text-[#ff0000cc] hover:translate-x-3 duration-300 cursor-pointer">
+                  sofas
                 </li>
-              ))}
-              <li className="w-[50px] h-[10px] lg:block"> </li>
-            </ul>
-          </span>
+                <li className=" hover:text-[#ff0000cc] hover:translate-x-3 duration-300 cursor-pointer">
+                  chairs
+                </li>
+                <li className=" hover:text-[#ff0000cc] hover:translate-x-3 duration-300 cursor-pointer">
+                  doors
+                </li>
+                <li className=" hover:text-[#ff0000cc] hover:translate-x-3 duration-300 cursor-pointer">
+                  lamps
+                </li>
+                <li className=" hover:text-[#ff0000cc] hover:translate-x-3 duration-300 cursor-pointer">
+                  tables
+                </li>
+                <li className=" hover:text-[#ff0000cc] hover:translate-x-3 duration-300 cursor-pointer">
+                  drawers
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative z-10 max-sm:w-10/12 sm:w-5/12 md:w-5/12 lg:w-5/12 xl:w-3/12 space-y-5 mt-5">
+          <h3 className="font text-white font-semibold text-xl capitalize" style={{letterSpacing:'2px'}}>
+            contact
+          </h3>
+          <hr className="border-gray-300 w-14" />
+          <div>
+            <div className="flex space-x-2 text-gray-300 py-1">
+              <FaLocationDot />
+              <span>Qunater, Giza, Egypt</span>
+            </div>
+            <div className="group flex space-x-2 cursor-pointer">
+              <span className="text-gray-300 py-1 group-hover:text-gray-300 duration-300">
+                <FaRegEnvelope />
+              </span>
+              <span className=" text-gray-300  group-hover:text-[#ff0000cc]  duration-300">
+                Zline@gmail.com
+              </span>
+            </div>
+            <div className="flex items-center space-x-2 text-gray-300 group cursor-pointer">
+              <span className="py-1 group-hover:text-gray-300 duration-300 text-gray-300">
+                <FaPhone />
+              </span>
+              <span className="text-gray-300  group-hover:text-[#ff0000cc]  duration-300">
+                +2010 9565 2781
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap bg-[#000] border-t border-t-1 border-[#a9afc3] opacity-80 justify-around py-8 ">
+        <div className="flex flex-wrap gap-5">
+          <a className=" text-gray-300 hover:text-[#ff0000cc] ease-in-out duration-300 cursor-pointer  ">
+            Terms To Use
+          </a>
+          <a className=" text-gray-300 hover:text-[#ff0000cc] ease-in-out duration-300 cursor-pointer  ">
+            Privcy Policy
+          </a>
+        </div>
+        <div className=" text-gray-300">
+          2025 © Zline. All Rights are Reserved || Built By Moaz Karem
         </div>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;
