@@ -35,6 +35,7 @@ import Addresses from "./Pages/Profile/Addresses/Addresses";
 import MyProfile from "./Pages/Profile/MyProfile/MyProfile";
 import ChangePass from "./Pages/Profile/ChangePass/ChangePass";
 import ProtectedRoute from "./auth/ProtectedRoute";
+import SingleBlog from "./Pages/SingleBlog/SingleBlog";
 
 function MainLayout({ children }) {
   const location = useLocation().pathname;
@@ -197,6 +198,7 @@ function App() {
                   <Route path="products/:id" element={<SingleProduct />} />
                   <Route path="contact" element={<ContactUs />} />
                   <Route path="blogs" element={<Blogs />} />
+                  <Route path="blogs/:id" element={<SingleBlog />} />
                   <Route path="*" element={<ErrorPage />} />
                 </Route>
               </Routes>
