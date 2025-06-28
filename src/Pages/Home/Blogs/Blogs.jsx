@@ -52,7 +52,7 @@ const LatestBlogs = () => {
 
                 <h3 className="text-white text-[18px] ">{title}</h3>
 
-                <p className="text-[#a9afc3] text-[16px] leading-snug">
+                <p className="text-[#a9afc3] text-[16px] leading-snug line-clamp-3">
                   {description}
                 </p>
 

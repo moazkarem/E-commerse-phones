@@ -6,9 +6,9 @@ const BlogContent = ({ blogData }) => {
   return (
     <div>
       <img
-        src={img1}
+        src={image}
         alt="blog"
-        className="w-full h-[250px] sm:h-[350px] md:h-[400px] lg:h-[400px] object-cover rounded-[10px]"
+        className="w-full h-[250px] sm:h-[350px] md:h-[400px] lg:h-[400px] object-contain py-6 rounded-[10px] border border-1 border-[#a9afc3]" 
       />
 
       <div className="flex items-center gap-3 md:gap-4 mt-4 text-[#a9afc3] text-[12px] md:text-[14px] flex-wrap">

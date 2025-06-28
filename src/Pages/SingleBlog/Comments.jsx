@@ -1,4 +1,3 @@
-import { comment } from "postcss";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaTrash } from "react-icons/fa";
@@ -35,7 +34,7 @@ const Comments = ({ blogData }) => {
           {comments?.map(({ comment, name }, idx) => (
             <div
               key={idx}
-              className="bg-[#161819] p-4 md:p-5 rounded-[10px] border border-[#2b2b2b] text-white relative"
+              className="bg-[#161819]  p-4 md:p-5 rounded-[10px] border border-[#2b2b2b] text-white relative"
             >
               {name === userName ? (
                 <button

@@ -1,11 +1,8 @@
 "use client";
 import img1 from "../../../public/images/sony1000xm4-4.png";
-import calender from "../../../public/svgs/calender.svg";
-import user from "../../../public/svgs/user.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { FaLink } from "react-icons/fa";
 import BreadCrumb from "../../Components/BreadCrump/BreadCrump";
 import { FiArrowRight } from "react-icons/fi";
 import { blogs } from "../../data/blogs";
@@ -34,7 +31,9 @@ const Blogs = () => {
 
         <h3 className="text-white text-[18px] ">{title}</h3>
 
-        <p className="text-[#a9afc3] text-[16px] leading-snug">{description}</p>
+        <p className="text-[#a9afc3] text-[16px] leading-snug line-clamp-3">
+          {description}
+        </p>
 
         <Link
           to={`/blogs/${id}`}
