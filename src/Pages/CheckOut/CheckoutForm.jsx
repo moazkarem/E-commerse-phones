@@ -1,6 +1,10 @@
 import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
-import { cashCheckoutActions, getAllAddresses } from "../../store/actions";
+import {
+  cashCheckoutActions,
+  getAllAddresses,
+  getCartAction,
+} from "../../store/actions";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -40,6 +44,7 @@ const CheckoutForm = ({ getCart }) => {
   const onSubmit = (data) => {
     const shippingAddress = JSON.parse(data.shippingAddress);
     dispatch(cashCheckoutActions({ cartId, shippingAddress, navigate }));
+    dispatch(getCartAction());
   };
 
   return (

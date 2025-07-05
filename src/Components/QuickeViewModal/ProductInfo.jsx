@@ -32,7 +32,7 @@ export default function ProductInfo({ product }) {
         <Loading />
       </div>
     );
-    const parsedColors =
+  const parsedColors =
     Array.isArray(product?.availableColors) &&
     typeof product?.availableColors[0] === "string"
       ? JSON.parse(product?.availableColors[0])
@@ -69,8 +69,10 @@ export default function ProductInfo({ product }) {
           if (existProductSameColor) {
             const count = existProductSameColor?.count + 1;
             dispatch(updateCartAction(existProductSameColor?._id, count));
+            dispatch(getCartAction());
           } else {
             dispatch(addtCartAction(productId, selectedColor));
+            dispatch(getCartAction());
           }
         }
       } else {
@@ -80,9 +82,11 @@ export default function ProductInfo({ product }) {
         if (existProductNoColor) {
           const count = existProductNoColor?.count + 1;
           dispatch(updateCartAction(existProductNoColor?._id, count));
+          dispatch(getCartAction());
         } else {
           setSelectedColor("");
           dispatch(addtCartAction(productId, selectedColor));
+          dispatch(getCartAction());
         }
       }
     } else {

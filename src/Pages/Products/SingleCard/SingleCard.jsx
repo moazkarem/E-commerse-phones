@@ -60,9 +60,11 @@ const SingleCard = ({ product, index, handelQuickView }) => {
       if (isFav) {
         updatedWishlist = updatedWishlist.filter((id) => id !== productId);
         dispatch(deleteFromWhishlist(productId));
+        dispatch(getWhishlist());
       } else {
         updatedWishlist.push(productId);
         dispatch(addToWhishlist(productId));
+        dispatch(getWhishlist());
       }
       localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
     } else {
