@@ -34,15 +34,15 @@ Each feature is modular and structured for maintainability and scalability.
 - Redux Toolkit
 - Redux Saga
 - React Router DOM
-- React Hook Form + Yup for form validation
+- React Hook Form + Yup (for form validation)
 - Tailwind CSS + DaisyUI + Sass
 - Axios
 - React Toastify
 - Swiper.js
 - Emotion CSS
-- PWA support (Vite Plugin PWA)
+- PWA support via Vite Plugin PWA
 
-### Dev Tools
+### Development Tools
 
 - ESLint
 - PostCSS
@@ -53,33 +53,42 @@ Each feature is modular and structured for maintainability and scalability.
 
 ## 📁 Folder Structure
 
-The project is organized into a clean, modular structure for clarity and maintainability:
-
 src/
-│
-├── api/ # Axios requests and API service files
-├── auth/ # Authentication Protected
-├── Components/ # Shared reusable components
-├── data/ # Static/form data
-├── helpers/ # Utility functions and helpers
-├── Pages/ # Main route-level components (screens)
-├── store/ # Redux store, slices, and sagas
-├── Styles/ # Custom SCSS/Tailwind styles
-├── Ui/ # Shared UI components (Buttons, Modals, etc.)
-├── App.jsx # Root component
-├── main.jsx # React entry point
-└── Template.jsx # App layout template
+├── api/
+├── auth/
+├── Components/
+├── data/
+├── helpers/
+├── Pages/
+├── store/
+├── Styles/
+├── Ui/
+├── App.jsx
+├── main.jsx
+└── Template.jsx
 
+
+### Folder Descriptions
+
+- `api/`: Axios requests and API service files  
+- `auth/`: Authentication logic (protected routes)  
+- `Components/`: Shared reusable components  
+- `data/`: Static/form data  
+- `helpers/`: Utility functions and logic  
+- `Pages/`: Route-level components (screens)  
+- `store/`: Redux Toolkit setup, slices, and sagas  
+- `Styles/`: Tailwind & custom Sass styles  
+- `Ui/`: UI components like buttons, modals, etc.  
+- `App.jsx`: Root app component  
+- `main.jsx`: Application entry point  
+- `Template.jsx`: Layout wrapper  
+
+---
 
 ## ▶️ Getting Started
 
-Install dependencies:
+1. Install dependencies:
 
 ```bash
-npm install 
-yarn 
-
-npm run dev 
-or
-yarn dev
-
+npm install
+npm run dev
