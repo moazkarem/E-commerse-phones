@@ -51,21 +51,6 @@ Each feature is modular and structured for maintainability and scalability.
 
 ---
 
-## 📁 Folder Structure
-
-src/
-├── api/
-├── auth/
-├── Components/
-├── data/
-├── helpers/
-├── Pages/
-├── store/
-├── Styles/
-├── Ui/
-├── App.jsx
-├── main.jsx
-└── Template.jsx
 
 
 ### Folder Descriptions
