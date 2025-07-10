@@ -25,6 +25,7 @@ function* addToWhishlistSaga({ payload }) {
   try {
     const whishData = yield call(addToWhishlistApi, { productId });
     yield put(addToWhishlistSuccess(whishData));
+    yield put({ type: GET_WHISHLIST });
     toast.success("Product Added To Whishlist");
   } catch (error) {
     yield put(addToWhishlistFailure(error?.message));
@@ -45,6 +46,7 @@ function* deleteFromWhishlistSaga({ payload }) {
   try {
     const whishData = yield call(deleteFromWhishlistApi, { productId });
     yield put(deleteFromWhishlistSuccess(whishData));
+    yield put({ type: GET_WHISHLIST });
     toast.success("Product Removed From Whishlist");
   } catch (error) {
     toast.error(
