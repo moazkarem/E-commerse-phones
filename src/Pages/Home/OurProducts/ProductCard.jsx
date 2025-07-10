@@ -49,15 +49,15 @@ const ProductCard = ({ product, index, quickeViewHandeler }) => {
   const handelFav = (productId) => {
     if (userData) {
       setIsFav((prev) => !prev);
-
       let updatedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-
       if (isFav) {
         updatedWishlist = updatedWishlist.filter((id) => id !== productId);
         dispatch(deleteFromWhishlist(productId));
+        dispatch(getWhishlist());
       } else {
         updatedWishlist.push(productId);
         dispatch(addToWhishlist(productId));
+        dispatch(getWhishlist());
       }
 
       localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));

@@ -32,26 +32,27 @@ export default function ProductInfo({ product }) {
         <Loading />
       </div>
     );
+  const parsedColors =
+    Array.isArray(product?.availableColors) &&
+    typeof product?.availableColors[0] === "string"
+      ? JSON.parse(product?.availableColors[0])
+      : product?.availableColors;
 
-  const renderColors = product?.availableColors
-    ?.join(",")
-    .split(" ")
-    ?.map((color, idx) => {
-      return (
-        color.length > 2 && (
-          <span
-            key={idx}
-            onClick={() => setSelectedColor(color)}
-            className={`w-6 h-6 rounded-full cursor-pointer border-2 ${
-              selectedColor === color
-                ? "border-black !border-3"
-                : "border-transparent"
-            }`}
-            style={{ backgroundColor: color }}
-          />
-        )
-      );
-    });
+  const renderColors = parsedColors?.map((color, idx) => {
+    console.log(color, "color one ");
+    return (
+      <span
+        key={idx}
+        onClick={() => setSelectedColor(color)}
+        className={`w-6 h-6 rounded-full cursor-pointer border-2 ${
+          selectedColor === color
+            ? "border-black !border-3"
+            : "border-transparent"
+        }`}
+        style={{ backgroundColor: color }}
+      />
+    );
+  });
 
   //============ ADD TO CART HANDELER
 
@@ -68,8 +69,10 @@ export default function ProductInfo({ product }) {
           if (existProductSameColor) {
             const count = existProductSameColor?.count + 1;
             dispatch(updateCartAction(existProductSameColor?._id, count));
+            dispatch(getCartAction());
           } else {
             dispatch(addtCartAction(productId, selectedColor));
+            dispatch(getCartAction());
           }
         }
       } else {
@@ -79,9 +82,11 @@ export default function ProductInfo({ product }) {
         if (existProductNoColor) {
           const count = existProductNoColor?.count + 1;
           dispatch(updateCartAction(existProductNoColor?._id, count));
+          dispatch(getCartAction());
         } else {
           setSelectedColor("");
           dispatch(addtCartAction(productId, selectedColor));
+          dispatch(getCartAction());
         }
       }
     } else {

@@ -60,6 +60,7 @@ const Whishlist = () => {
   //============================REMOVE ACTION ===========
   const handelRemove = (productId) => {
     dispatch(deleteFromWhishlist(productId));
+    dispatch(getWhishlist());
   };
   //============================HANDEL LOADING ===========
   if (loading) {

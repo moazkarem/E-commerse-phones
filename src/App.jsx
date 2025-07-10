@@ -219,6 +219,7 @@ function App() {
             borderRadius: "10px",
             padding: "15px",
             zIndex: 999999,
+            textTransform:"capitalize" ,
           },
           duration: 1500,
         }}

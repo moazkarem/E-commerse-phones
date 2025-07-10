@@ -42,6 +42,7 @@ function* editAddressSaga({ payload }) {
   try {
     const data = yield call(editAddressApi, { address, selectedAddress });
     yield put(editAddressActionSuccess(data));
+    yield put({ type: GET_ALL_ADDREESSES });
     toast.success("Addreess Updated Successfully ✔");
   } catch (error) {
     yield put(editAddressActionFailure(error.message));
@@ -61,6 +62,7 @@ function* addAddressSaga({ payload }) {
   try {
     const addAddressData = yield call(addAddressApi, { address });
     yield put(addAddressActionSuccess(addAddressData));
+    yield put({ type: GET_ALL_ADDREESSES });
     toast.success("Addreess Added Successfully ✔");
   } catch (error) {
     yield put(addAddressActionFailure(error.message));
@@ -78,6 +80,7 @@ function* delAddressSaga({ payload }) {
   try {
     const data = yield call(delAddressApi, { address });
     yield put(delAddressActionSuccess(data));
+    yield put({ type: GET_ALL_ADDREESSES });
     toast.success("Addreess Deleted Successfully ✔");
   } catch (error) {
     yield put(delAddressActionFailure(error.message));

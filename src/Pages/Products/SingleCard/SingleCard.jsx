@@ -29,21 +29,20 @@ const SingleCard = ({ product, index, handelQuickView }) => {
     } while (index > 0 && selectedImage === images[index - 1]);
     return selectedImage;
   }, [index]);
-
-  const renderColors = availableColors
-    .join(",")
-    .split(" ")
-    ?.map((color, idx) => {
-      return (
-        color.length > 2 && (
-          <span
-            key={idx}
-            className="w-6 h-6 rounded-full bg-transparent scale-0 group-hover:scale-100 transition-transform duration-300"
-            style={{ backgroundColor: color }}
-          />
-        )
-      );
-    });
+  console.log("availableColors = ", availableColors);
+  const parsedColors =
+    Array.isArray(availableColors) && typeof availableColors[0] === "string"
+      ? JSON.parse(availableColors[0])
+      : availableColors;
+  const renderColors = parsedColors?.map((color, idx) => {
+    return (
+      <span
+        key={idx}
+        className="w-6 h-6 rounded-full bg-transparent scale-0 group-hover:scale-100 transition-transform duration-300"
+        style={{ backgroundColor: color }}
+      />
+    );
+  });
 
   //============================HANDEL WHISHLIST  ===========
   const [isFav, setIsFav] = useState(false);
@@ -61,9 +60,11 @@ const SingleCard = ({ product, index, handelQuickView }) => {
       if (isFav) {
         updatedWishlist = updatedWishlist.filter((id) => id !== productId);
         dispatch(deleteFromWhishlist(productId));
+        dispatch(getWhishlist());
       } else {
         updatedWishlist.push(productId);
         dispatch(addToWhishlist(productId));
+        dispatch(getWhishlist());
       }
       localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
     } else {
