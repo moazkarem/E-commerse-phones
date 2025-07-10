@@ -1,56 +1,79 @@
-## 📌 Overview
-X-Beat is a project built with React, using essential dependencies like Formik, React Router, Swiper, and more. It leverages Vite for fast builds, TailwindCSS for styling, and various ESLint plugins for code quality.
+# Z-line Ecommerce
 
-## 🔍 Table of Contents
+**Z-line Ecommerce** is a complete, full-stack e-commerce web application designed to sell mobile phones and related accessories. It includes a user-friendly interface and a powerful admin panel to manage all aspects of the store.
 
-- [📝 Project Summary](#project-summary)
+---
 
-- [💻 Stack](#stack)
+## 🔧 Features
 
-- [⚙️ Setting Up](#setting-up)
+This project includes full **CRUD operations** (Create, Read, Update, Delete) across all major modules.  
+Each feature is modular and structured for maintainability and scalability.
 
-- [🚀 Run Locally](#run-locally)
+### Core Features:
+
+- Product management (Add / Edit / Delete)
+- Categories and Subcategories management
+- Brand management
+- Authentication (Login, Register, Forgot Password, Change Password)
+- Admin/User management with role separation
+- Product Reviews and Ratings
+- Wishlist functionality
+- User shipping addresses
+- Coupons and discount system
+- Cart and checkout
+- Orders and order management
+
+---
+
+## 🚀 Tech Stack
+
+### Frontend
+
+- React 18
+- Vite
+- Redux Toolkit
+- Redux Saga
+- React Router DOM
+- React Hook Form + Yup (for form validation)
+- Tailwind CSS + DaisyUI + Sass
+- Axios
+- React Toastify
+- Swiper.js
+- Emotion CSS
+- PWA support via Vite Plugin PWA
+
+### Development Tools
+
+- ESLint
+- PostCSS
+- Autoprefixer
+- Workbox
+
+---
 
 
-## 📝 Project Summary
-- [**src/Components**](src/Components): Core components for building UI elements.
-- [**src/Components/Layout**](src/Components/Layout): Layout components like Header, Footer, and Main.
-- [**src/Components/Sub_Components/Main_Components**](src/Components/Sub_Components/Main_Components): Components for displaying main product information.
-- [**src/Pages**](src/Pages): Contains different pages like Home, Cart, and Product Details.
-- [**src/Components/Forms**](src/Components/Forms): Components related to form handling and validation.
-- [**src/Components/Sub_Components/Cart_Components**](src/Components/Sub_Components/Cart_Components): Components for managing the shopping cart.
-- [**src/Components/Hooks**](src/Components/Hooks): Custom React hooks for managing state and side effects.
-- [**src/Components/Seo**](src/Components/Seo): Components related to SEO optimization.
-- [**src/Components/Sub_Components/Buttons**](src/Components/Sub_Components/Buttons): Button components with different functionalities.
-- [**src/Components/Contexts**](src/Components/Contexts): Context providers for managing global state.
 
-- ## 💻 Stack
-- [formik](https://formik.org/): Form state management.
-- [react](https://reactjs.org/): Core library for building UI components.
-- [react-router-dom](https://reactrouter.com/web/guides/quick-start): Client-side routing.
-- [react-toastify](https://fkhadra.github.io/react-toastify/): Notification messages.
-- [sass](https://sass-lang.com/): Styling language.
-- [workbox-build](https://developers.google.com/web/tools/workbox): Service worker generation.
-- [yup](https://github.com/jquense/yup): Schema-based form validation.
-- [tailwindcss](https://tailwindcss.com/): Utility-first CSS framework.
+### Folder Descriptions
 
-## 🚀 Run Locally
-1.Clone the X-Beat repository:
-```sh
-git clone https://github.com/Arplight/X-Beat
-```
+- `api/`: Axios requests and API service files  
+- `auth/`: Authentication logic (protected routes)  
+- `Components/`: Shared reusable components  
+- `data/`: Static/form data  
+- `helpers/`: Utility functions and logic  
+- `Pages/`: Route-level components (screens)  
+- `store/`: Redux Toolkit setup, slices, and sagas  
+- `Styles/`: Tailwind & custom Sass styles  
+- `Ui/`: UI components like buttons, modals, etc.  
+- `App.jsx`: Root app component  
+- `main.jsx`: Application entry point  
+- `Template.jsx`: Layout wrapper  
 
-2.Install the dependencies with one of the package managers listed below:
+---
+
+## ▶️ Getting Started
+
+1. Install dependencies:
+
 ```bash
-pnpm install
-bun install
 npm install
-yarn install
-```
-3.Start the development mode:
-```bash
-pnpm dev
-bun dev
 npm run dev
-yarn dev
-```
