@@ -84,10 +84,8 @@ export default function ProductInfo() {
         if (existProductSameColor) {
           const count = existProductSameColor?.count + 1;
           dispatch(updateCartAction(existProductSameColor?._id, count));
-          dispatch(getCartAction())
         } else {
           dispatch(addtCartAction(productId, selectedColor));
-          dispatch(getCartAction())
         }
       }
     } else {
@@ -97,11 +95,9 @@ export default function ProductInfo() {
       if (existProductNoColor) {
         const count = existProductNoColor?.count + 1;
         dispatch(updateCartAction(existProductNoColor?._id, count));
-            dispatch(getCartAction())
       } else {
         setSelectedColor("");
         dispatch(addtCartAction(productId, selectedColor));
-            dispatch(getCartAction())
       }
     }
   };

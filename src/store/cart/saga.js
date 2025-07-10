@@ -50,6 +50,7 @@ function* addCartSaga({ payload }) {
   try {
     const cartData = yield call(addToCartApi, { productId, color });
     yield put(addCartActionSuccess(cartData));
+    yield put({ type: GET_PRODUCTS_CART });
     toast.success("Product  Added To Cart Successfully");
   } catch (error) {
     yield put(addCartActionFailure(error.message));
@@ -67,6 +68,7 @@ function* delCartSaga({ payload }) {
   try {
     const cartData = yield call(delFromCartApi, productId);
     yield put(delCartActionSuccess(cartData));
+    yield put({ type: GET_PRODUCTS_CART });
     toast.success("Product Removed From Cart Successfully");
   } catch (error) {
     yield put(delCartActionFailure(error.message));
@@ -83,6 +85,7 @@ function* clearCartSaga() {
   try {
     const cartData = yield call(clearCartApi);
     yield put(clearCartActionSuccess(cartData));
+    yield put({ type: GET_PRODUCTS_CART });
     toast.success("All Product Removed From Cart Successfully");
   } catch (error) {
     yield put(clearCartActionFailure(error.message));
@@ -100,6 +103,7 @@ function* updateCartSaga({ payload }) {
   try {
     const cartData = yield call(updataCartContatyApi, { productId, count });
     yield put(updateCartActionSuccess(cartData));
+    yield put({ type: GET_PRODUCTS_CART });
     toast.success("Quantity Updated Successfully");
   } catch (error) {
     console.log(error.message, "my saga updated ");

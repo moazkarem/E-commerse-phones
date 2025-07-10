@@ -1,5 +1,4 @@
-import React, { useEffect, useMemo } from "react";
-import { BsHandbag } from "react-icons/bs";
+import React, { useEffect } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteFromWhishlist, getWhishlist } from "../../../store/actions";
