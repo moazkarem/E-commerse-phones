@@ -24,7 +24,7 @@ const Comments = ({ blogData }) => {
     toast.success("Comment removed successfully");
   };
   return (
-    <div className="mt-12">
+    <div className="mt-20">
       <h1 className="text-[20px] text-[#fff] mb-5">Comments</h1>
 
       {comments?.length === 0 ? (

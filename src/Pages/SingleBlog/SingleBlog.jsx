@@ -9,7 +9,6 @@ import {blogs} from '../../data/blogs'
 import Comments from "./Comments";
 const SingleBlog = () => {
   const {id} = useParams()
-  // console.log(id , 'blog id ')
   const blogData = blogs?.find(blog=>blog?.id===parseInt(id))
   
   return (

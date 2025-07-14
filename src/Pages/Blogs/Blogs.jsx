@@ -15,7 +15,7 @@ const Blogs = () => {
         <img
           src={image || img1}
           alt={title}
-          className="w-full h-[180px] object-contain rounded-[10px] border border-1 border-[#a9afc355]  px-2 py-3"
+          className="w-full h-[180px]  object-contain rounded-[10px] border border-1 border-[#a9afc355]  px-2 py-3"
         />
 
         <div className="flex items-center gap-4 text-[#a9afc3] text-[14px]">
@@ -53,7 +53,10 @@ const Blogs = () => {
       <div className="pb-40">
         <div className="hidden sm:grid grid-cols-12 gap-4">
           {blogCards.map((card, idx) => (
-            <div key={idx} className="col-span-4 mb-10 max-md:col-span-6">
+            <div
+              key={idx}
+              className="lg:col-span-3 md:col-span-6 mb-10 max-md:col-span-6 "
+            >
               {card}
             </div>
           ))}
