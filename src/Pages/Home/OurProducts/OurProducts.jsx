@@ -17,7 +17,7 @@ import Error from "../../../Components/Error/Error";
 import { useNavigate } from "react-router-dom";
 import QuickeModal from "../../../Components/QuickeViewModal/QuickeModal";
 import HeadSec from "../../../Components/HeadSec/HeadSec";
-const OurProducts = () => {
+const OurProducts = ({headSecTitle}) => {
   const navigate = useNavigate();
   const swiperRef = useRef(null);
   const dispatch = useDispatch();
@@ -64,11 +64,11 @@ const OurProducts = () => {
 
   return (
     <div className="pb-40">
-      <div className="container">
+      <div className="">
         <div className=" rounded-[6px] flex flex-col items-center ">
           <div className="text-center w-full ">
             <div className="w-full flex justify-between items-center mb-16">
-              <HeadSec title={"Our Products"} />
+              <HeadSec title={headSecTitle} />
               <div className="flex justify-center items-center gap-6  min-[992px]:hidden">
                 <button
                   onClick={() => swiperRef.current?.swiper.slidePrev()}

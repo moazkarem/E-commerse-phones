@@ -7,14 +7,15 @@ import BreadCrumb from "../../Components/BreadCrump/BreadCrump";
 export default function ProductDetails() {
   return (
     <>
-    <BreadCrumb base={"Home"} page={"Product Details"} />
-    <div className="product-details flex flex-col w-full">
-      <Seo currentPage={"Details"} />
-
-      <ProductSummary />
-      <ProductTabs />
-      <RelatedProducts />
-    </div>
-      </>
+      <div className="product-details flex flex-col w-full">
+        <Seo currentPage={"Details"} />
+        <div className="h-5">
+          <BreadCrumb base={"Home"} page={"Product Details"} />
+        </div>
+        <ProductSummary />
+        <ProductTabs />
+        <RelatedProducts />
+      </div>
+    </>
   );
 }

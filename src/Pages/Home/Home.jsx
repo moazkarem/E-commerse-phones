@@ -14,7 +14,6 @@ import Services from "./Features/Features";
 import BannerTwo from "./Banner2/BannerTwo";
 
 export default function Home() {
- 
   return (
     <div className="home">
       <Seo currentPage={"Find the best deals"} />
@@ -22,7 +21,7 @@ export default function Home() {
       <Categories />
       <BannerOne />
       <TopRated />
-      <OurProducts />
+      <OurProducts headSecTitle={"Our Products"} />
       <BannerTwo />
       <Reviews />
       <Brands />
