@@ -5,9 +5,11 @@ import {
   cashCheckoutActions,
   cashCheckoutFailureActions,
   cashCheckoutSuccessActions,
+  visaCheckoutFailureActions,
+  visaCheckoutSuccessActions,
 } from "./actions";
-import { CASH_CHECKOUT } from "./actionsType";
-import { checkoutCashApi } from "../../../api/checkout";
+import { CASH_CHECKOUT, VISA_CHECKOUT } from "./actionsType";
+import { checkoutCashApi, checkoutVisaApi } from "../../../api/checkout";
 
 function* cashcheckoutSaga({ payload }) {
   const { navigate } = payload;
@@ -27,8 +29,30 @@ function* watchCashcheckoutSaga() {
   yield takeLatest(CASH_CHECKOUT, cashcheckoutSaga);
 }
 
+//====================== visa
+function* visaCheckoutSaga({ payload }) {
+  const { navigate } = payload;
+  try {
+    const ordersData = yield call(checkoutVisaApi, payload);
+    console.log(ordersData, "my orders visa saga");
+    yield put(visaCheckoutSuccessActions(ordersData));
+    toast.success("The card order has been placed successfully.");
+    // console.log(ordersData?.data?.session?.url, 'my url')
+    setTimeout(() => {
+      window.open(ordersData?.data?.session?.url)
+    }, 1500);
+  } catch (error) {
+    yield put(visaCheckoutFailureActions(error.message));
+    console.log(error?.message, "error saga");
+  }
+}
+
+function* watchVisacheckoutSaga() {
+  yield takeLatest(VISA_CHECKOUT, visaCheckoutSaga);
+}
+
 function* allCheckoutSaga() {
-  yield all([fork(watchCashcheckoutSaga)]);
+  yield all([fork(watchCashcheckoutSaga), fork(watchVisacheckoutSaga)]);
 }
 
 export default allCheckoutSaga;

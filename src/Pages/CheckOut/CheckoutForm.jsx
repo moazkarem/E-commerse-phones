@@ -4,12 +4,15 @@ import {
   cashCheckoutActions,
   getAllAddresses,
   getCartAction,
+  visaCheckoutActions,
 } from "../../store/actions";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const CheckoutForm = ({ getCart }) => {
+  const [type, setType] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { getAddresses } = useSelector((state) => state.addressesRed);
@@ -43,8 +46,14 @@ const CheckoutForm = ({ getCart }) => {
 
   const onSubmit = (data) => {
     const shippingAddress = JSON.parse(data.shippingAddress);
-    dispatch(cashCheckoutActions({ cartId, shippingAddress, navigate }));
-    dispatch(getCartAction());
+    if (type === "cash") {
+      dispatch(cashCheckoutActions({ cartId, shippingAddress, navigate }));
+      dispatch(getCartAction());
+    } else if (type === "visa") {
+      console.log("visaa");
+      dispatch(visaCheckoutActions({ cartId, shippingAddress, navigate }));
+      // dispatch(getCartAction());
+    }
   };
 
   return (
@@ -54,8 +63,11 @@ const CheckoutForm = ({ getCart }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex items-start gap-4 mb-6">
           <input
-            type="checkbox"
+            type="radio"
+            name="payment"
             className="accent-[#ed1d24] w-4 h-4 mb-2 cursor-pointer"
+            value={"cash"}
+            onChange={(e) => setType(e.target.value)}
           />
           <label className="capitalize text-sm ps-2 text-[#a9afc3]">
             Cash on Delivery
@@ -64,8 +76,11 @@ const CheckoutForm = ({ getCart }) => {
 
         <div className="flex items-start gap-4 mb-6">
           <input
-            type="checkbox"
+            name="payment"
+            type="radio"
             className="accent-[#ed1d24] w-4 h-4 mb-2 cursor-pointer"
+            value={"visa"}
+            onChange={(e) => setType(e.target.value)}
           />
           <label className="capitalize text-sm ps-2 text-[#a9afc3]">
             Pay with Visa

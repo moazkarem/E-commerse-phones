@@ -29,7 +29,7 @@ const SingleCard = ({ product, index, handelQuickView }) => {
     } while (index > 0 && selectedImage === images[index - 1]);
     return selectedImage;
   }, [index]);
-  console.log("availableColors = ", availableColors);
+  // console.log("availableColors = ", availableColors);
   const parsedColors =
     Array.isArray(availableColors) && typeof availableColors[0] === "string"
       ? JSON.parse(availableColors[0])

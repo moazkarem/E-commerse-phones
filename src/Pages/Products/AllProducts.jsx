@@ -25,7 +25,7 @@ const AllProducts = () => {
   const [priceFrom, setPriceFrom] = useState(0);
   const [priceTo, setPriceTo] = useState(5000);
   const [sort, setSort] = useState("");
-  console.log(sort, "sor");
+  // console.log(sort, "sor");
   //============================HANDEL DATA ===========
   useEffect(() => {
     const catQuery =
