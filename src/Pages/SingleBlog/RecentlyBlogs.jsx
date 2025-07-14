@@ -1,9 +1,23 @@
 import React from "react";
-import side1 from "../../../public/images/brands/img2.png";
-import side2 from "../../../public/images/brands/img3.png";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaWhatsapp,
+  FaLinkedin,
+} from "react-icons/fa6";
+
 import { FaCalendarAlt, FaSearch } from "react-icons/fa";
+import {
+  FacebookShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from "react-share";
+import { useLocation, useParams } from "react-router-dom";
 const RecentlyBlogs = ({ blogs }) => {
-  const renderBlogs = blogs?.slice(0,4)?.map(({ image, date, title }, idx) => (
+  console.log(window.location.href, "myref");
+  const { id } = useParams();
+  const renderBlogs = blogs?.slice(0, 4)?.map(({ image, date, title }, idx) => (
     <div
       key={idx}
       className="flex gap-3 md:gap-4 bg-[#161819] p-3 rounded-[8px] items-start"
@@ -24,6 +38,7 @@ const RecentlyBlogs = ({ blogs }) => {
       </div>
     </div>
   ));
+
   return (
     <div className="lg:col-span-4 col-span-12 w-full box-border mt-8 lg:mt-0">
       <div className="mb-6 w-full">
@@ -52,6 +67,41 @@ const RecentlyBlogs = ({ blogs }) => {
           Recent Blogs
         </h3>
         {renderBlogs}
+      </div>
+
+      <div className="bg-[#161819] rounded-[10px] mt-10 py-8 px-5 flex flex-col gap-6">
+        <h3
+          style={{ letterSpacing: "2px" }}
+          className="text-[16px] md:text-[18px] font-semibold  "
+        >
+          Share Blog On ...
+        </h3>
+
+        <div className="flex justify-start gap-4">
+          <FacebookShareButton url={window.location.href}>
+            <div className="group p-2 rounded-full border cursor-pointer border-[#a9afc3] hover:border-[#ed1d24] transition-colors duration-300">
+              <FaFacebookF className="text-[#fff] group-hover:text-[#ed1d24] transition-colors duration-300" />
+            </div>
+          </FacebookShareButton>
+
+          <TwitterShareButton url={window.location.href}>
+            <div className="group p-2 rounded-full border cursor-pointer border-[#a9afc3] hover:border-[#ed1d24] transition-colors duration-300">
+              <FaTwitter className="text-[#fff] group-hover:text-[#ed1d24] transition-colors duration-300" />
+            </div>
+          </TwitterShareButton>
+
+          <WhatsappShareButton url={window.location.href}>
+            <div className="group p-2 rounded-full border cursor-pointer border-[#a9afc3] hover:border-[#ed1d24] transition-colors duration-300">
+              <FaWhatsapp className="text-[#fff] group-hover:text-[#ed1d24] transition-colors duration-300" />
+            </div>
+          </WhatsappShareButton>
+
+          <LinkedinShareButton url={window.location.href}>
+            <div className="group p-2 rounded-full border cursor-pointer border-[#a9afc3] hover:border-[#ed1d24] transition-colors duration-300">
+              <FaLinkedin className="text-[#fff] group-hover:text-[#ed1d24] transition-colors duration-300" />
+            </div>
+          </LinkedinShareButton>
+        </div>
       </div>
     </div>
   );

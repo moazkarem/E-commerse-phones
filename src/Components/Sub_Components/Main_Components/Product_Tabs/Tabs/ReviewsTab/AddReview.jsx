@@ -2,21 +2,25 @@ import React, { useState } from "react";
 import { LiaStarSolid } from "react-icons/lia";
 import { useForm } from "react-hook-form";
 import { addProductReviewAction } from "../../../../../../store/actions";
-import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import Button from "./../../../../../../Ui/Button";
+import { getAllReviewsAction } from "./../../../../../../store/Reviews/actions";
 const AddReview = () => {
-  const dispatch = useDispatch()
+  const { loading } = useSelector((state) => state.reviewsRed);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [hoverValue, setHoverValue] = useState(undefined);
   const [rating, setRating] = useState(0);
-  const { register, handleSubmit } = useForm({});
+  const { register, handleSubmit, reset } = useForm({});
   const { id } = useParams();
   const onSubmit = (data) => {
     const finalData = {
       ...data,
       rating: rating,
     };
-    console.log(finalData, "from add modal comp");
     dispatch(addProductReviewAction(finalData, id));
+    reset();
   };
   return (
     <div className="bg-[#111] rounded-[30px] p-6 mt-7 col-span-12 max-[400px]:col-span-10">
@@ -67,9 +71,14 @@ const AddReview = () => {
         />
 
         <div className="flex justify-end mt-4">
-          <button className="bg-[#ff0000cc] text-white px-10 py-2 rounded-sm  transition">
+          <Button
+            // loading={loading}
+            style={
+              "bg-[#ff0000cc] text-white px-10 py-2 rounded-sm  transition  flex justify-center items-center gap-2 "
+            }
+          >
             Add
-          </button>
+          </Button>
         </div>
       </form>
     </div>

@@ -3,7 +3,6 @@ import { images } from "./data";
 import Loading from "../../Components/Loading/Loading";
 const OrderSumury = ({ getCart, loading }) => {
   const productsCart = getCart?.data?.products;
-  console.log(productsCart);
   const renderProductCart = productsCart?.map(
     ({ _id, product, count, price }) => (
       <div

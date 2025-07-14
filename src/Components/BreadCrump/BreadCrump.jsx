@@ -2,7 +2,7 @@ import { IoHomeOutline } from "react-icons/io5";
 const BreadCrumb = ({ base, page }) => {
   return (
     <div>
-      <div className=" mb-16 mt-32 ">
+      <div className=" my-40">
         <div className=" inset-0 flex flex-col justify-center items-center">
           <h4 className="text-white font-semibold text-[21px]  mb-4 md:mb-6">
             {page}
