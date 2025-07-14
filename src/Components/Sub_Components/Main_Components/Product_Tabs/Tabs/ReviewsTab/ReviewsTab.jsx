@@ -58,77 +58,81 @@ export default function ReviewsTab() {
   const handelPages = (page) => {
     setCurrenntPage(page);
   };
+
+  //============================ REVIEWS RENDRING ===========
+  const reviewsRendring = reviews?.map((review, idx) => (
+    <div
+      key={review?._id}
+      className="col-span-12 max-[400px]:col-span-10 flex items-start gap-3"
+    >
+      <Fade delay={idx * 50} className="w-full">
+        <div className="bg-[#111] flrx flex-col gap-4 w-full rounded-[30px] max-[400px]:rounded-[15px]">
+          <div className="flex justify-between items-center pt-7 pb-5 px-8 max-[400px]:flex-col max-[400px]:gap-2 max-[400px]:px-4 max-[400px]:items-start">
+            <div className="flex items-center gap-5">
+              <FaRegCircleUser className="text-red-600" size={35} />
+              <div>
+                <h1 className="text-white text-[16px] capitalize">
+                  {review?.user?.name}
+                </h1>
+                <span className="text-[#596268]">
+                  {formatDate(review?.createdAt)}
+                </span>
+              </div>
+            </div>
+            <div className="flex items-start gap-1 max-[400px]:ps-[53px]">
+              {Array.from({ length: Math.ceil(review?.rating) }).map(
+                (item, idx) => (
+                  <LiaStarSolid key={idx} color="#ed1d24" />
+                )
+              )}
+            </div>
+          </div>
+
+          <div className="ps-[91px] max-[400px]:ps-[68px] pe-10 pb-8">
+            <h4 className="text-[14px] text-[#a9afc3] capitalize max-[400px]:line-clamp-4">
+              {review?.review}
+            </h4>
+          </div>
+          {loggedUser === review?.user?._id && (
+            <div className="flex justify-end pe-10 pb-5 gap-4">
+              <button>
+                <FaRegEdit
+                  onClick={() => editReviewHandeler(review)}
+                  className="text-[#a9afc3] hover:text-[#008000]"
+                  size={18}
+                />
+              </button>
+              <button onClick={() => delReviewHandeler(review?._id)}>
+                <MdDeleteOutline
+                  className="text-[#a9afc3] hover:text-red-500"
+                  size={20}
+                />
+              </button>
+            </div>
+          )}
+        </div>
+      </Fade>
+    </div>
+  ));
   return (
     <>
       <div className="grid grid-cols-12 gap-8 w-full">
         {Array.isArray(reviews) && reviews.length > 0 ? (
-          reviews?.map((review, idx) => (
-            <div
-              key={review?._id}
-              className="col-span-12 max-[400px]:col-span-10 flex items-start gap-3"
-            >
-              <Fade delay={idx * 50} className="w-full">
-                <div className="bg-[#111] flrx flex-col gap-4 w-full rounded-[30px] max-[400px]:rounded-[15px]">
-                  <div className="flex justify-between items-center pt-7 pb-5 px-8 max-[400px]:flex-col max-[400px]:gap-2 max-[400px]:px-4 max-[400px]:items-start">
-                    <div className="flex items-center gap-5">
-                      <FaRegCircleUser className="text-red-600" size={35} />
-                      <div>
-                        <h1 className="text-white text-[16px] capitalize">
-                          {review?.user?.name}
-                        </h1>
-                        <span className="text-[#596268]">
-                          {formatDate(review?.createdAt)}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-1 max-[400px]:ps-[53px]">
-                      {Array.from({ length: Math.ceil(review?.rating) }).map(
-                        (item, idx) => (
-                          <LiaStarSolid key={idx} color="#ed1d24" />
-                        )
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="ps-[91px] max-[400px]:ps-[68px] pe-10 pb-8">
-                    <h4 className="text-[14px] text-[#a9afc3] capitalize max-[400px]:line-clamp-4">
-                      {review?.review}
-                    </h4>
-                  </div>
-                  {loggedUser === review?.user?._id && (
-                    <div className="flex justify-end pe-10 pb-5 gap-4">
-                      <button>
-                        <FaRegEdit
-                          onClick={() => editReviewHandeler(review)}
-                          className="text-[#a9afc3] hover:text-[#008000]"
-                          size={18}
-                        />
-                      </button>
-                      <button onClick={() => delReviewHandeler(review?._id)}>
-                        <MdDeleteOutline
-                          className="text-[#a9afc3] hover:text-red-500"
-                          size={20}
-                        />
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </Fade>
-            </div>
-          ))
+          reviewsRendring
         ) : (
           <h4 className="text-[16px] ps-3 text-[#a9afc3] w-full col-span-8">
             No comments exist for this product. Be the first to comment!
           </h4>
         )}
+          {pageCount > 1 && (
         <div className="w-full flex justify-center col-span-12">
-
-          <Pagination
-            currentPage={currentPage}
-            onPress={handelPages}
-            pageCount={pageCount}
-          />
+            <Pagination
+              currentPage={currentPage}
+              onPress={handelPages}
+              pageCount={pageCount}
+            />
         </div>
+          )}
         <AddReview />
         <DelReview deltedReview={deltedReview} />
         <EditReview editedReview={editedReview} />

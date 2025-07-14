@@ -69,6 +69,7 @@ function* addProductReviewSaga({ payload }) {
   try {
     const addreviewData = yield call(addReviewsApi, { data, productId });
     yield put(addProductReviewSuccess(addreviewData));
+    // yield put({ type: GET_ALL_REVIEWS });
     toast.success("Review Added Successfully");
   } catch (error) {
     yield put(addProductReviewFailure(error?.message));
@@ -86,6 +87,7 @@ function* delProductReviewSaga({ payload }) {
   try {
     const delreviewData = yield call(delProductReviewApi, productId);
     yield put(delProductReviewSuccess(delreviewData));
+    // yield put({ type: GET_ALL_REVIEWS });
     toast.success("Review Removed Successfully");
   } catch (error) {
     yield put(delProductReviewFailure(error?.message));
@@ -106,6 +108,7 @@ function* updateProductReviewSaga({ payload }) {
       productId,
     });
     yield put(updateProductReviewSuccess(addreviewData));
+    // yield put({ type: GET_ALL_REVIEWS });
     toast.success("Review Updated Successfully");
   } catch (error) {
     yield put(updateProductReviewFailure(error?.message));

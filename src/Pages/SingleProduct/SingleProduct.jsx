@@ -11,7 +11,7 @@ const SingleProduct = () => {
     <div className="product-details flex flex-col">
       <Seo currentPage={"Details"} />
       <div>
-        <BreadCrumb base={"Home"} page={"Product Details"} />
+        <BreadCrumb base={"Home / Products  "} page={"Product Details"} />
       </div>
 
       <CurrentItemProvider>
