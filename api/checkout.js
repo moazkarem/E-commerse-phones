@@ -41,4 +41,4 @@ export const checkoutVisaApi = async (payload) => {
   return response;
 };
 
-// https://checkout.stripe.com/c/pay/cs_test_a1K8vb7gRst0eAjK1GAynSP38T2pqJ7Odc5OiUn2deH1fuIfNQpLBrthWN#fidkdWxOYHwnPyd1blpxYHZxWjA0V29JbW1BTH02bTYwd2liMmtNRmtyNHJQZkNIPTY9THEwcWFDdEMwXGliTH1LQjVcbE9xf05HYXFddzdqPVNuZDNTZE9ra09IYUN%2FRkEyUjc8VEt1SVRGNTVsXTFUXXViUicpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl
+
