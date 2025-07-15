@@ -12,7 +12,7 @@ const Navbar = () => {
   const storageKey = "userData";
   const userDataString = localStorage.getItem(storageKey);
   const userData = userDataString ? JSON.parse(userDataString) : null;
-  const userName = userData?.data?.data.name;
+  const userName = userData?.data?.data?.name;
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
