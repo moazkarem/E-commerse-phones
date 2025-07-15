@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Drawer from "./Drawer";
@@ -52,6 +53,7 @@ const Navbar = () => {
             <button
               className="btn btn-square text-white me-3 btn-ghost"
               onClick={toggleDrawer}
+              data-testid="toggle-icon"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -70,14 +72,22 @@ const Navbar = () => {
           </div>
           <Link to={"/"}>
             <div className="flex gap-3 items-center flex-1 lg:flex-none text-center lg:text-left">
-              <img className="w-9 me-2" src={logo} alt="logo" />
-              <h3 className="text-2xl text-white font-bold max-[450px]:hidden">
+              <img
+                className="w-9 me-2"
+                src={logo}
+                alt="logo"
+                data-testid="logo"
+              />
+              <h3
+                className="text-2xl text-white font-bold max-[450px]:hidden"
+                data-testid="logo-title"
+              >
                 Z-Line
               </h3>
             </div>
           </Link>
           <div className="hidden lg:flex flex-1 justify-center space-x-4">
-            <ul className="menu menu-horizontal p-0">
+            <ul data-testid="pages-items" className="menu menu-horizontal p-0">
               {[
                 "Home",
                 "Categories",
@@ -86,10 +96,11 @@ const Navbar = () => {
                 "About",
                 "Contact",
               ].map((item) => (
-                <div key={item}>
+                <div key={item} data-testid={item}>
                   {item === "Home" ? (
                     <li className="text-lg p-2">
                       <NavLink
+                        data-testid={`/${item}`}
                         to={`/`}
                         className="text-white hover:text-[#ed1d24] hover:bg-transparent"
                       >
@@ -99,6 +110,7 @@ const Navbar = () => {
                   ) : (
                     <li className="text-lg p-2">
                       <NavLink
+                        data-testid={`/${item}`}
                         to={`/${item.toLowerCase()}`}
                         className="text-white hover:text-[#ed1d24] hover:bg-transparent"
                       >
@@ -113,7 +125,7 @@ const Navbar = () => {
 
           <div className="flex items-center gap-x-6">
             {userName ? (
-              <div className="relative flex items-center gap-x-10">
+              <div data-testid="loggedUserSection" className="relative flex items-center gap-x-10">
                 <div onClick={() => navigate("/cart")} className="relative">
                   <BsHandbag size={31} className="text-white cursor-pointer" />
                   <span className="absolute -top-2 -right-2 bg-[#ed1d24] text-white text-xs  px-[6px] py-[2px] rounded-full">

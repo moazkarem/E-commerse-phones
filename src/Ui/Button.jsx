@@ -1,3 +1,4 @@
+import React from "react";
 const Button = ({ style, children, loading, ...rest }) => {
   return (
     <button className={`${style} border-none`} {...rest}>
