@@ -37,7 +37,7 @@ export const checkoutVisaApi = async (payload) => {
       },
     }
   );
-  // console.log(response, "from checkout  visa");
+  console.log(response, "from checkout  visa");
   return response;
 };
 

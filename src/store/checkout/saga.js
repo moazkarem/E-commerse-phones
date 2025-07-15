@@ -31,7 +31,6 @@ function* watchCashcheckoutSaga() {
 
 //====================== visa
 function* visaCheckoutSaga({ payload }) {
-  const { navigate } = payload;
   try {
     const ordersData = yield call(checkoutVisaApi, payload);
     console.log(ordersData, "my orders visa saga");
