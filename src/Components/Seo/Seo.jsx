@@ -4,7 +4,7 @@ export default function Seo({ currentPage }) {
   return (
     <Helmet>
       {/* Title */}
-      <title>X-Beat | {currentPage}</title>
+      <title>Z-Line | {currentPage}</title>
       {/* Meta */}
       <meta name="theme-color" content="#000000" />
       <meta

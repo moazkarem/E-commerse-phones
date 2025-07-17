@@ -42,6 +42,7 @@ const ResetPassword = () => {
   };
   return (
     <div className="min-h-screen flex justify-center items-center bg-[#141414] px-4">
+          <Seo currentPage={'Reset Password'}/>
       <div className="bg-[#111] p-6 rounded-lg shadow-lg w-full max-w-sm">
         <h2 className="text-center text-[20px] mb-6">Reset Password</h2>
         <form

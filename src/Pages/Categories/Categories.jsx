@@ -9,6 +9,7 @@ import { useMemo } from "react";
 import Error from "../../Components/Error/Error";
 import { Link } from "react-router-dom";
 import { images } from "./data";
+import Seo from "../../Components/Seo/Seo";
 
 const Categories = () => {
   const dispatch = useDispatch();
@@ -70,6 +71,7 @@ const Categories = () => {
 
   return (
     <div className="pb-20">
+          <Seo currentPage={'Categories'}/>
       <div>
         <BreadCrumb base="Home" page="Categories" />
       </div>

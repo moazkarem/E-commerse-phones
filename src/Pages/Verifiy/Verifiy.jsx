@@ -6,6 +6,7 @@ import { MdOutlineMarkEmailRead } from "react-icons/md";
 import Errormsg from "../../Components/Error/Errormsg";
 import { useDispatch, useSelector } from "react-redux";
 import { postForgetPassword, postVerifiyCode } from "../../store/actions";
+import Seo from "../../Components/Seo/Seo";
 const Verifiy = () => {
   const { loading } = useSelector((state) => state.authRed);
   const dispatch = useDispatch();
@@ -18,11 +19,12 @@ const Verifiy = () => {
 
   //============================HANDEL SUBMIT DATA ===========
   const onSubmit = (data) => {
-    console.log(data , 'from verifiy comp')
+    console.log(data, "from verifiy comp");
     dispatch(postVerifiyCode(data, navigate));
   };
   return (
     <div className="min-h-screen flex justify-center items-center bg-[#141414] px-4">
+      <Seo currentPage={"Password Verification"} />
       <div className="bg-[#111] p-6 rounded-lg shadow-lg w-full max-w-sm">
         <h2 className="text-center text-[20px] mb-6">Verification Code </h2>
         <form

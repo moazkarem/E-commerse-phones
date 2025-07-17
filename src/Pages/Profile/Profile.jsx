@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom";
 const Profile = () => {
   return (
     <div>
+      <Seo currentPage={"Profile"} />
       <BreadCrumb base={"Home"} page={"Profile"} />
       <div className="grid grid-cols-12 gap-6 ">
         <div className="col-span-3    max-md:hidden">
