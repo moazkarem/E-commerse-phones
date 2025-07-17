@@ -2,6 +2,7 @@ import paymentStatus from "../../../public/svgs/payment-status.svg";
 const Payment = () => {
   return (
     <div className="flex flex-col gap-4 justify-center items-center h-[80vh] text-center">
+          <Seo currentPage={'Payment Status'}/>
       <img
         src={paymentStatus}
         alt="payment status"

@@ -4,6 +4,7 @@ import CheckoutForm from "./CheckoutForm";
 import OrderSumury from "./OrderSumury";
 import { getCartAction } from "../../store/actions";
 import { useEffect } from "react";
+import Seo from "../../Components/Seo/Seo";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const Checkout = () => {
   }, [dispatch]);
   return (
     <>
+          <Seo currentPage={'Checkout'}/>
       <div>
         <BreadCrumb base={"Home / Cart"} page={"Checkout"} />
       </div>

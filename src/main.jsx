@@ -7,7 +7,9 @@ import FocusProvider from "./Components/Contexts/FocusProvider.jsx";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
 
-
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

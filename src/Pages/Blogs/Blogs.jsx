@@ -8,6 +8,7 @@ import { FiArrowRight } from "react-icons/fi";
 import { blogs } from "../../data/blogs";
 import { FaUser, FaCalendarAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Seo from "../../Components/Seo/Seo";
 const Blogs = () => {
   const blogCards = blogs?.map(
     ({ author, image, title, id, description, date }, idx) => (
@@ -47,6 +48,7 @@ const Blogs = () => {
 
   return (
     <div className="">
+      <Seo currentPage={'Blogs'}/>
       <div>
         <BreadCrumb base={"Home"} page={"Blogs"} />
       </div>

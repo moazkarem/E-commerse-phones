@@ -1,10 +1,12 @@
 import React from "react";
 import Filter from "./Filter/Filter";
 import SingleCard from "./SingleCard/SingleCard";
+import Seo from "../../Components/Seo/Seo";
 
 const SingleBrand = () => {
   return (
     <div className="grid grid-cols-12 gap-3 pt-24">
+      <Seo currentPage={"Single Category"} />
       <div className="col-span-3    max-md:hidden">
         <Filter />
       </div>

@@ -41,6 +41,7 @@ const Login = () => {
   };
   return (
     <div className="min-h-screen flex justify-center items-center bg-[#141414] px-4">
+      <Seo currentPage={"Login"} />
       <div className="bg-[#111] p-6 rounded-lg shadow-lg w-full max-w-sm">
         <h2 className="text-center text-[20px] mb-6">Login</h2>
         <form
@@ -65,7 +66,6 @@ const Login = () => {
           </Link>
         </p>
         <p className="text-center text-sm mt-4">
-         
           <Link to="/forgetpassword" className="text-[#ed1d24] ps-2">
             Forget Password ?
           </Link>

@@ -9,7 +9,7 @@ import OurProducts from "./../Home/OurProducts/OurProducts";
 const SingleProduct = () => {
   return (
     <div className="product-details flex flex-col">
-      <Seo currentPage={"Details"} />
+      <Seo currentPage={"Product Details"} />
       <div>
         <BreadCrumb base={"Home / Products  "} page={"Product Details"} />
       </div>

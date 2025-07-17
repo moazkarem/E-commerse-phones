@@ -4,6 +4,7 @@ import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
 import BreadCrumb from "../../Components/BreadCrump/BreadCrump";
 import Errormsg from "../../components/Error/ErrorMsg";
 import toast from "react-hot-toast";
+import Seo from "../../Components/Seo/Seo";
 
 const contactFields = [
   { name: "name", label: "Name", type: "text", placeholder: "Enter your name" },
@@ -36,6 +37,7 @@ const ContactUs = () => {
 
   return (
     <div className="pb-40">
+      <Seo currentPage={"Contact Us"} />
       <div>
         <BreadCrumb base={"Home"} page={"Contact Us"} />
       </div>

@@ -41,6 +41,8 @@ const Register = () => {
   };
   return (
     <div className="min-h-screen flex justify-center items-center bg-[#141414] px-4">
+      <Seo currentPage={"Register"} />
+
       <div className="bg-[#111] p-6 rounded-lg shadow-lg w-full max-w-sm">
         <h2 className="text-center text-[20px] mb-6">Sign Up</h2>
         <form

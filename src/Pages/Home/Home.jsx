@@ -16,7 +16,7 @@ import BannerTwo from "./Banner2/BannerTwo";
 export default function Home() {
   return (
     <div className="home">
-      <Seo currentPage={"Find the best deals"} />
+      <Seo currentPage={" Home "} />
       {/* <Carousel /> */}
       <Categories />
       <BannerOne />

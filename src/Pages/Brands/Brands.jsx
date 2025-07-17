@@ -7,6 +7,7 @@ import NullScreen from "../../Components/NullScreen/NullScreen";
 import Loading from "../../Components/Loading/Loading";
 import Pagination from "../../Components/pagination/Pagination";
 import Error from "../../Components/Error/Error";
+import Seo from "../../Components/Seo/Seo";
 const Brands = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { brands, loading, error } = useSelector((state) => state.brandsRed);
@@ -53,6 +54,8 @@ const Brands = () => {
   };
   return (
     <div>
+      <Seo currentPage={"Brands"} />
+
       <div>
         <BreadCrumb base={"Home"} page={"Brands"} />
       </div>
