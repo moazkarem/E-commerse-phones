@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postSignUp } from "../../store/actions";
 import { useNavigate } from "react-router-dom";
 import Button from "../../Ui/Button";
+import Seo from "../../Components/Seo/Seo";
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -8,6 +8,7 @@ import { ResetSchema } from "../../helpers/validation";
 import Errormsg from "../../Components/Error/Errormsg";
 import { useDispatch, useSelector } from "react-redux";
 import { postResetPassword } from "../../store/actions";
+import Seo from "../../Components/Seo/Seo";
 const ResetPassword = () => {
   const { loading } = useSelector((state) => state.authRed);
   const dispatch = useDispatch();

@@ -2,6 +2,7 @@ import React from "react";
 import BreadCrumb from "../../Components/BreadCrump/BreadCrump";
 import SideBar from "./SideBar";
 import { Outlet } from "react-router-dom";
+import Seo from "../../Components/Seo/Seo";
 const Profile = () => {
   return (
     <div>

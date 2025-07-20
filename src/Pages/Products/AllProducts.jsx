@@ -9,6 +9,7 @@ import BreadCrumb from "../../Components/BreadCrump/BreadCrump";
 import Pagination from "../../Components/pagination/Pagination";
 import NullScreen from "../../Components/NullScreen/NullScreen";
 import QuickeModal from "../../Components/QuickeViewModal/QuickeModal";
+import Seo from './../../Components/Seo/Seo';
 
 const AllProducts = () => {
   const [currentPage, setCurrentPage] = useState(1);
