@@ -8,6 +8,7 @@ import { loginSchema } from "../../helpers/validation";
 import Errormsg from "../../Components/Error/Errormsg";
 import { useDispatch, useSelector } from "react-redux";
 import { postLogin } from "../../store/actions";
+import Seo from "../../Components/Seo/Seo";
 const Login = () => {
   const { loading } = useSelector((state) => state.authRed);
   const dispatch = useDispatch();

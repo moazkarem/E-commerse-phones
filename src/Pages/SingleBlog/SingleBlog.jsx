@@ -7,6 +7,7 @@ import BlogContent from "./BlogContent";
 import { useParams } from "react-router-dom";
 import { blogs } from "../../data/blogs";
 import Comments from "./Comments";
+import Seo from "../../Components/Seo/Seo";
 const SingleBlog = () => {
   const { id } = useParams();
   const blogData = blogs?.find((blog) => blog?.id === parseInt(id));
