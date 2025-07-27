@@ -1,13 +1,17 @@
 import React from "react";
 import img3 from "../../../public/images/brands/bg-about.jpg";
 import { useNavigate } from "react-router-dom";
-const SectionTwo = () => {
+const SectionTwo = ({ aboutSections }) => {
   const navigate = useNavigate();
   return (
     <>
       <div
         className="relative bg-fixed bg-center bg-cover w-full mb-40 max-md:mb-20 min-h-[500px] flex items-center justify-center text-white   rounded-[10px]"
-        style={{ backgroundImage: `url(${img3})` }}
+        style={{
+          backgroundImage: `url(${import.meta.env.VITE_IMAGE_DOMAIN}${
+            aboutSections?.bannerImg?.url
+          })`,
+        }}
       >
         <div className="absolute inset-0 bg-black/60 z-0  rounded-[10px]"></div>
 
