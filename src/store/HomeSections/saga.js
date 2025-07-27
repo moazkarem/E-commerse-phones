@@ -1,9 +1,13 @@
 import { all, call, fork, put, takeLatest } from "redux-saga/effects";
-import { getHeroDataFailure, getHeroDataSuccess } from "./actions";
-
-import { GET_HERO_DATA } from "./actionTypes";
+import {
+  getAboutPageDataFailure,
+  getAboutPageDataSuccess,
+  getHeroDataFailure,
+  getHeroDataSuccess,
+} from "./actions";
+import { GET_ABOUT_DATA, GET_HERO_DATA } from "./actionTypes";
 import toast from "react-hot-toast";
-import { getHeroDataApi } from "../../../api/homeSections";
+import { getAboutPageDataApi, getHeroDataApi } from "../../../api/homeSections";
 
 function* getHeroSage() {
   try {
@@ -18,9 +22,22 @@ function* watchHeroSaga() {
   yield takeLatest(GET_HERO_DATA, getHeroSage);
 }
 
-//================================ DELETE WHISHLIST ITEM==========
+//============ about page asage
+
+function* getAboutPageSaga() {
+  try {
+    const heroData = yield call(getAboutPageDataApi);
+    yield put(getAboutPageDataSuccess(heroData));
+  } catch (error) {
+    yield put(getAboutPageDataFailure(error?.message));
+  }
+}
+
+function* watchAboutPageSaga() {
+  yield takeLatest(GET_ABOUT_DATA, getAboutPageSaga);
+}
 
 function* homeSectionsSagas() {
-  yield all([fork(watchHeroSaga)]);
+  yield all([fork(watchHeroSaga), fork(watchAboutPageSaga)]);
 }
 export default homeSectionsSagas;
