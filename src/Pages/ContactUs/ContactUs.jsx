@@ -5,6 +5,8 @@ import BreadCrumb from "../../Components/BreadCrump/BreadCrump";
 import Errormsg from "../../components/Error/ErrorMsg";
 import toast from "react-hot-toast";
 import Seo from "../../Components/Seo/Seo";
+import { useDispatch } from "react-redux";
+import { postContact } from "../../store/ContactUs/actions";
 
 const contactFields = [
   { name: "name", label: "Name", type: "text", placeholder: "Enter your name" },
@@ -15,14 +17,15 @@ const contactFields = [
     placeholder: "Enter your email",
   },
   {
-    name: "subject",
-    label: "Subject",
-    type: "text",
-    placeholder: "Enter subject",
+    name: "message",
+    label: "Message",
+    isTextArea: true,
+    placeholder: "Enter message",
   },
 ];
 
 const ContactUs = () => {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -30,8 +33,52 @@ const ContactUs = () => {
     reset,
   } = useForm();
 
+  //=========== render fields
+  const renderContactFields = contactFields.map(
+    ({ name, label, type, placeholder, isTextArea }, idx) =>
+      isTextArea ? (
+        <div key={idx}>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="message" className="text-white text-[14px] mb-4">
+              Message
+            </label>
+            <textarea
+              id="message"
+              placeholder="Write your message..."
+              {...register("message", {
+                required: "Message is required",
+              })}
+              className="min-h-[150px] w-full px-3 md:px-4 pl-10 md:pl-12 py-3 rounded-[8px] bg-[#222] text-white outline-none border border-[#444] text-[14px] md:text-[16px]"
+            />
+            {errors.message && (
+              <Errormsg
+                msg={errors.message.message}
+                className="text-[#ed1d24]"
+              />
+            )}
+          </div>
+        </div>
+      ) : (
+        <div key={idx} className="flex flex-col gap-2">
+          <label htmlFor={name} className="text-white text-[14px] mb-4">
+            {label}
+          </label>
+          <input
+            id={name}
+            type={type}
+            placeholder={placeholder}
+            {...register(name, { required: `${label} is required` })}
+            className="w-full h-[45px] md:h-[55px] px-3 md:px-4 pl-10 md:pl-12 rounded-[8px] bg-[#222] text-white outline-none border border-[#444] text-[14px] md:text-[16px]"
+          />
+          {errors[name] && (
+            <Errormsg msg={errors[name].message} className="text-[#ed1d24]" />
+          )}
+        </div>
+      )
+  );
+
   const onSubmit = (data) => {
-    toast.success("Your message has been sent successfully ");
+    dispatch(postContact(data));
     reset();
   };
 
@@ -62,46 +109,8 @@ const ContactUs = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col gap-4 w-full"
         >
-          {contactFields.map(({ name, label, type, placeholder }, idx) => (
-            <div key={idx} className="flex flex-col gap-2">
-              <label htmlFor={name} className="text-white text-[14px] mb-4">
-                {label}
-              </label>
-              <input
-                id={name}
-                type={type}
-                placeholder={placeholder}
-                {...register(name, { required: `${label} is required` })}
-                className="w-full h-[45px] md:h-[55px] px-3 md:px-4 pl-10 md:pl-12 rounded-[8px] bg-[#222] text-white outline-none border border-[#444] text-[14px] md:text-[16px]"
-              />
-              {errors[name] && (
-                <Errormsg
-                  msg={errors[name].message}
-                  className="text-[#ed1d24]"
-                />
-              )}
-            </div>
-          ))}
+          {renderContactFields}
 
-          <div className="flex flex-col gap-2">
-            <label htmlFor="message" className="text-white text-[14px] mb-4">
-              Message
-            </label>
-            <textarea
-              id="message"
-              placeholder="Write your message..."
-              {...register("message", { required: "Message is required" })}
-              className="min-h-[150px] w-full px-3 md:px-4 pl-10 md:pl-12 py-3 rounded-[8px] bg-[#222] text-white outline-none border border-[#444] text-[14px] md:text-[16px]"
-            />
-            {errors.message && (
-              <Errormsg
-                msg={errors.message.message}
-                className="text-[#ed1d24]"
-              />
-            )}
-          </div>
-
-          {/* Submit Button */}
           <button
             type="submit"
             className="bg-[#ff0000cc] text-white py-3 px-6 rounded-[8px] mt-4 hover:bg-red-700 transition-all"

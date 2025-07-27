@@ -57,7 +57,7 @@ function* watcherEditAddresseSaga() {
 
 //============================== ADD ADDRESS SAGA ==========
 function* addAddressSaga({ payload }) {
-  console.log(payload, " from payload from saga");
+  // console.log(payload, " from payload from saga");
   const { address } = payload;
   try {
     const addAddressData = yield call(addAddressApi, { address });

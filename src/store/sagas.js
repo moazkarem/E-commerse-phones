@@ -10,6 +10,7 @@ import reviewsSagas from "./Reviews/saga";
 import allOrdersSaga from "./orders/saga";
 import allCheckoutSaga from "./checkout/saga";
 import homeSectionsSagas from "./HomeSections/saga";
+import contactSagas from "./ContactUs/saga";
 function* rootSaga() {
   yield all([
     categorieSaga(),
@@ -23,6 +24,7 @@ function* rootSaga() {
     allOrdersSaga(),
     allCheckoutSaga(),
     homeSectionsSagas(),
+    contactSagas()
   ]);
 }
 export default rootSaga;

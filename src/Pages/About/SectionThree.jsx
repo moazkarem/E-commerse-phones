@@ -1,4 +1,5 @@
 import React from "react";
+import fallImg from "../../../public/images/brands/img2.png";
 const SectionThree = ({ aboutSections }) => {
   return (
     <>
@@ -7,9 +8,11 @@ const SectionThree = ({ aboutSections }) => {
           <div className="flex justify-center">
             <div className="w-full max-w-[300px]">
               <img
-                src={`${import.meta.env.VITE_IMAGE_DOMAIN}${
-                  aboutSections?.vissionImg?.url
-                }`}
+                src={
+                  `${import.meta.env.VITE_IMAGE_DOMAIN}${
+                    aboutSections?.vissionImg?.url
+                  }` || fallImg
+                }
                 alt="Product"
                 className="w-full h-auto rounded-[12px] object-contain"
               />
@@ -18,12 +21,12 @@ const SectionThree = ({ aboutSections }) => {
 
           <div className="w-full">
             <h1 className="text-[18px] text-[#ed1d24] font-bold uppercase tracking-widest mb-4">
-            Our Vission ...
+              Our Vission ...
             </h1>
             <p
               className="text-lg text-white leading-relaxed text-justify"
               dangerouslySetInnerHTML={{
-                __html: aboutSections?.vissiomDesc,
+                __html: aboutSections?.vissiomDesc || "Vission Description",
               }}
             />
           </div>

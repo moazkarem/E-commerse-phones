@@ -1,4 +1,5 @@
 import React from "react";
+import fallImg from "../../../public/images/brands/img2.png";
 
 const SectionOne = ({ aboutSections }) => {
   console.log(aboutSections, "section one ");
@@ -8,9 +9,11 @@ const SectionOne = ({ aboutSections }) => {
         <div className="flex justify-center">
           <div className="w-full max-w-[300px]">
             <img
-              src={`${import.meta.env.VITE_IMAGE_DOMAIN}${
-                aboutSections?.missionImg?.url
-              }`}
+              src={
+                `${import.meta.env.VITE_IMAGE_DOMAIN}${
+                  aboutSections?.missionImg?.url
+                }` || fallImg
+              }
               alt="Product"
               className="w-full h-auto rounded-[12px] object-contain"
             />
@@ -24,7 +27,7 @@ const SectionOne = ({ aboutSections }) => {
           <p
             className="text-lg text-white leading-relaxed text-justify"
             dangerouslySetInnerHTML={{
-              __html: aboutSections?.missionDesc,
+              __html: aboutSections?.missionDesc || "Mission Description",
             }}
           />
         </div>
