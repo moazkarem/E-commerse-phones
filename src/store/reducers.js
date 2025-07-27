@@ -10,6 +10,7 @@ import reviewsRed from "./Reviews/reducer";
 import ordersRed from "./orders/reducer";
 import checkoutRed from "./checkout/reducer";
 import homeSections from "./HomeSections/reducer";
+import contactRed from "./ContactUs/reducer";
 const rootReducer = combineReducers({
   categoriesRed,
   brandsRed,
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   reviewsRed,
   ordersRed,
   checkoutRed,
-  homeSections
+  homeSections ,
+  contactRed
 });
 
 export default rootReducer;

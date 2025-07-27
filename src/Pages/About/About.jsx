@@ -8,6 +8,7 @@ import Services from "../../Components/Layout/Services/Services";
 import Seo from "../../Components/Seo/Seo";
 import { useDispatch, useSelector } from "react-redux";
 import { getAboutPageData } from "../../store/HomeSections/actions";
+import Loading from "../../Components/Loading/Loading";
 const About = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -15,8 +16,14 @@ const About = () => {
   }, [dispatch]);
 
   const { loading, aboutData } = useSelector((state) => state.homeSections);
-  // console.log(aboutData?.data?.[0], "abooooo");
   const aboutSections = aboutData?.data?.[0];
+
+    if (loading)
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <Loading />
+      </div>
+    );
   return (
     <>
       <Seo currentPage={"About Us"} />
