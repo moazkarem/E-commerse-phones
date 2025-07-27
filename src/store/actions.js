@@ -10,3 +10,4 @@ export * from "./orders/actions";
 export * from "./checkout/actions";
 export * from "./HomeSections/actions";
 export * from "./ContactUs/actions";
+export * from "./Blogs/actions";
