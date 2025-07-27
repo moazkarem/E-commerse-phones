@@ -11,6 +11,7 @@ import ordersRed from "./orders/reducer";
 import checkoutRed from "./checkout/reducer";
 import homeSections from "./HomeSections/reducer";
 import contactRed from "./ContactUs/reducer";
+import blogsRed from "./Blogs/reducer";
 const rootReducer = combineReducers({
   categoriesRed,
   brandsRed,
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
   ordersRed,
   checkoutRed,
   homeSections ,
-  contactRed
+  contactRed , 
+  blogsRed
 });
 
 export default rootReducer;
