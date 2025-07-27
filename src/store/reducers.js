@@ -9,6 +9,7 @@ import cartRed from "./cart/reducer";
 import reviewsRed from "./Reviews/reducer";
 import ordersRed from "./orders/reducer";
 import checkoutRed from "./checkout/reducer";
+import homeSections from "./HomeSections/reducer";
 const rootReducer = combineReducers({
   categoriesRed,
   brandsRed,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   reviewsRed,
   ordersRed,
   checkoutRed,
+  homeSections
 });
 
 export default rootReducer;

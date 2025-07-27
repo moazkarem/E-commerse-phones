@@ -8,3 +8,4 @@ export * from "./cart/actions";
 export * from "./Reviews/actions";
 export * from "./orders/actions";
 export * from "./checkout/actions";
+export * from "./HomeSections/actions";
