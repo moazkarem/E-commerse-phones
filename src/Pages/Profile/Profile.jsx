@@ -9,10 +9,10 @@ const Profile = () => {
       <Seo currentPage={"Profile"} />
       <BreadCrumb base={"Home"} page={"Profile"} />
       <div className="grid grid-cols-12 gap-6 ">
-        <div className="col-span-3    max-md:hidden">
+        <div className="col-span-3    max-lg:col-span-12 ">
           <SideBar />
         </div>
-        <div className="col-span-9  max-md:col-span-12">
+        <div className="col-span-9  max-lg:col-span-12">
           <Outlet />
         </div>
       </div>
