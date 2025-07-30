@@ -7,7 +7,7 @@ import { FaUserEdit } from "react-icons/fa";
 import { CiLogout } from "react-icons/ci";
 import toast from "react-hot-toast";
 const Slider = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const logoutHandeler = () => {
     localStorage.removeItem("userData");
     toast.success("You Are Logged Out Successfuly");
