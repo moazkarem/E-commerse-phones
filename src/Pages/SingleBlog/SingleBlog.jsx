@@ -9,16 +9,21 @@ import { blogs } from "../../data/blogs";
 import Comments from "./Comments";
 import Seo from "../../Components/Seo/Seo";
 import { useDispatch, useSelector } from "react-redux";
-import { getSingleBlog } from "../../store/actions";
+import { getBlogsData, getSingleBlog } from "../../store/actions";
 import Loading from "../../Components/Loading/Loading";
+import Blogs from "../Blogs/Blogs";
+import LatestBlogs from "../Home/Blogs/Blogs";
 const SingleBlog = () => {
   const { id } = useParams();
-  const { loading, singleBlog } = useSelector((state) => state.blogsRed);
+  const { loading, singleBlog, blogsData } = useSelector(
+    (state) => state.blogsRed
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getSingleBlog(id));
-  }, [dispatch]);
+    dispatch(getBlogsData());
+  }, [dispatch, id]);
 
   //============================HANDEL LOADING ===========
   if (loading)
@@ -40,10 +45,11 @@ const SingleBlog = () => {
             <Comments blogData={singleBlog?.data} />
             <ContactForm blogData={singleBlog?.data} />
           </div>
-          <RecentlyBlogs blogs={blogs} />
+          <RecentlyBlogs blogs={blogsData?.data} />
         </div>
       </div>
-      {/* <Services /> */}
+
+      <LatestBlogs secTitle={"Related Blogs"} />
     </div>
   );
 };
