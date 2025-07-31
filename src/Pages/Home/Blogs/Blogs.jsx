@@ -9,11 +9,11 @@ import { FaUser, FaCalendarAlt } from "react-icons/fa";
 import { blogs } from "../../../data/blogs";
 import { Link } from "react-router-dom";
 
-const LatestBlogs = () => {
+const LatestBlogs = ({secTitle}) => {
   return (
     <div className=" pb-40">
       <div className="mb-16">
-        <HeadSec title={"Latest News"} />
+        <HeadSec title={secTitle} />
       </div>
       <Swiper
         modules={[Autoplay]}

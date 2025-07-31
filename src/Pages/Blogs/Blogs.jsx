@@ -88,7 +88,7 @@ const Blogs = () => {
       <div className="pb-40">
         {blogsData?.data?.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 ">
-            renderBlogs
+            {renderBlogs}
           </div>
         ) : (
           <div className="w-full h-screen flex justify-center ">

@@ -26,7 +26,7 @@ const ContactForm = ({ blogData }) => {
       console.log(updateComments);
     } catch (err) {
       toast.error("Error: Comment could not be added");
-      // console.log(err , 'errr');
+      
     }
   };
   return (

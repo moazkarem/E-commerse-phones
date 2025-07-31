@@ -25,7 +25,7 @@ export default function Home() {
       <BannerTwo />
       <Reviews />
       <Brands />
-      <LatestBlogs />
+      <LatestBlogs secTitle={"Latest News"} />
       {/* <Services /> */}
     </div>
   );
