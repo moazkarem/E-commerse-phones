@@ -15,7 +15,6 @@ import {
 } from "react-share";
 import { useLocation, useParams } from "react-router-dom";
 const RecentlyBlogs = ({ blogs }) => {
-  console.log(window.location.href, "myref");
   const { id } = useParams();
   const renderBlogs = blogs?.slice(0, 4)?.map(({ image, date, title }, idx) => (
     <div
