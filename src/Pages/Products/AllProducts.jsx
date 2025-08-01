@@ -9,9 +9,13 @@ import BreadCrumb from "../../Components/BreadCrump/BreadCrump";
 import Pagination from "../../Components/pagination/Pagination";
 import NullScreen from "../../Components/NullScreen/NullScreen";
 import QuickeModal from "../../Components/QuickeViewModal/QuickeModal";
-import Seo from './../../Components/Seo/Seo';
-
+import Seo from "./../../Components/Seo/Seo";
+import { FiSidebar } from "react-icons/fi";
+import Drawer from "./Drawer";
 const AllProducts = () => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const toggleDrawer = () => setIsDrawerOpen((prev) => !prev);
+
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 8;
   const dispatch = useDispatch();
@@ -26,7 +30,6 @@ const AllProducts = () => {
   const [priceFrom, setPriceFrom] = useState(0);
   const [priceTo, setPriceTo] = useState(5000);
   const [sort, setSort] = useState("");
-  // console.log(sort, "sor");
   //============================HANDEL DATA ===========
   useEffect(() => {
     const catQuery =
@@ -108,7 +111,7 @@ const AllProducts = () => {
   //============================START JSX ===========
   return (
     <>
-          <Seo currentPage={'Products'}/>
+      <Seo currentPage={"Products"} />
 
       <BreadCrumb base="Home" page="Products" />
       <div className="grid grid-cols-12 gap-3">
@@ -149,6 +152,19 @@ const AllProducts = () => {
           )}
         </div>
         <QuickeModal product={viewedProduct} />
+        
+        <div className="fixed right-5 bottom-5 z-[50000] lg:hidden">
+          <button
+            onClick={toggleDrawer}
+            className="bg-[#ff0000cc] rounded-[10px] p-2 cursor-pointer shadow-sm"
+            aria-label="Open filters"
+          >
+            <FiSidebar size={22} className="text-white" />
+          </button>
+        </div>
+
+
+        <Drawer isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
       </div>
     </>
   );

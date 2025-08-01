@@ -3,7 +3,6 @@ import style from "./style.module.scss";
 import { Range, getTrackBackground } from "react-range";
 import { getAllbrands, getAllCategories } from "../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
-
 const Filter = ({
   searchWord,
   setSearchWord,
@@ -16,8 +15,7 @@ const Filter = ({
   priceTo,
   setSort,
 }) => {
-
-
+  
   //============================HANDEL GET ALL CATEGORIES ===========
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categoriesRed);
@@ -238,6 +236,9 @@ const Filter = ({
             </div>
           ))}
         </div>
+
+     
+       
       </div>
     </div>
   );
