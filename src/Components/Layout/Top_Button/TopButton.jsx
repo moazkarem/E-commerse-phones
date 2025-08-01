@@ -9,7 +9,7 @@ export default function TopButton() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
   return (
-    <div>
+    <div className="visible max-lg:hidden ">
       <button
         onClick={elevator}
         className={`top-button ${scrollState ? "show-btn" : ""}`}
