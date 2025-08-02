@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import Filter from "./Filter/Filter";
-import { useSelector } from "react-redux";
+import Filter from "./Filter";
+import { useDispatch, useSelector } from "react-redux";
 
 const Drawer = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const { products } = useSelector((state) => state.productsRed);
-
+  const dispatch = useDispatch();
   const [searchWord, setSearchWord] = useState(
     localStorage.getItem("searchWord") || ""
   );
@@ -14,6 +14,43 @@ const Drawer = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const [priceTo, setPriceTo] = useState(5000);
   const [sort, setSort] = useState("");
   const sideRef = useRef(null);
+
+  //============================HANDEL DATA ===========
+  useEffect(() => {
+    const catQuery =
+      categoryChecked.length > 0
+        ? categoryChecked
+            .map((category) => `category[in][]=${category}`)
+            .join("&")
+        : "";
+    const brandQuery =
+      brandChecked.length > 0
+        ? brandChecked.map((brand) => `brand[in][]=${brand}`).join("&")
+        : "";
+
+    const search = setTimeout(() => {
+      dispatch(
+        getAllproducts(
+          searchWord,
+          catQuery,
+          brandQuery,
+          priceFrom,
+          priceTo,
+          sort
+        )
+      );
+    }, 1000);
+
+    return () => clearTimeout(search);
+  }, [
+    dispatch,
+    searchWord,
+    categoryChecked,
+    brandChecked,
+    priceFrom,
+    priceTo,
+    sort,
+  ]);
 
   const closeDrawer = useCallback(() => {
     setIsDrawerOpen(false);

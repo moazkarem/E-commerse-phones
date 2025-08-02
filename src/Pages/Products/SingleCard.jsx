@@ -1,14 +1,14 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Rate from "rc-rate";
 import { Link } from "react-router-dom";
-import { images } from "../data";
+import { images } from "./data";
 import { FaHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToWhishlist,
   deleteFromWhishlist,
   getWhishlist,
-} from "../../../store/actions";
+} from "../../store/actions";
 import toast from "react-hot-toast";
 const SingleCard = ({ product, index, handelQuickView }) => {
   const storageKey = "userData";

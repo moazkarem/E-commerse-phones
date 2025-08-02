@@ -44,13 +44,13 @@ const Navbar = () => {
   return (
     <div>
       <div
-        className={`navbar ${scrollY > 40 ? "bg-[#222]" : "bg-transparent"} 
-        transition-all duration-500 fixed top-0 w-full z-50 h-20`}
+        className={`navbar ${scrollY > 40 ? "bg-[#111]" : "bg-transparent"} 
+        transition-all duration-500 fixed top-0 w-full z-50 h-24`}
       >
         <div className="container mx-auto px-4 flex justify-between items-center sm:flex">
           <div className="flex items-center lg:hidden">
             <button
-              className="btn btn-square text-white me-3 btn-ghost"
+              className="btn btn-square text-white me-3 btn-ghost "
               onClick={toggleDrawer}
             >
               <svg
@@ -106,15 +106,18 @@ const Navbar = () => {
                       </NavLink>
                     </li>
                   )}
+                  
                 </div>
               ))}
+              
             </ul>
+            
           </div>
 
           <div className="flex items-center gap-x-6">
             {userName ? (
               <div className="relative flex items-center gap-x-10">
-                <div onClick={() => navigate("/cart")} className="relative">
+                <div onClick={() => navigate("/cart")} className="relative max-lg:hidden">
                   <BsHandbag size={31} className="text-white cursor-pointer" />
                   <span className="absolute -top-2 -right-2 bg-[#ed1d24] text-white text-xs  px-[6px] py-[2px] rounded-full">
                     {productsCart?.length || 0}
@@ -129,13 +132,13 @@ const Navbar = () => {
                     <span className="capitalize">{userName}</span>
                   </button>
                   {isDropdownOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-lg overflow-hidden">
+                    <div className="absolute right-0 mt-2 w-48 bg-[#111] shadow-md rounded-lg overflow-hidden border">
                       <button
                         onClick={() => {
                           setIsDropdownOpen(false);
                           navigate("/profile");
                         }}
-                        className="block w-full text-left px-4 py-2 text-black hover:bg-gray-200"
+                        className="block w-full text-left px-4 py-2 text-white hover:bg-[#222]"
                       >
                         Profile
                       </button>
@@ -144,7 +147,7 @@ const Navbar = () => {
                           setIsDropdownOpen(false);
                           handleLogout();
                         }}
-                        className="block w-full text-left px-4 py-2 text-black hover:bg-gray-200"
+                        className="block w-full text-left px-4 py-2 text-white hover:bg-[#222]"
                       >
                         Logout
                       </button>

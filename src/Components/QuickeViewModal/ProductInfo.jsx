@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import Loading from "../Loading/Loading";
-import Error from "../Error/Error";
 import { LiaStarSolid } from "react-icons/lia";
 import Correct from "../../assets/Correct.svg";
 import toast from "react-hot-toast";
