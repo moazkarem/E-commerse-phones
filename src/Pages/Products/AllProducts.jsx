@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Filter from "./Filter/Filter";
-import SingleCard from "./SingleCard/SingleCard";
+import Filter from "./Filter";
+import SingleCard from "./SingleCard";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../Components/Loading/Loading";
 import Error from "../../Components/Error/Error";
@@ -115,7 +115,7 @@ const AllProducts = () => {
 
       <BreadCrumb base="Home" page="Products" />
       <div className="grid grid-cols-12 gap-3">
-        <div className="col-span-3 max-md:hidden">
+        <div className="col-span-3 max-lg:hidden">
           <Filter
             searchWord={searchWord}
             setSearchWord={setSearchWord}
@@ -130,7 +130,7 @@ const AllProducts = () => {
             setSort={setSort}
           />
         </div>
-        <div className="col-span-9 max-md:col-span-12">
+        <div className="col-span-9 max-lg:col-span-12">
           {!products?.data || products.data.length === 0 ? (
             <div className="w-full h-[100vh] flex justify-center items-center">
               <NullScreen msg="Sorry, there are no products now." />;
@@ -152,7 +152,7 @@ const AllProducts = () => {
           )}
         </div>
         <QuickeModal product={viewedProduct} />
-        
+        {/* //======================= SIDE BAR IN MOBILE SCREEN ======== */}
         <div className="fixed right-5 bottom-5 z-[50000] lg:hidden">
           <button
             onClick={toggleDrawer}
@@ -162,7 +162,6 @@ const AllProducts = () => {
             <FiSidebar size={22} className="text-white" />
           </button>
         </div>
-
 
         <Drawer isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
       </div>

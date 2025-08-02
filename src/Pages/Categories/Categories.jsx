@@ -52,30 +52,41 @@ const Categories = () => {
         <NullScreen msg="Sorry, there are no categories now." />
       </div>
     );
-  const renderCategoies = categories?.data.map(
-    ({ image, name, slug, _id }, idx) => (
-      <Link key={idx} to={`/categories/${_id}`}>
-        <div className="flex flex-col justify-center items-center gap-6 mb-10">
-          <div className="border border-[#596268] p-3 rounded-[10px] overflow-hidden group">
-            <img
-              src={images[Math.floor(Math.random() * images.length)]}
-              alt={slug}
-              className="w-full h-[260px] max-h-[300px] object-cover transform transition-transform duration-300 group-hover:scale-105 cursor-pointer"
-            />
-          </div>
-          <h5 className="text-center text-[18px] text-[#a9afc3]">{name}</h5>
-        </div>
-      </Link>
-    )
-  );
+   
+    const renderCategoies = categories?.data.map(
+      ({  name, slug, _id }) => (
+        <Link to={`/categories/${_id}`} key={_id} className="block w-full">
+          <div className="relative flex flex-col justify-center items-center gap-6 mb-10 w-full overflow-hidden">
+            <div className="border border-[#596268] p-3 rounded-[10px] group w-full overflow-hidden">
+              <img
+                src={images[Math.floor(Math.random() * images.length)]}
+                alt={slug}
+                className="w-full h-[260px] max-h-[300px] object-contain transform transition-transform duration-300 group-hover:scale-105 cursor-pointer"
+              />
 
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="absolute inset-0 bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                <div className="relative opacity-0 translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                  <h5 className="text-center text-[18px] text-[#fff]">
+                    {name}
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Link>
+      )
+    );
+    
+    
+    
   return (
     <div className="pb-20">
           <Seo currentPage={'Categories'}/>
       <div>
         <BreadCrumb base="Home" page="Categories" />
       </div>
-      <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1  gap-4 mb-16">
+      <div className="grid grid-cols-4 max-lg:grid-cols-2 max-md:grid-cols-1  gap-4 mb-16">
         {renderCategoies}
       </div>
       {pageCount > 1 ? (

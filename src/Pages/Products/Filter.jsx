@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import style from "./style.module.scss";
 import { Range, getTrackBackground } from "react-range";
-import { getAllbrands, getAllCategories } from "../../../store/actions";
+import { getAllbrands, getAllCategories } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 const Filter = ({
   searchWord,

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-
+import { LiaStarSolid } from "react-icons/lia";
 import "swiper/css/pagination";
 import "swiper/css";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -68,15 +68,15 @@ const ProductCard = ({ product, index, quickeViewHandeler }) => {
 
   return (
     <>
-      <div className="relative bg-[#111] rounded-[50px] pt-12 px-6 w-full text-center text-white pb-20 mb-8">
+      <div className="relative bg-[#111] rounded-[10px] py-6 px-6 w-full  text-white pb-20 mb-8">
         <div
-          className="absolute top-[30px] left-[30px] cursor-pointer p-3 flex justify-center items-center bg-[#161819] rounded-full "
+          className="absolute bottom-[15px] left-[15px] cursor-pointer p-3 flex justify-center items-center bg-[#161819] rounded-full "
           onClick={() => quickeViewHandeler(product)}
         >
           <FaEye className="text-[#fff] text-xl" />
         </div>
         <Link to={`/products/${_id}`}>
-          <div className="flex justify-center mt-6">
+          <div className="flex justify-center ">
             <img
               src={randomImage}
               alt={slug}
@@ -85,21 +85,27 @@ const ProductCard = ({ product, index, quickeViewHandeler }) => {
           </div>
 
           <h3 className="mt-4 text-[18px] line-clamp-1">{title}</h3>
-          <p className="text-[#a9afc3] text-[16px] mt-1 line-clamp-2 min-h-[50px]">
+          <p className="text-[#a9afc3] text-[16px] mt-1 line-clamp-3 min-h-[72px]">
             {description}
           </p>
-          <p className="text-[#ed1d24] text-[20px] mt-2 ">{price}$</p>
+          <div className="w-full flex justify-between items-center">
+            <p className="text-[#ed1d24] text-[20px] mt-2 ">{price} $</p>
+            <p className="flex justify-center gap-1 items-center">
+              <span className="text-[#a9afc3] text-[20px] ">{ratingsQuantity}</span>
+              <span>
+                <LiaStarSolid color="#ed1d24" />
+              </span>
+            </p>
+          </div>
         </Link>
 
-        <div className="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2">
+        <div className=" absolute bottom-[15px] right-[15px] ">
           <button
             onClick={() => handelFav(_id)}
-            className="bg-[#111] rounded-full p-3 border-2 border-[#ed1d24]"
+            className="bg-[#111] rounded-full p-2 border-2 border-[#ed1d24]"
           >
             <FaHeart
-              className={`text-[24px] ${
-                isFav ? "text-[#ed1d24]" : "text-white"
-              }`}
+              className={`text-xl ${isFav ? "text-[#ed1d24]" : "text-white"}`}
             />
           </button>
         </div>

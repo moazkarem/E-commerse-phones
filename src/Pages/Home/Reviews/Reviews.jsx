@@ -20,7 +20,7 @@ const Reviews = () => {
   const renderReviesSlides = getAllProductReview?.data?.data.map(
     ({ review, rating, user }, idx) => (
       <SwiperSlide key={idx} className="cursor-grab">
-        <div className="bg-[#161819] rounded-[10px] p-4 flex flex-col justify-start items-start h-full w-full">
+        <div className="bg-[#111] rounded-[10px] p-4 flex flex-col justify-start items-start h-full w-full">
           <div className="flex-grow">
             <div className="flex gap-1 mb-[10px]">
               {Array.from({ length: rating }).map((_, i) => (
