@@ -12,8 +12,10 @@ import LatestBlogs from "./Blogs/Blogs";
 import BannerOne from "./BannerOne/Banner";
 import Services from "./Features/Features";
 import BannerTwo from "./Banner2/BannerTwo";
+import { useIntl } from "react-intl";
 
 export default function Home() {
+  const { formatMessage } = useIntl();
   return (
     <div className="home">
       <Seo currentPage={" Home "} />
@@ -21,11 +23,11 @@ export default function Home() {
       <Categories />
       <BannerOne />
       <TopRated />
-      <OurProducts headSecTitle={"Our Products"} />
+      <OurProducts headSecTitle={formatMessage({ id: "Our Products" })} />
       <BannerTwo />
       <Reviews />
       <Brands />
-      <LatestBlogs secTitle={"Latest News"} />
+      <LatestBlogs secTitle={formatMessage({ id: "Latest News" })} />
       {/* <Services /> */}
     </div>
   );

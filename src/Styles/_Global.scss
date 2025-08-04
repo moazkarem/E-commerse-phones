@@ -2,6 +2,9 @@
 @use "./Variables" as *;
 
 * {
+  [dir="rtl"] & {
+    font-family: "cairo", sans-serif;
+  }
   font-family: "Kanit", sans-serif;
   font-weight: 300;
   box-sizing: border-box;
@@ -10,11 +13,11 @@
   scrollbar-width: thin;
   scrollbar-color: $thumbColor $trackColor;
 }
-html{
+html {
   background-color: #141414 !important;
 }
-.active{
-  color:#ed1d24;
+.active {
+  color: #ed1d24;
 }
 img {
   user-select: none;
@@ -199,12 +202,12 @@ del {
       padding: 0;
       display: inline-block;
       position: relative;
-      transition: all ease-in-out .3s;
+      transition: all ease-in-out 0.3s;
       color: #585858;
       line-height: 0;
       .rc-rate-star-first,
       .rc-rate-star-second {
-        transition: all ease-in-out .3s;
+        transition: all ease-in-out 0.3s;
       }
       .rc-rate-star-first {
         position: absolute;

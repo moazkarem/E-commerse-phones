@@ -66,7 +66,7 @@ const OurProducts = ({ headSecTitle }) => {
   //============================START JSX ===========
 
   return (
-    <div className="pb-40">
+    <div className="pb-40 max-lg:pb-20">
       <div className="">
         <div className=" rounded-[6px] flex flex-col items-center ">
           <div className="text-center w-full ">

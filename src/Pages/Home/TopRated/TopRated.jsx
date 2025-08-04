@@ -77,7 +77,7 @@ const TopRatedTabs = () => {
   );
 
   return (
-    <div className="w-full pb-40">
+    <div className="w-full pb-40 max-lg:pb-20">
       <div className="flex flex-wrap m-auto mb-16 gap-4 md:gap-10 justify-center">
         {["Top Rated", "Latest Arrived", "Most Selling"].map((t) => (
           <TabButton

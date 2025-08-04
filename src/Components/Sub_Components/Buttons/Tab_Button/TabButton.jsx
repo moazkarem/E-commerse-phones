@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
 export default function TabButton({ tab, active, onClick }) {
   return (
     <button
@@ -6,7 +7,7 @@ export default function TabButton({ tab, active, onClick }) {
       data-active={tab}
       className={`tab-button ${active === tab ? "tab-active" : ""}`}
     >
-      {tab}
+      <FormattedMessage id={tab}/>
     </button>
   );
 }

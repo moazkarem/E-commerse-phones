@@ -1,14 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
 import { AiFillStar } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProductsReviewAction } from "../../../store/Reviews/actions";
 import Loading from "../../../Components/Loading/Loading";
 import Error from "../../../Components/Error/Error";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import HeadSec from "../../../Components/HeadSec/HeadSec";
+import { useIntl } from "react-intl";
+import { useLocale } from "../../../i18n/LocaleProvider";
 const Reviews = () => {
+  const swiperRef = useRef(null);
+  const { locale } = useLocale();
+  const isRtl = locale === "ar";
+  const { formatMessage } = useIntl();
   const dispatch = useDispatch();
   const { getAllProductReview, loading, error } = useSelector(
     (state) => state.reviewsRed
@@ -52,12 +60,41 @@ const Reviews = () => {
   //============================START JSX ===========
 
   return (
-    <div className=" pb-40">
-    <div className="mb-16">
-    <HeadSec title={"Customer Reviews"} />
-    </div>
+    <div className=" pb-40 max-lg:pb-20">
+      <div className="mb-16">
+        <div className="text-center w-full ">
+          <div className="w-full flex justify-between items-center mb-16">
+            <HeadSec title={formatMessage({ id: "Customer Reviews" })} />
+            <div className="flex justify-center items-center gap-6 max-md:hidden">
+              <button
+                onClick={() => swiperRef.current?.swiper.slidePrev()}
+                className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
+              >
+                {isRtl ? (
+                  <IoIosArrowForward className="text-[25px]" />
+                ) : (
+                  <IoIosArrowBack className="text-[25px]" />
+                )}
+              </button>
+              <button
+                onClick={() => swiperRef.current?.swiper.slideNext()}
+                className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
+              >
+                {isRtl ? (
+                  <IoIosArrowBack className="text-[25px]" />
+                ) : (
+                  <IoIosArrowForward className="text-[25px]" />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <Swiper
-        modules={[Autoplay]}
+        dir={locale === "ar" ? "rtl" : "ltr"}
+        modules={[Autoplay, Navigation]}
+        navigation
+        ref={swiperRef}
         autoplay={{
           delay: 3000,
         }}

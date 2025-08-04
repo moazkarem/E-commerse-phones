@@ -1,22 +1,29 @@
 import React from "react";
-import img6 from "../../../../public/images/homebrands/Banner 2.png";
+import img6 from "../../../../public/images/bg-banner-1.png";
 import { useNavigate } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 
 const BannerOne = () => {
   const navigate = useNavigate();
   return (
-    <div className="pb-40">
-      <div className="relative w-full min-h-[450px] ">
-        <img
+    <div className="mb-40 max-lg:mb-20 rounded-[10px]"
+      style={{
+            backgroundImage: `url(${img6})`,
+            backgroundAttachment: "fixed",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+          }}
+    >
+      <div className="relative w-full min-h-[400px] ">
+        {/* <img
           src={img6}
           alt="Promo Banner"
           className="absolute top-0 left-0 w-full h-full object-cover rounded-[10px]"
-        />
+        /> */}
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 gap-4">
           <h1
-            className="text-white text-[50px] mb-0 max-md:text-[30px] "
+            className="text-[#ed1d24] text-[50px] mb-0 max-md:text-[30px] "
             style={{ letterSpacing: "7px" }}
           >
             <FormattedMessage id="Big Summer Sale" />

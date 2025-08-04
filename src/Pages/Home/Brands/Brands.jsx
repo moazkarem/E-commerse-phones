@@ -10,8 +10,13 @@ import Loading from "../../../Components/Loading/Loading";
 import { images } from "./data";
 import { Link } from "react-router-dom";
 import HeadSec from "../../../Components/HeadSec/HeadSec";
+import { useLocale } from "../../../i18n/LocaleProvider";
+import { useIntl } from "react-intl";
 const Brands = () => {
   const swiperRef = useRef(null);
+  const { locale } = useLocale();
+  const isRtl = locale === "ar";
+  const { formatMessage } = useIntl();
   const dispatch = useDispatch();
   const { brands, loading, error } = useSelector((state) => state.brandsRed);
   useEffect(() => {
@@ -49,25 +54,36 @@ const Brands = () => {
     );
   //============================ START JSX ===========
   return (
-    <div className="pb-40 relative">
-      <div className="w-full flex justify-between items-center mb-16">
-      <HeadSec title={"  Popular Brands"} />
-      <div className="flex justify-center items-center gap-6  min-[992px]:hidden">
-        <button
-          onClick={() => swiperRef.current?.swiper.slidePrev()}
-          className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
-        >
-          <IoIosArrowBack className="text-[25px]" />
-        </button>
-        <button
-          onClick={() => swiperRef.current?.swiper.slideNext()}
-          className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
-        >
-          <IoIosArrowForward className="text-[25px]" />
-        </button>
-      </div>
+    <div className="pb-40 relative max-lg:pb-20">
+      <div className="text-center w-full ">
+        <div className="w-full flex justify-between items-center mb-16">
+          <HeadSec title={formatMessage({ id: "Popular Brands" })} />
+          <div className="flex justify-center items-center gap-6 max-md:hidden">
+            <button
+              onClick={() => swiperRef.current?.swiper.slidePrev()}
+              className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
+            >
+              {isRtl ? (
+                <IoIosArrowForward className="text-[25px]" />
+              ) : (
+                <IoIosArrowBack className="text-[25px]" />
+              )}
+            </button>
+            <button
+              onClick={() => swiperRef.current?.swiper.slideNext()}
+              className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
+            >
+              {isRtl ? (
+                <IoIosArrowBack className="text-[25px]" />
+              ) : (
+                <IoIosArrowForward className="text-[25px]" />
+              )}
+            </button>
+          </div>
+        </div>
       </div>
       <Swiper
+      dir={locale === "ar" ? "rtl" : "ltr"}
         ref={swiperRef}
         modules={[Navigation]}
         navigation
@@ -81,7 +97,6 @@ const Brands = () => {
       >
         {renderBrands}
       </Swiper>
-    
     </div>
   );
 };
