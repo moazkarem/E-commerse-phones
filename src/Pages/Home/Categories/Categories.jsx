@@ -9,7 +9,13 @@ import { getAllCategories } from "../../../store/actions";
 import Loading from "../../../Components/Loading/Loading";
 import { images } from "./data";
 import HeadSec from "../../../Components/HeadSec/HeadSec";
+// import { formatMessage } from "@formatjs/intl";
+import { useIntl } from "react-intl";
+import { useLocale } from "./../../../i18n/LocaleProvider";
 const Categories = () => {
+  const { locale } = useLocale();
+  const isRtl = locale === "ar";
+  const { formatMessage } = useIntl();
   const swiperRef = useRef(null);
   const dispatch = useDispatch();
   const { categories, loading, error } = useSelector(
@@ -53,23 +59,32 @@ const Categories = () => {
   return (
     <div className="pt-40 pb-40 relative">
       <div className="w-full flex justify-between items-center mb-16">
-        <HeadSec title={"main categories"} />
-        <div className="flex justify-center items-center gap-6  max-md:hidden">
+        <HeadSec title={formatMessage({ id: "main categories" })} />
+        <div className="flex justify-center items-center gap-6 max-md:hidden">
           <button
             onClick={() => swiperRef.current?.swiper.slidePrev()}
             className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
           >
-            <IoIosArrowBack className="text-[25px]" />
+            {isRtl ? (
+              <IoIosArrowForward className="text-[25px]" />
+            ) : (
+              <IoIosArrowBack className="text-[25px]" />
+            )}
           </button>
           <button
             onClick={() => swiperRef.current?.swiper.slideNext()}
             className="w-8 flex cursor-pointer justify-center items-center h-8 rounded-[5px] border border-[#ed1d24]"
           >
-            <IoIosArrowForward className="text-[25px]" />
+            {isRtl ? (
+              <IoIosArrowBack className="text-[25px]" />
+            ) : (
+              <IoIosArrowForward className="text-[25px]" />
+            )}
           </button>
         </div>
       </div>
       <Swiper
+        dir={locale === "ar" ? "rtl" : "ltr"}
         ref={swiperRef}
         modules={[Navigation]}
         navigation

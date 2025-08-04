@@ -8,11 +8,12 @@ import { AiFillStar } from "react-icons/ai";
 import useActive from "../../../Components/Hooks/useActive";
 import { Fade } from "react-awesome-reveal";
 import TabButton from "../../../Components/Sub_Components/Buttons/Tab_Button/TabButton";
+import { useIntl } from 'react-intl';
 
 const TopRatedTabs = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.productsRed);
-
+ const {formatMessage} = useIntl()
   const [active, activeHandler] = useActive("Top Rated");
   const [currentTab, setCurrentTab] = useState("Top Rated");
 
