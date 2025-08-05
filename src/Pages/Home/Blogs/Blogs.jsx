@@ -21,7 +21,11 @@ const LatestBlogs = ({ secTitle }) => {
     ?.slice(0, 6)
     .map(({ author, image, title, id, description, date }) => (
       <SwiperSlide key={id}>
-        <div className="bg-[#111] rounded-[10px] p-5 flex flex-col gap-4 h-full w-full">
+        <div
+        data-aos="fade-up"
+        data-aos-duration="300"
+        data-aos-delay={id * 100}
+        className="bg-[#111] rounded-[10px] p-5 flex flex-col gap-4 h-full w-full">
           <img
             src={image || img1}
             alt={title}

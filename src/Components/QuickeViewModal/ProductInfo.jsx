@@ -30,27 +30,40 @@ export default function ProductInfo({ product }) {
         <Loading />
       </div>
     );
-  const parsedColors =
-    Array.isArray(product?.availableColors) &&
-    typeof product?.availableColors[0] === "string"
-      ? JSON.parse(product?.availableColors[0])
-      : product?.availableColors;
 
-  const renderColors = parsedColors?.map((color, idx) => {
-    console.log(color, "color one ");
-    return (
-      <span
-        key={idx}
-        onClick={() => setSelectedColor(color)}
-        className={`w-6 h-6 rounded-full cursor-pointer border-2 ${
-          selectedColor === color
-            ? "border-black !border-3"
-            : "border-transparent"
-        }`}
-        style={{ backgroundColor: color }}
-      />
-    );
-  });
+
+
+
+  const parsedColors = (() => {
+    if (!Array.isArray(product?.availableColors)) return [];
+
+    if (
+      typeof product?.availableColors[0] === "string" &&
+      !product?.availableColors[0].startsWith("[")
+    ) {
+      return product?.availableColors;
+    }
+
+    try {
+      return JSON.parse(product?.availableColors[0]);
+    } catch {
+      return [];
+    }
+  })();
+
+  const renderColors = parsedColors?.map((color, idx) => (
+    <span
+    key={idx}
+    onClick={() => setSelectedColor(color)}
+    className={`w-6 h-6 rounded-full cursor-pointer border-2 ${
+      selectedColor === color
+        ? "border-black !border-3"
+        : "border-transparent"
+    }`}
+    style={{ backgroundColor: color }}
+  />
+  ));
+
 
   //============ ADD TO CART HANDELER
 

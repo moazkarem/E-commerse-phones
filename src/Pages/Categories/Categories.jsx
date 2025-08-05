@@ -54,9 +54,13 @@ const Categories = () => {
     );
    
     const renderCategoies = categories?.data.map(
-      ({  name, slug, _id }) => (
+      ({  name, slug, _id } , idx) => (
         <Link to={`/categories/${_id}`} key={_id} className="block w-full">
-          <div className="relative flex flex-col justify-center items-center gap-6 mb-10 w-full overflow-hidden">
+          <div
+             data-aos="fade-up"
+             data-aos-duration="300"
+             data-aos-delay={idx * 100}
+          className="relative flex flex-col justify-center items-center gap-6 mb-10 w-full overflow-hidden">
             <div className="border border-[#596268] p-3 rounded-[10px] group w-full overflow-hidden">
               <img
                 src={images[Math.floor(Math.random() * images.length)]}

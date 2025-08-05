@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Footer from "./Components/Layout/Footer/Footer";
 import Header from "./Components/Layout/Header/Header";
@@ -36,9 +36,17 @@ import MyProfile from "./Pages/Profile/MyProfile/MyProfile";
 import ChangePass from "./Pages/Profile/ChangePass/ChangePass";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import SingleBlog from "./Pages/SingleBlog/SingleBlog";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function MainLayout({ children }) {
   const location = useLocation().pathname;
+
+  useEffect(() => {
+    AOS.init({
+      once: true,
+    });
+  }, []);
 
   return (
     <div
@@ -219,7 +227,7 @@ function App() {
             borderRadius: "10px",
             padding: "15px",
             zIndex: 999999,
-            textTransform:"capitalize" ,
+            textTransform: "capitalize",
           },
           duration: 1500,
         }}

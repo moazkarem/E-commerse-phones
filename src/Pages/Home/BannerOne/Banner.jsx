@@ -6,13 +6,14 @@ import { FormattedMessage } from "react-intl";
 const BannerOne = () => {
   const navigate = useNavigate();
   return (
-    <div className="mb-40 max-lg:mb-20 rounded-[10px]"
+    <div
+      className="mb-40 max-lg:mb-20 rounded-[10px]"
       style={{
-            backgroundImage: `url(${img6})`,
-            backgroundAttachment: "fixed",
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-          }}
+        backgroundImage: `url(${img6})`,
+        backgroundAttachment: "fixed",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
     >
       <div className="relative w-full min-h-[400px] ">
         {/* <img
@@ -21,7 +22,12 @@ const BannerOne = () => {
           className="absolute top-0 left-0 w-full h-full object-cover rounded-[10px]"
         /> */}
 
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 gap-4">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="300"
+          data-aos-delay={200}
+          className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 gap-4"
+        >
           <h1
             className="text-[#ed1d24] text-[50px] mb-0 max-md:text-[30px] "
             style={{ letterSpacing: "7px" }}
@@ -33,7 +39,7 @@ const BannerOne = () => {
           </p>
           <button
             onClick={() => navigate("/products")}
-            className="text-white border border-white px-16 py-3 rounded bg-transparent transition-colors duration-300 ease-in-out hover:bg-[#ff0000cc] hover:border-none"
+            className="text-white border border-white px-20 py-3 rounded-full bg-transparent transition-colors duration-300 ease-in-out hover:bg-[#ff0000cc] hover:border-[#ff0000cc]"
           >
             <FormattedMessage id={"Shop Now"} />
           </button>

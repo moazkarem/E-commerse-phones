@@ -17,7 +17,12 @@ const BannerTwo = () => {
     >
       <div className="absolute inset-0 bg-black/40"></div>
 
-      <div className="flex flex-col md:flex-row items-center justify-between w-full rounded-[20px] min-h-[400px] max-md:min-h-[200px] px-14 relative">
+      <div
+        data-aos="fade-up"
+        data-aos-duration="300"
+        data-aos-delay={200}
+        className="flex flex-col md:flex-row items-center justify-between w-full rounded-[20px] min-h-[400px] max-md:min-h-[200px] px-14 relative"
+      >
         <div className="flex flex-col gap-[30px] px-6 py-10 md:w-1/2 text-center md:text-start z-10">
           <h3 className="text-[#ed1d24] text-[18px] font-medium">
             <FormattedMessage id="navCategories" defaultMessage="Categories" />
@@ -26,10 +31,7 @@ const BannerTwo = () => {
             className="text-white text-[50px] leading-[1.4] max-md:text-[30px]"
             style={{ letterSpacing: "5px", wordSpacing: "5px" }}
           >
-            <FormattedMessage
-              id="enhanceYour"
-              defaultMessage="Enhance Your"
-            />
+            <FormattedMessage id="enhanceYour" defaultMessage="Enhance Your" />
             <br />
             <FormattedMessage
               id="musicExperience"
