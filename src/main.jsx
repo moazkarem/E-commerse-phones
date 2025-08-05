@@ -6,7 +6,7 @@ import { HelmetProvider } from "react-helmet-async";
 import FocusProvider from "./Components/Contexts/FocusProvider.jsx";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
-
+import { LocaleProvider } from "./i18n/LocaleProvider.jsx";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -17,7 +17,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter basename="/X-Beat/">
         <FocusProvider>
           <Provider store={store}>
-            <App />
+            <LocaleProvider>
+              <App />
+            </LocaleProvider>
           </Provider>
         </FocusProvider>
       </BrowserRouter>

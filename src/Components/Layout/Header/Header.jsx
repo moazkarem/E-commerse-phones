@@ -7,6 +7,11 @@ import { FaUserCircle } from "react-icons/fa";
 import { BsHandbag } from "react-icons/bs";
 import { getCartAction } from "../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocale } from "../../../i18n/LocaleProvider.jsx"; // تأكد المسار صح
+import { MdLanguage } from "react-icons/md";
+import { IoIosArrowDown } from "react-icons/io";
+import { FormattedMessage } from "react-intl";
+
 const Navbar = () => {
   const storageKey = "userData";
   const userDataString = localStorage.getItem(storageKey);
@@ -16,15 +21,27 @@ const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
+
+  const { locale, setLocale } = useLocale();
 
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+  const toggleLang = () => setIsLangOpen(!isLangOpen);
 
   const handleScroll = () => setScrollY(window.scrollY);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handleClickOutside = (e) => {
+      if (!e.target.closest(".user-dropdown")) setIsDropdownOpen(false);
+      if (!e.target.closest(".lang-dropdown")) setIsLangOpen(false);
+    };
+    window.addEventListener("click", handleClickOutside);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("click", handleClickOutside);
+    };
   }, []);
 
   const handleLogout = () => {
@@ -77,14 +94,14 @@ const Navbar = () => {
             </div>
           </Link>
           <div className="hidden lg:flex flex-1 justify-center space-x-4">
-            <ul className="menu menu-horizontal p-0">
+            <ul className="menu menu-horizontal p-0 flex items-center gap-2">
               {[
-                "Home",
-                "Categories",
-                "Blogs",
-                "Products",
-                "About",
-                "Contact",
+                { id: "navHome", to: "/" },
+                { id: "navCategories", to: "/categories" },
+                { id: "navBlogs", to: "/blogs" },
+                { id: "navProducts", to: "/products" },
+                { id: "navAbout", to: "/about" },
+                { id: "navContact", to: "/contact" },
               ].map((item) => (
                 <div key={item}>
                   {item === "Home" ? (
@@ -93,39 +110,84 @@ const Navbar = () => {
                         to={`/`}
                         className="text-white hover:text-[#ed1d24] hover:bg-transparent"
                       >
-                        {item}
+                        <FormattedMessage id={'navHome'}/>
                       </NavLink>
                     </li>
                   ) : (
                     <li className="text-lg p-2">
                       <NavLink
-                        to={`/${item.toLowerCase()}`}
+                        to={`${item?.to.toLowerCase()}`}
                         className="text-white hover:text-[#ed1d24] hover:bg-transparent"
                       >
-                        {item}
+                       <FormattedMessage id={item?.id}/>
                       </NavLink>
                     </li>
                   )}
-                  
                 </div>
               ))}
-              
+
+              <li className="relative text-lg p-2 list-none lang-dropdown">
+                <div className="relative user-dropdown">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleLang();
+                    }}
+                    className="flex items-center gap-2 text-white text-lg"
+                  >
+                    {/* <MdLanguage size={24} /> */}
+                    <div className="capitalize flex justify-center items-center gap-3">
+                      <span>{locale === "en" ? "En" : "العربيه"}</span>
+                      <span>
+                        <IoIosArrowDown size={24} />
+                      </span>
+                    </div>
+                  </button>
+                  {isLangOpen && (
+                    <div className="absolute right-0 top-12  w-28 bg-[#111] shadow-md rounded-lg overflow-hidden border border-[#aaa]">
+                      <button
+                        onClick={() => {
+                          setLocale("ar");
+                          setIsLangOpen(false);
+                        }}
+                        className="block w-full text-start px-2 py-1 text-white "
+                      >
+                        <FormattedMessage id="ar" />
+                      </button>
+                      <button
+                        onClick={() => {
+                          setLocale("en");
+                          setIsLangOpen(false);
+                        }}
+                        className="block w-full text-start px-2 py-1 text-white "
+                      >
+                        <FormattedMessage id="en" />
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </li>
             </ul>
-            
           </div>
 
           <div className="flex items-center gap-x-6">
             {userName ? (
               <div className="relative flex items-center gap-x-10">
-                <div onClick={() => navigate("/cart")} className="relative max-lg:hidden">
+                <div
+                  onClick={() => navigate("/cart")}
+                  className="relative max-lg:hidden"
+                >
                   <BsHandbag size={31} className="text-white cursor-pointer" />
                   <span className="absolute -top-2 -right-2 bg-[#ed1d24] text-white text-xs  px-[6px] py-[2px] rounded-full">
                     {productsCart?.length || 0}
                   </span>
                 </div>
-                <div className="relative">
+                <div className="relative user-dropdown">
                   <button
-                    onClick={toggleDropdown}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleDropdown();
+                    }}
                     className="flex items-center gap-2 text-white text-lg"
                   >
                     <FaUserCircle size={24} />
