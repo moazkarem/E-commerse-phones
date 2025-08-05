@@ -29,7 +29,11 @@ const Categories = () => {
     ?.slice(0, 8)
     ?.map(({ image, name, slug }, idx) => (
       <SwiperSlide key={idx}>
-        <div className="flex flex-col justify-center items-center gap-8 mb-12 group cursor-pointer">
+        <div
+        data-aos="fade-up"
+        data-aos-duration="300"
+        data-aos-delay={idx * 100}
+        className="flex flex-col justify-center items-center gap-8 mb-12 group cursor-pointer">
           <div className="bg-[#111] flex justify-center items-center p-2 w-48 h-48 border border-[#ed1d24] shadow-md shadow-[#454a4d] rounded-full">
             <img
               src={images[Math.floor(Math.random() * images.length)]}

@@ -12,7 +12,11 @@ const BrandCard = ({ brand, index }) => {
   }, [index]);
   return (
     <Link to={`/brands/${_id}`}>
-      <div className="brand-logo flex flex-col justify-center items-center gap-6 mb-10 cursor-pointer">
+      <div
+         data-aos="fade-up"
+         data-aos-duration="300"
+         data-aos-delay={index * 100}
+      className="brand-logo flex flex-col justify-center items-center gap-6 mb-10 cursor-pointer">
         <div className="bg-[#0D0D0D] p-3 rounded-[10px] group overflow-hidden w-full">
           <img
             src={randomImage}

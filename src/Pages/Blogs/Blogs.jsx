@@ -27,6 +27,9 @@ const Blogs = () => {
   const renderBlogs = blogsData?.data?.map(
     ({ title, description, image, documentId, createdAt }, idx) => (
       <div
+        data-aos="fade-up"
+        data-aos-duration="300"
+        data-aos-delay={idx * 100}
         key={idx}
         className="bg-[#161819] rounded-[10px] p-5 flex flex-col gap-4 h-full w-full transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-lg cursor-pointer"
       >

@@ -25,8 +25,15 @@ const Brands = () => {
   //============================HANDEL DATA ===========
   const renderBrands = brands?.data?.slice(0, 8)?.map(({ name, slug }, idx) => (
     <SwiperSlide key={idx}>
-      <Link to={"/brands"}>
-        <div className="flex flex-col justify-center items-center gap-8 mb-12 group cursor-pointer">
+      <Link
+        
+        to={"/brands"}
+      >
+        <div 
+        data-aos="fade-up"
+        data-aos-duration="300"
+        data-aos-delay={idx * 100}
+        className="flex flex-col justify-center items-center gap-8 mb-12 group cursor-pointer">
           <div className="bg-[#363D40] flex justify-center items-center p-2 w-48 h-24 border rounded-[10px] shadow-[#454a4d] ">
             <img
               src={images[Math.floor(Math.random() * images.length)]}
@@ -83,7 +90,7 @@ const Brands = () => {
         </div>
       </div>
       <Swiper
-      dir={locale === "ar" ? "rtl" : "ltr"}
+        dir={locale === "ar" ? "rtl" : "ltr"}
         ref={swiperRef}
         modules={[Navigation]}
         navigation

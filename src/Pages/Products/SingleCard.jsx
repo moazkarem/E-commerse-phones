@@ -30,19 +30,31 @@ const SingleCard = ({ product, index, handelQuickView }) => {
     return selectedImage;
   }, [index]);
   // console.log("availableColors = ", availableColors);
-  const parsedColors =
-    Array.isArray(availableColors) && typeof availableColors[0] === "string"
-      ? JSON.parse(availableColors[0])
-      : availableColors;
-  const renderColors = parsedColors?.map((color, idx) => {
-    return (
-      <span
-        key={idx}
-        className="w-6 h-6 rounded-full bg-transparent scale-0 group-hover:scale-100 transition-transform duration-300"
-        style={{ backgroundColor: color }}
-      />
-    );
-  });
+
+  const parsedColors = (() => {
+    if (!Array.isArray(availableColors)) return [];
+
+    if (
+      typeof availableColors[0] === "string" &&
+      !availableColors[0].startsWith("[")
+    ) {
+      return availableColors;
+    }
+
+    try {
+      return JSON.parse(availableColors[0]);
+    } catch {
+      return [];
+    }
+  })();
+
+  const renderColors = parsedColors?.map((color, idx) => (
+    <span
+      key={idx}
+      className="w-6 h-6 rounded-full bg-transparent scale-0 group-hover:scale-100 transition-transform duration-300"
+      style={{ backgroundColor: color }}
+    />
+  ));
 
   //============================HANDEL WHISHLIST  ===========
   const [isFav, setIsFav] = useState(false);

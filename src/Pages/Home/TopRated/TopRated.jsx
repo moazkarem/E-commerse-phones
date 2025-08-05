@@ -38,9 +38,14 @@ const TopRatedTabs = () => {
     : [];
 
   const renderProducts = (arr) => (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {arr.map((item) => (
+    <div
+    
+    className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {arr.map((item , idx) => (
         <Link
+        data-aos="fade-up"
+        data-aos-duration="300"
+        data-aos-delay={idx * 100}
           to={`/products/${item?._id}`}
           key={item._id}
           className="bg-[#161819] border border-[#6c757d] rounded-[10px] p-3 flex gap-3 h-32 
