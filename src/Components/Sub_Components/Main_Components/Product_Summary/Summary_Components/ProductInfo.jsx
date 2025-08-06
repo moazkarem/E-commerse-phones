@@ -21,7 +21,7 @@ export default function ProductInfo() {
   const { singleProduct, loading, error } = useSelector(
     (state) => state.productsRed
   );
-
+  console.log(singleProduct, "singllll");
   useEffect(() => {
     if (!singleProduct || singleProduct?.data?.data?._id !== id) {
       dispatch(getSingleProd(id));
@@ -47,9 +47,12 @@ export default function ProductInfo() {
   if (!singleProduct) return null;
 
   const product = singleProduct?.data?.data;
-  // console.log(parsedColors , 'colll');
+
   const parsedColors = (() => {
-    if (!Array.isArray(product?.availableColors)) return [];
+    if (
+      !Array.isArray(product?.availableColors) 
+    )
+      return [];
 
     if (
       typeof product?.availableColors[0] === "string" &&
@@ -71,7 +74,7 @@ export default function ProductInfo() {
       onClick={() => setSelectedColor(color)}
       className={`w-6 h-6 rounded-full cursor-pointer border-2 ${
         selectedColor === color
-          ? "border-black !border-3"
+          ? "border-black !border-3 "
           : "border-transparent"
       }`}
       style={{ backgroundColor: color }}
@@ -98,7 +101,7 @@ export default function ProductInfo() {
       }
     } else {
       const existProductNoColor = productsCart?.find(
-        (item) => item?.product?._id === productId && item?.color === ""
+        (item) => item?.product?._id === productId && item?.color === ""   
       );
       if (existProductNoColor) {
         const count = existProductNoColor?.count + 1;

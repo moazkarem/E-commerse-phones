@@ -4,7 +4,12 @@ import fallImg from "../../../public/images/brands/img2.png";
 const SectionOne = ({ aboutSections }) => {
   console.log(aboutSections, "section one ");
   return (
-    <div className="w-full overflow-hidden px-4 mb-40 max-md:mb-20">
+    <div
+      data-aos="fade-up"
+      data-aos-duration="300"
+      data-aos-delay={100}
+      className="w-full overflow-hidden px-4 mb-40  max-lg:mb-20"
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-[1200px] mx-auto">
         <div className="flex justify-center">
           <div className="w-full max-w-[300px]">
