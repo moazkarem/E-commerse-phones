@@ -5,11 +5,19 @@ import {
   GET_SINGLE_PRODUCT,
   GET_SINGLE_PRODUCT_SUCCESS,
   GET_SINGLE_PRODUCT_FAILURE,
+  GET_PRODUCT_BY_CATEGORY,
+  GET_PRODUCT_BY_CATEGORY_SUCCESS,
+  GET_PRODUCT_BY_CATEGORY_FAILURE,
+  GET_PRODUCT_BY_BRAND,
+  GET_PRODUCT_BY_BRAND_SUCCESS,
+  GET_PRODUCT_BY_BRAND_FAILURE,
 } from "./actionTypes";
 const initialState = {
   loading: false,
   products: [],
-  singleProduct:{},
+  singleProduct: {},
+  prodByCategory: [],
+  prodByBrand: [],
   error: null,
 };
 
@@ -28,6 +36,21 @@ const productsRed = (state = initialState, action) => {
       return { ...state, singleProduct: action.payload, loading: false };
     case GET_SINGLE_PRODUCT_FAILURE:
       return { ...state, loading: false, error: action.payload };
+
+    case GET_PRODUCT_BY_CATEGORY:
+      return { ...state, loading: true, error: null };
+    case GET_PRODUCT_BY_CATEGORY_SUCCESS:
+      return { ...state, prodByCategory: action.payload, loading: false };
+    case GET_PRODUCT_BY_CATEGORY_FAILURE:
+      return { ...state, loading: false, error: action.payload };
+
+    case GET_PRODUCT_BY_BRAND:
+      return { ...state, loading: true, error: null };
+    case GET_PRODUCT_BY_BRAND_SUCCESS:
+      return { ...state, prodByBrand: action.payload, loading: false };
+    case GET_PRODUCT_BY_BRAND_FAILURE:
+      return { ...state, loading: false, error: action.payload };
+
     default:
       return state;
   }

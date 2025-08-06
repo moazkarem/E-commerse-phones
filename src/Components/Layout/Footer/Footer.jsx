@@ -3,7 +3,6 @@ import {
   FaTwitter,
   FaInstagram,
   FaWhatsapp,
-  FaPinterestP,
   FaLocationDot,
   FaPhone,
   FaRegEnvelope,
@@ -12,8 +11,7 @@ import {
 const Footer = () => {
   return (
     <footer>
-      <div className="bg-[#000] bg-fixed relative mt-10 py-20 flex justify-between flex-wrap max-sm:px-[1rem] sm:px-[2.5rem] md:px-[3rem] lg:px-[4rem] xl:px-[12rem]">
-        {/* <div className="absolute inset-0 bg-[#ed1d24]/40 backdrop-blur-md backdrop-brightness-75 z-0"></div> */}
+      <div className="bg-[#000] bg-fixed relative  py-20 flex justify-between flex-wrap max-sm:px-[1rem] sm:px-[2.5rem] md:px-[3rem] lg:px-[4rem] xl:px-[12rem]">
         <div className="relative z-10 max-sm:w-10/12 sm:w-5/12 md:w-5/12 lg:w-5/12 xl:w-3/12 max-sm:flex max-sm:justify-center mt-5">
           <div className="space-y-5">
             <h2 className="text-white text-4xl font-bold capitalize mb-0">

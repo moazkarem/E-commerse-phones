@@ -7,22 +7,7 @@ import toast from "react-hot-toast";
 import Seo from "../../Components/Seo/Seo";
 import { useDispatch } from "react-redux";
 import { postContact } from "../../store/ContactUs/actions";
-
-const contactFields = [
-  { name: "name", label: "Name", type: "text", placeholder: "Enter your name" },
-  {
-    name: "email",
-    label: "Email",
-    type: "email",
-    placeholder: "Enter your email",
-  },
-  {
-    name: "message",
-    label: "Message",
-    isTextArea: true,
-    placeholder: "Enter message",
-  },
-];
+import { contactFields } from "./data";
 
 const ContactUs = () => {
   const dispatch = useDispatch();
@@ -37,7 +22,12 @@ const ContactUs = () => {
   const renderContactFields = contactFields.map(
     ({ name, label, type, placeholder, isTextArea }, idx) =>
       isTextArea ? (
-        <div key={idx}>
+        <div
+          data-aos="fade-up"
+          data-aos-duration="300"
+          data-aos-delay={idx * 100}
+          key={idx}
+        >
           <div className="flex flex-col gap-2">
             <label htmlFor="message" className="text-white text-[14px] mb-4">
               Message
@@ -83,22 +73,35 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="pb-40">
+    <div className="pb-40 max-lg:pb-20">
       <Seo currentPage={"Contact Us"} />
       <div>
         <BreadCrumb base={"Home"} page={"Contact Us"} />
       </div>
 
       <div className="grid grid-cols-12 gap-5 mt-8 mb-16">
-        <div className="col-span-12 sm:col-span-6 lg:col-span-4 md:col-span-6 bg-[#111] px-5 py-8 rounded-[10px] flex items-center gap-3">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="300"
+          data-aos-delay={100}
+          className="col-span-12 sm:col-span-6 lg:col-span-4 md:col-span-6 bg-[#111] px-5 py-8 rounded-[10px] flex items-center gap-3"
+        >
           <MdEmail className="text-[#ff0000cc] text-2xl" />
           <p className="text-white text-[15px]">contact@example.com</p>
         </div>
-        <div className="col-span-12 sm:col-span-6 lg:col-span-4 md:col-span-6 bg-[#111] px-5 py-8 rounded-[10px] flex items-center gap-3">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="300"
+          data-aos-delay={200}
+        className="col-span-12 sm:col-span-6 lg:col-span-4 md:col-span-6 bg-[#111] px-5 py-8 rounded-[10px] flex items-center gap-3">
           <MdLocationOn className="text-[#ff0000cc] text-2xl" />
           <p className="text-white text-[15px]">123 Main Street, City</p>
         </div>
-        <div className="col-span-12 sm:col-span-12 lg:col-span-4 md:col-span-12 bg-[#111] px-5 py-8 rounded-[10px] flex items-center gap-3">
+        <div 
+          data-aos="fade-up"
+          data-aos-duration="300"
+          data-aos-delay={300}
+        className="col-span-12 sm:col-span-12 lg:col-span-4 md:col-span-12 bg-[#111] px-5 py-8 rounded-[10px] flex items-center gap-3">
           <MdPhone className="text-[#ff0000cc] text-2xl" />
           <p className="text-white text-[15px]">+20 123 456 789</p>
         </div>

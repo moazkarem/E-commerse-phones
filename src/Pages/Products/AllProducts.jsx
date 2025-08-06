@@ -114,7 +114,7 @@ const AllProducts = () => {
       <Seo currentPage={"Products"} />
 
       <BreadCrumb base="Home" page="Products" />
-      <div className="grid grid-cols-12 gap-3">
+      <div className="grid grid-cols-12 gap-3 pb-40 max-lg:pb-20">
         <div className="col-span-3 max-lg:hidden">
           <Filter
             searchWord={searchWord}

@@ -85,12 +85,12 @@ const Categories = () => {
     
     
   return (
-    <div className="pb-20">
+    <div className="pb-40 max-lg:pb-20">
           <Seo currentPage={'Categories'}/>
       <div>
         <BreadCrumb base="Home" page="Categories" />
       </div>
-      <div className="grid grid-cols-4 max-lg:grid-cols-2 max-md:grid-cols-1  gap-4 mb-16">
+      <div className="grid grid-cols-4 max-lg:grid-cols-2 max-md:grid-cols-1  gap-4 ">
         {renderCategoies}
       </div>
       {pageCount > 1 ? (

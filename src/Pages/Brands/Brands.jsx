@@ -59,14 +59,16 @@ const Brands = () => {
       <div>
         <BreadCrumb base={"Home"} page={"Brands"} />
       </div>
-      <div className="grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-4">
-        {renderBrands}
+      <div className="pb-40 max-lg:pb-20">
+        <div className="grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-4 ">
+          {renderBrands}
+        </div>
+        <Pagination
+          pageCount={pageCount}
+          onPress={handelPages}
+          currentPage={currentPage}
+        />
       </div>
-      <Pagination
-        pageCount={pageCount}
-        onPress={handelPages}
-        currentPage={currentPage}
-      />
     </div>
   );
 };

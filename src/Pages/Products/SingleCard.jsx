@@ -82,7 +82,12 @@ const SingleCard = ({ product, index, handelQuickView }) => {
     }
   };
   return (
-    <div className="rounded-[10px] p-4">
+    <div
+      data-aos="fade-up"
+      data-aos-duration="300"
+      data-aos-delay={index * 100}
+      className="rounded-[10px] p-4"
+    >
       <div className="relative  group rounded-[10px] p-4 overflow-hidden">
         <div>
           <div className="relative  w-full rounded-[10px] overflow-hidden">

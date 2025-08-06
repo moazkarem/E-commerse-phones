@@ -28,3 +28,20 @@ export const getSingleProductApi = async (productId) => {
   // console.log(response?.data);
   return response;
 };
+
+//===================== GET PRODUCT BY CATEGORY
+
+export const getProductsApiByCategory = async (catId) => {
+  const response = await server.get(`/api/v1/products?category[in][]=${catId}`);
+  // console.log(response?.data, "from get products api by category");
+  return response?.data;
+};
+
+//===================== GET PRODUCT BY BRAND
+
+export const getProductsApiByBrand = async (brandId) => {
+  const response = await server.get(`/api/v1/products?brand[in][]=${brandId}`);
+  console.log(response?.data, "from get products api by brands");
+  return response?.data;
+};
+
