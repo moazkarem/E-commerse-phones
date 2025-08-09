@@ -88,7 +88,7 @@ const Blogs = () => {
       <div>
         <BreadCrumb base={"Home"} page={"Blogs"} />
       </div>
-      <div className="pb-40">
+      <div className="pb-40 max-lg:pb-20">
         {blogsData?.data?.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 ">
             {renderBlogs}

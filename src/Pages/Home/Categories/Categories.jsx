@@ -61,7 +61,7 @@ const Categories = () => {
     );
   //============================ START JSX ===========
   return (
-    <div className="pt-40 pb-40 max-lg:pb-20 relative">
+    <div className="pt-40 pb-40 max-lg:pb-20 max-lg:pt-20 relative">
       <div className="w-full flex justify-between items-center mb-16">
         <HeadSec title={formatMessage({ id: "main categories" })} />
         <div className="flex justify-center items-center gap-6 max-md:hidden">
