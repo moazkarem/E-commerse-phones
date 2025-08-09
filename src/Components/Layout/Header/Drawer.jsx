@@ -3,6 +3,15 @@ import { NavLink } from "react-router-dom";
 import logo from "../../../../public/logo192.png";
 import { BsHandbag } from "react-icons/bs";
 import { useSelector } from "react-redux";
+import { AiFillHome } from "react-icons/ai";
+import { BiCategory } from "react-icons/bi";
+import {
+  FaBlog,
+  FaBoxOpen,
+  FaTags,
+  FaInfoCircle,
+  FaPhoneAlt,
+} from "react-icons/fa";
 const Drawer = ({ isDrawerOpen, setIsDrawerOpen, toggleDrawer }) => {
   const drawerRef = useRef(null);
 
@@ -59,68 +68,87 @@ const Drawer = ({ isDrawerOpen, setIsDrawerOpen, toggleDrawer }) => {
           <li className="text-lg p-2">
             <NavLink
               to="/"
-              className="text-white hover:text-[#ed1d24] hover:bg-transparent text-lg "
+              className="flex items-center gap-[30px] text-white hover:text-[#ed1d24] hover:bg-transparent text-lg"
             >
+              <AiFillHome size={20} />
               Home
             </NavLink>
           </li>
+
           <li className="text-lg p-2">
             <NavLink
               to="/categories"
-              className="text-white hover:text-[#ed1d24] "
+              className="flex items-center gap-[30px] text-white hover:text-[#ed1d24]"
             >
+              <BiCategory size={20} />
               Categories
             </NavLink>
           </li>
+
           <li className="text-lg p-2">
-            <NavLink to="/blogs" className="text-white hover:text-[#ed1d24] ">
+            <NavLink
+              to="/blogs"
+              className="flex items-center gap-[30px] text-white hover:text-[#ed1d24]"
+            >
+              <FaBlog size={20} />
               Blog
             </NavLink>
           </li>
+
           <li className="text-lg p-2">
-            <NavLink to="/brands" className="text-white hover:text-[#ed1d24] ">
+            <NavLink
+              to="/brands"
+              className="flex items-center gap-[30px] text-white hover:text-[#ed1d24]"
+            >
+              <FaBoxOpen size={20} />
               Products
             </NavLink>
           </li>
+
           <li className="text-lg p-2">
             <NavLink
               to="/products"
-              className="text-white hover:text-[#ed1d24] "
+              className="flex items-center gap-[30px] text-white hover:text-[#ed1d24]"
             >
+              <FaTags size={20} />
               Brands
             </NavLink>
           </li>
+
           <li className="text-lg p-2">
-            <NavLink to="/about" className="text-white hover:text-[#ed1d24] ">
+            <NavLink
+              to="/about"
+              className="flex items-center gap-[30px] text-white hover:text-[#ed1d24]"
+            >
+              <FaInfoCircle size={20} />
               About
             </NavLink>
           </li>
+
           <li className="text-lg p-2">
-            <NavLink to="/contact" className="text-white hover:text-[#ed1d24] ">
+            <NavLink
+              to="/contact"
+              className="flex items-center gap-[30px] text-white hover:text-[#ed1d24]"
+            >
+              <FaPhoneAlt size={20} />
               Contact
             </NavLink>
           </li>
           <div
-            className="flex ps-5 pe-3 justify-between items-center gap-2 mt-4 cursor-pointer"
+            className="flex  ps-5 pe-3 justify-start gap-[30px] items-center  mt-4 cursor-pointer"
             onClick={() => {
               closeDrawer();
               navigate("/cart");
             }}
           >
-            <span className="text-white text-lg">Cart</span>
             <div className="relative">
               <BsHandbag size={24} className="text-white" />
               <span className="absolute -top-2 -right-2 bg-[#ed1d24] text-white text-xs px-[6px] py-[2px] rounded-full">
                 {productsCart.length || 0}
               </span>
             </div>
+            <span className="text-white text-lg">Cart</span>
           </div>
-          <button
-            className="mt-8 text-lg p-2 flex justify-center items-center py-2 rounded-full bg-[#333] hover:bg-[#222]"
-            onClick={logoutHandeler}
-          >
-            Logout
-          </button>
         </ul>
       </div>
     </div>
