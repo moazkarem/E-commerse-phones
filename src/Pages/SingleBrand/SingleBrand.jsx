@@ -1,5 +1,5 @@
 import React from "react";
-import SingleCard from "./SingleCard";
+import Card from "./Card";
 import Seo from "../../Components/Seo/Seo";
 import Loading from "../../Components/Loading/Loading";
 import NullScreen from "../../Components/NullScreen/NullScreen";
@@ -18,10 +18,10 @@ const SingleBrand = () => {
   }, [dispatch, id]);
 
   const { prodByBrand, loading } = useSelector((state) => state.productsRed);
-  console.log(prodByBrand , 'my braa')
+ 
   //============================DATA RENDERING===========
   const renderProducts = prodByBrand?.data?.map((product, idx) => (
-    <SingleCard idx={idx} product={product} key={idx} />
+    <Card idx={idx} product={product} key={idx} />
   ));
 
   //============================HANDEL LOADING ===========

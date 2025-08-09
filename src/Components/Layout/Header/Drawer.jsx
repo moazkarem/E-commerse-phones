@@ -28,10 +28,9 @@ const Drawer = ({ isDrawerOpen, setIsDrawerOpen, toggleDrawer }) => {
   const { getCart } = useSelector((state) => state.cartRed);
   const productsCart = getCart?.data?.products || [];
 
-
-  const logoutHandeler = ()=>{
-    localStorage.removeItem('userData')
-  }
+  const logoutHandeler = () => {
+    localStorage.removeItem("userData");
+  };
 
   return (
     <div className="relative" ref={drawerRef} style={{ zIndex: "50" }}>
@@ -79,11 +78,16 @@ const Drawer = ({ isDrawerOpen, setIsDrawerOpen, toggleDrawer }) => {
             </NavLink>
           </li>
           <li className="text-lg p-2">
+            <NavLink to="/brands" className="text-white hover:text-[#ed1d24] ">
+              Products
+            </NavLink>
+          </li>
+          <li className="text-lg p-2">
             <NavLink
               to="/products"
               className="text-white hover:text-[#ed1d24] "
             >
-              Products
+              Brands
             </NavLink>
           </li>
           <li className="text-lg p-2">
@@ -111,8 +115,11 @@ const Drawer = ({ isDrawerOpen, setIsDrawerOpen, toggleDrawer }) => {
               </span>
             </div>
           </div>
-          <button className="mt-8 text-lg p-2 flex justify-center items-center py-2 rounded-full bg-[#333] hover:bg-[#222]" onClick={logoutHandeler}>
-          Logout
+          <button
+            className="mt-8 text-lg p-2 flex justify-center items-center py-2 rounded-full bg-[#333] hover:bg-[#222]"
+            onClick={logoutHandeler}
+          >
+            Logout
           </button>
         </ul>
       </div>
