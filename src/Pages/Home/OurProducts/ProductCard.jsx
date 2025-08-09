@@ -72,7 +72,7 @@ const ProductCard = ({ product, index, quickeViewHandeler }) => {
         data-aos="fade-up"
         data-aos-duration="300"
         data-aos-delay={index * 100}
-        className="relative bg-[#111] rounded-[10px] py-6 px-6 w-full  text-white pb-20 mb-8"
+        className="relative bg-[#111] rounded-[10px] py-6 px-6 w-full  text-white pb-20 "
       >
         <div
           className="absolute bottom-[15px] left-[15px] cursor-pointer p-3 flex justify-center items-center bg-[#161819] rounded-full "
