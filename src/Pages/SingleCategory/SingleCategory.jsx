@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import Filter from "./Filter/Filter";
-import SingleCard from "./SingleCard/SingleCard";
+import SingleCard from "./SingleCard";
 import Seo from "../../Components/Seo/Seo";
 import { useDispatch, useSelector } from "react-redux";
 import { getProdByCategory } from "./../../store/Products/actions";

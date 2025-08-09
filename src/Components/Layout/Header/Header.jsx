@@ -100,6 +100,7 @@ const Navbar = () => {
                 { id: "navCategories", to: "/categories" },
                 { id: "navBlogs", to: "/blogs" },
                 { id: "navProducts", to: "/products" },
+                { id: "navBrands", to: "/brands" },
                 { id: "navAbout", to: "/about" },
                 { id: "navContact", to: "/contact" },
               ].map((item) => (
@@ -110,7 +111,7 @@ const Navbar = () => {
                         to={`/`}
                         className="text-white hover:text-[#ed1d24] hover:bg-transparent"
                       >
-                        <FormattedMessage id={'navHome'}/>
+                        <FormattedMessage id={"navHome"} />
                       </NavLink>
                     </li>
                   ) : (
@@ -119,7 +120,7 @@ const Navbar = () => {
                         to={`${item?.to.toLowerCase()}`}
                         className="text-white hover:text-[#ed1d24] hover:bg-transparent"
                       >
-                       <FormattedMessage id={item?.id}/>
+                        <FormattedMessage id={item?.id} />
                       </NavLink>
                     </li>
                   )}
