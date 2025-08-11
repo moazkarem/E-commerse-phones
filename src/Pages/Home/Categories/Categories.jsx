@@ -7,11 +7,10 @@ import "swiper/css/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategories } from "../../../store/actions";
 import Loading from "../../../Components/Loading/Loading";
-import { images } from "./data";
 import HeadSec from "../../../Components/HeadSec/HeadSec";
-// import { formatMessage } from "@formatjs/intl";
 import { useIntl } from "react-intl";
 import { useLocale } from "./../../../i18n/LocaleProvider";
+import { imageClean } from "../../../helpers/imageClean";
 const Categories = () => {
   const { locale } = useLocale();
   const isRtl = locale === "ar";
@@ -24,19 +23,23 @@ const Categories = () => {
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
+  console.log();
   //============================HANDEL DATA ===========
+  console.log(categories?.data
+    ?.slice(0, 2));
   const renderCategories = categories?.data
     ?.slice(0, 8)
     ?.map(({ image, name, slug }, idx) => (
       <SwiperSlide key={idx}>
         <div
-        data-aos="fade-up"
-        data-aos-duration="300"
-        data-aos-delay={idx * 100}
-        className="flex flex-col justify-center items-center gap-8 mb-12 group cursor-pointer">
+          data-aos="fade-up"
+          data-aos-duration="300"
+          data-aos-delay={idx * 100}
+          className="flex flex-col justify-center items-center gap-8 mb-12 group cursor-pointer"
+        >
           <div className="bg-[#111] flex justify-center items-center p-2 w-48 h-48 border border-[#ed1d24] shadow-md shadow-[#454a4d] rounded-full">
             <img
-              src={images[Math.floor(Math.random() * images.length)]}
+              src={imageClean(image)}
               className=" w-[90%] h-[90%] p-4 transform transition-all duration-300 group-hover:scale-105"
               alt={slug}
             />

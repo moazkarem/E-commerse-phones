@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaFacebookF,
   FaTwitter,
@@ -13,7 +13,7 @@ import {
   TwitterShareButton,
   WhatsappShareButton,
 } from "react-share";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { formatDate } from "../../helpers/validDate";
 const RecentlyBlogs = ({ blogs }) => {
   const [searchWord, setSearchWord] = useState("");

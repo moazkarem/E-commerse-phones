@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { FiArrowRight } from "react-icons/fi";
-import img1 from "../../../../public/images/brands/blogs.jpg";
+import { imageClean } from "../../../helpers/imageClean";
+
 import { Autoplay, Navigation } from "swiper/modules";
 import HeadSec from "../../../Components/HeadSec/HeadSec";
 import { FaUser, FaCalendarAlt } from "react-icons/fa";
@@ -11,23 +12,42 @@ import { Link } from "react-router-dom";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { useLocale } from "../../../i18n/LocaleProvider";
 import { useIntl } from "react-intl";
+import Loading from "../../../Components/Loading/Loading";
+import { useDispatch, useSelector } from "react-redux";
+import { getBlogsData } from "../../../store/actions";
+import { formatDate } from "../../../helpers/validDate";
 const LatestBlogs = ({ secTitle }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getBlogsData());
+  }, [dispatch]);
+
+  const { blogsData, loading } = useSelector((state) => state.blogsRed);
   const swiperRef = useRef(null);
   const { locale } = useLocale();
   const isRtl = locale === "ar";
   const { formatMessage } = useIntl();
 
-  const blogsRendering = blogs
+  //============================HANDEL LOADING ===========
+  if (loading)
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <Loading />
+      </div>
+    );
+
+  const blogsRendering = blogsData?.data
     ?.slice(0, 6)
-    .map(({ author, image, title, id, description, date }) => (
-      <SwiperSlide key={id}>
+    .map(({ image, title, documentId, description, createdAt } , idx) => (
+      <SwiperSlide key={documentId}>
         <div
-        data-aos="fade-up"
-        data-aos-duration="300"
-        data-aos-delay={id * 100}
-        className="bg-[#111] rounded-[10px] p-5 flex flex-col gap-4 h-full w-full">
+          data-aos="fade-up"
+          data-aos-duration="300"
+          data-aos-delay={idx * 100}
+          className="bg-[#111] rounded-[10px] p-5 flex flex-col gap-4 h-full w-full"
+        >
           <img
-            src={image || img1}
+            src={imageClean(image?.url)}
             alt={title}
             className="w-full h-[180px] object-contain rounded-[10px] border border-1 border-[#a9afc355]  px-2 py-3"
           />
@@ -35,19 +55,23 @@ const LatestBlogs = ({ secTitle }) => {
           <div className="flex items-center gap-4 text-[#a9afc3] text-[14px]">
             <div className="flex items-center gap-2">
               <FaUser />
-              <span>{author}</span>
+              <span>Admin</span>
             </div>
             <div className="flex items-center gap-2">
               <FaCalendarAlt />
-              <span>{date}</span>
+              <span>{formatDate(createdAt)}</span>
             </div>
           </div>
           <h3 className="text-white text-[18px] ">{title}</h3>
-          <p className="text-[#a9afc3] text-[16px] leading-snug line-clamp-3">
-            {description}
-          </p>
+          <p
+            className="text-[#a9afc3] text-[16px] leading-snug line-clamp-3"
+            dangerouslySetInnerHTML={{
+              __html: description,
+            }}
+          />
+
           <Link
-            to={`/blogs/${id}`}
+            to={`/blogs/${documentId}`}
             className="text-[#ed1d24] text-[16px] font-medium inline-flex items-center gap-1 mt-auto"
           >
             Read More <FiArrowRight size={16} />

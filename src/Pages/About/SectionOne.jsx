@@ -15,7 +15,7 @@ const SectionOne = ({ aboutSections }) => {
           <div className="w-full max-w-[300px]">
             <img
               src={
-                `${import.meta.env.VITE_IMAGE_DOMAIN}${
+                `${
                   aboutSections?.missionImg?.url
                 }` || fallImg
               }

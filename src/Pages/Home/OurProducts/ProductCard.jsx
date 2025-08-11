@@ -1,11 +1,9 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LiaStarSolid } from "react-icons/lia";
 import "swiper/css/pagination";
 import "swiper/css";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { IoBagCheckOutline } from "react-icons/io5";
+import { Link, useParams } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
-import { images } from "./data";
 import { useDispatch, useSelector } from "react-redux";
 import { FaEye } from "react-icons/fa";
 import {
@@ -14,8 +12,8 @@ import {
   getWhishlist,
 } from "../../../store/actions";
 import toast from "react-hot-toast";
+import { imageClean } from "../../../helpers/imageClean";
 const ProductCard = ({ product, index, quickeViewHandeler }) => {
-  const navigate = useNavigate();
   const { id } = useParams();
   const storageKey = "userData";
   const userDataString = localStorage.getItem(storageKey);
@@ -28,15 +26,9 @@ const ProductCard = ({ product, index, quickeViewHandeler }) => {
       dispatch(getWhishlist());
     }
   }, [dispatch, whishlistData]);
-  const { title, quantity, price, slug, ratingsQuantity, _id, description } =
+  const { title, imageCover, price, slug, ratingsQuantity, _id, description } =
     product;
-  const randomImage = useMemo(() => {
-    let selectedImage;
-    do {
-      selectedImage = images[Math.floor(Math.random() * images.length)];
-    } while (index > 0 && selectedImage === images[index - 1]);
-    return selectedImage;
-  }, [index]);
+
   //============================HANDEL WHISHLIST  ===========
   const [isFav, setIsFav] = useState(false);
   useEffect(() => {
@@ -83,7 +75,7 @@ const ProductCard = ({ product, index, quickeViewHandeler }) => {
         <Link to={`/products/${_id}`}>
           <div className="flex justify-center ">
             <img
-              src={randomImage}
+              src={imageClean(imageCover)}
               alt={slug}
               className="w-[150px] h-[150px] object-contain rounded-full border-2 border-[#a9afc3] p-3"
             />

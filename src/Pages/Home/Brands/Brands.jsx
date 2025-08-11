@@ -7,11 +7,11 @@ import "swiper/css/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllbrands } from "../../../store/actions";
 import Loading from "../../../Components/Loading/Loading";
-import { images } from "./data";
 import { Link } from "react-router-dom";
 import HeadSec from "../../../Components/HeadSec/HeadSec";
 import { useLocale } from "../../../i18n/LocaleProvider";
 import { useIntl } from "react-intl";
+import { imageClean } from "../../../helpers/imageClean";
 const Brands = () => {
   const swiperRef = useRef(null);
   const { locale } = useLocale();
@@ -23,28 +23,31 @@ const Brands = () => {
     dispatch(getAllbrands());
   }, [dispatch]);
   //============================HANDEL DATA ===========
-  const renderBrands = brands?.data?.slice(0, 8)?.map(({ name, slug }, idx) => (
+  const renderBrands = brands?.data?.slice(0, 8)?.map(({ image, name, slug }, idx) => (
     <SwiperSlide key={idx}>
-      <Link
-        
-        to={"/brands"}
-      >
-        <div 
-        data-aos="fade-up"
-        data-aos-duration="300"
-        data-aos-delay={idx * 100}
-        className="flex flex-col justify-center items-center gap-8  group cursor-pointer">
-          <div className="bg-[#363D40] flex justify-center items-center p-2 w-48 h-24 border rounded-[10px] shadow-[#454a4d] ">
+      <Link to={"/brands"}>
+        <div
+          data-aos="fade-up"
+          data-aos-duration="300"
+          data-aos-delay={idx * 100}
+          className="flex flex-col justify-center items-center gap-8 group cursor-pointer relative"
+        >
+          <div className="flex justify-center items-center p-2 w-48 h-24 border rounded-[10px] shadow-[#454a4d] relative overflow-hidden">
             <img
-              src={images[Math.floor(Math.random() * images.length)]}
-              className=" w-full h-full object-cover  transform transition-all duration-300 group-hover:scale-105"
+              src={imageClean(image)}
+              className="w-full h-full object-contain transform transition-all duration-300 group-hover:scale-105"
               alt={slug}
             />
+  
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="text-white text-[16px] text-center ">{name}</span>
+            </div>
           </div>
         </div>
       </Link>
     </SwiperSlide>
   ));
+  
   //============================HANDEL LOADING ===========
   if (loading)
     return (

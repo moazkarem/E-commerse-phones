@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
-import img1 from "../../../../public/images/brands/img5.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllproducts } from "../../../store/actions";
 import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
-
 import useActive from "../../../Components/Hooks/useActive";
 import { Fade } from "react-awesome-reveal";
 import TabButton from "../../../Components/Sub_Components/Buttons/Tab_Button/TabButton";
-import { useIntl } from 'react-intl';
-
+import { imageClean } from "../../../helpers/imageClean";
 const TopRatedTabs = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.productsRed);
- const {formatMessage} = useIntl()
   const [active, activeHandler] = useActive("Top Rated");
   const [currentTab, setCurrentTab] = useState("Top Rated");
 
@@ -53,7 +49,7 @@ const TopRatedTabs = () => {
         >
           <div className="w-[80px] h-[80px] flex-shrink-0">
             <img
-              src={img1}
+              src={imageClean(item.imageCover)}
               alt="product"
               width={80}
               height={80}
@@ -61,7 +57,7 @@ const TopRatedTabs = () => {
             />
           </div>
 
-          <div className="flex flex-col justify-between gap-3">
+          <div className="flex flex-col justify-between gap-3 w-full">
             <p className="text-white text-[16px] leading-snug line-clamp-3">
               {item.description}
             </p>
