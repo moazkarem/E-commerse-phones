@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Rate from "rc-rate";
 import { Link } from "react-router-dom";
-import { images } from "./data";
 import { FaHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,6 +9,7 @@ import {
   getWhishlist,
 } from "../../store/actions";
 import toast from "react-hot-toast";
+import { imageClean } from "../../helpers/imageClean";
 const SingleCard = ({ product, index, handelQuickView }) => {
   const storageKey = "userData";
   const userDataString = localStorage.getItem(storageKey);
@@ -21,15 +21,15 @@ const SingleCard = ({ product, index, handelQuickView }) => {
       dispatch(getWhishlist());
     }
   }, [dispatch, whishlistData]);
-  const { title, price, slug, ratingsQuantity, _id, availableColors } = product;
-  const randomImage = useMemo(() => {
-    let selectedImage;
-    do {
-      selectedImage = images[Math.floor(Math.random() * images.length)];
-    } while (index > 0 && selectedImage === images[index - 1]);
-    return selectedImage;
-  }, [index]);
-  // console.log("availableColors = ", availableColors);
+  const {
+    imageCover,
+    title,
+    price,
+    slug,
+    ratingsQuantity,
+    _id,
+    availableColors,
+  } = product;
 
   const parsedColors = (() => {
     if (!Array.isArray(availableColors)) return [];
@@ -92,7 +92,7 @@ const SingleCard = ({ product, index, handelQuickView }) => {
         <div>
           <div className="relative  w-full rounded-[10px] overflow-hidden">
             <img
-              src={randomImage}
+              src={imageClean(imageCover)}
               alt={slug}
               loading="lazy"
               className="w-full h-[270PX] mb-2  "
