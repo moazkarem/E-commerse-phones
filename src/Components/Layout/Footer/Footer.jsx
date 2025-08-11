@@ -20,7 +20,7 @@ const Footer = () => {
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
-  console.log(categories?.data, "daaaa");
+  // console.log(categories?.data, "daaaa");
   return (
     <footer>
       <div className="bg-[#000] bg-fixed relative  py-20 flex justify-between flex-wrap max-sm:px-[1rem] sm:px-[2.5rem] md:px-[3rem] lg:px-[4rem] xl:px-[12rem]">

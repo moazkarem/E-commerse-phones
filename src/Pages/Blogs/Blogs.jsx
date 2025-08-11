@@ -1,8 +1,5 @@
 "use client";
 import img1 from "../../../public/images/sony1000xm4-4.png";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
 import BreadCrumb from "../../Components/BreadCrump/BreadCrump";
 import { FiArrowRight } from "react-icons/fi";
 import { FaUser, FaCalendarAlt } from "react-icons/fa";
@@ -15,6 +12,7 @@ import Loading from "../../Components/Loading/Loading";
 import Error from "../../Components/Error/Error";
 import NullScreen from "../../Components/NullScreen/NullScreen";
 import { formatDate } from "../../helpers/validDate";
+import { imageClean } from "../../helpers/imageClean";
 const Blogs = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -34,7 +32,7 @@ const Blogs = () => {
         className="bg-[#161819] rounded-[10px] p-5 flex flex-col gap-4 h-full w-full transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-lg cursor-pointer"
       >
         <img
-          src={`${import.meta.env.VITE_IMAGE_DOMAIN}${image?.url}` || img1}
+          src={imageClean(image?.url) || img1}
           alt={title}
           className="w-full h-[180px]  object-contain rounded-[10px] border border-1 border-[#a9afc355]  px-2 py-3"
         />

@@ -39,7 +39,7 @@ const Slider = () => {
         </div>
         <div className="slider-image w-full  md:w-1/2  m-auto h-2/5 md:h-full">
           <img
-            src={`${import.meta.env.VITE_IMAGE_DOMAIN}${item?.image?.url}`}
+            src={`${item?.image?.url}`}
             alt={item.title}
           />
         </div>

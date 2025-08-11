@@ -11,7 +11,7 @@ const SectionTwo = ({ aboutSections }) => {
       data-aos-delay={200}
         className="relative bg-fixed bg-center bg-cover w-full mb-40 max-md:mb-20 min-h-[500px] flex items-center justify-center text-white   rounded-[10px]"
         style={{
-          backgroundImage: `url(${import.meta.env.VITE_IMAGE_DOMAIN}${
+          backgroundImage: `url(${
             aboutSections?.bannerImg?.url
           })`,
         }}
