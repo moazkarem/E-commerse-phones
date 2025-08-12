@@ -14,7 +14,7 @@ import "swiper/css/pagination";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HelmetProvider>
-      <BrowserRouter basename="/X-Beat/">
+      <BrowserRouter >
         <FocusProvider>
           <Provider store={store}>
             <LocaleProvider>

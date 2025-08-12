@@ -36,7 +36,7 @@ var vite_config_default = defineConfig({
     build: "vite build",
     preview: "vite preview"
   },
-  base: "/X-Beat/"
+  // base: "/X-Beat/"
 });
 export {
   vite_config_default as default
