@@ -36,5 +36,5 @@ export default defineConfig({
     build: "vite build",
     preview: "vite preview",
   },
-  base: "/X-Beat/",
+  // base: "/X-Beat/",
 });
