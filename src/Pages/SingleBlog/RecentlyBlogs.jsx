@@ -15,10 +15,10 @@ import {
 } from "react-share";
 import { Link} from "react-router-dom";
 import { formatDate } from "../../helpers/validDate";
+import { imageClean } from './../../helpers/imageClean';
 const RecentlyBlogs = ({ blogs }) => {
   const [searchWord, setSearchWord] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
-
   useEffect(() => {
     const timeOut = setTimeout(() => {
       setDebouncedSearch(searchWord.trim());
@@ -46,7 +46,7 @@ const RecentlyBlogs = ({ blogs }) => {
         className="flex gap-3 md:gap-4 bg-[#161819] p-3 rounded-[8px] items-start"
       >
         <img
-          src={`${import.meta.env.VITE_IMAGE_DOMAIN + image?.url}`}
+          src={imageClean(image?.url)}
           alt={title}
           className="w-[60px] h-[60px] md:w-[80px] md:h-[80px] rounded-[8px] object-contain flex-shrink-0 p-2"
         />
@@ -89,7 +89,7 @@ const RecentlyBlogs = ({ blogs }) => {
           style={{ letterSpacing: "2px" }}
           className="text-[16px] md:text-[18px] font-semibold mb-3"
         >
-          Recent Blogs
+          Recently Blogs
         </h3>
         {filtered?.length > 0 ? (
           renderBlogs

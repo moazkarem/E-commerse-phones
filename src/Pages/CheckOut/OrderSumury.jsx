@@ -36,14 +36,14 @@ const OrderSumury = ({ getCart, loading }) => {
     );
   return (
     <>
-      <div className="mb-4 bg-[#161819] p-5 rounded-[12px]">
+      <div className="mb-4 bg-[#111] p-5 rounded-[12px]">
         <h2 className="text-[#fff] mb-8">Checkout summary</h2>
         {renderProductCart}
       </div>
-      <div className="bg-[#161819] p-5 rounded-[12px]">
-        <div className="flex justify-between items-center gap-2 mb-8">
-          <h5 className="text-sm text-[#fff]">Total</h5>
-          <h5 className="text-sm  text-[#ed1d24]">
+      <div className="bg-[#111] p-5 rounded-[12px]">
+        <div className="flex justify-between items-center gap-2 ">
+          <h5 className="text-[18px] text-[#fff] mb-0 pb-0">Total Price </h5>
+          <h5 className="text-[18px]  text-[#ed1d24] mb-0 pb-0">
             {getCart?.data?.totalAfterDiscount ?getCart?.data?.totalAfterDiscount :getCart?.data?.totalCartPrice }
             $
           </h5>

@@ -24,7 +24,7 @@ const AddModal = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-12 gap-3">
             {editAddressForm?.map((field, idx) => (
-              <div key={idx} className={`col-span-${field.col} mt-2`}>
+              <div key={idx} className={`col-span-12 mt-2`}>
                 <label htmlFor={field.id} className="text-sm">
                   {field.label}:
                 </label>

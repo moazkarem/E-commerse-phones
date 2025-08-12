@@ -2,15 +2,16 @@ import React from "react";
 import img1 from "../../../public/images/sony1000xm4-2.png";
 import { Link } from "react-router-dom";
 import { LiaStarSolid } from "react-icons/lia";
+import { imageClean } from './../../helpers/imageClean';
 const SingleCard = ({ product, idx }) => {
   return (
     <div
       data-aos="fade-up"
       data-aos-duration="300"
       data-aos-delay={idx * 100}
-      className="relative group flex flex-col gap-3 justify-center items-center rounded-[10px] p-4 overflow-hidden border border-[#111]"
+      className="relative group flex flex-col gap-3 justify-center items-center rounded-[10px] p-4 overflow-hidden border border-[#3a3838] cursor-pointer"
     >
-      <img src={img1} alt="Product Image" className="w-full h-auto mb-2" />
+      <img src={imageClean(product?.imageCover)} alt="Product Image" className="w-full h-auto mb-2" />
       <h3 className="text-[18px] text-[#a9afc3] line-clamp-1">
         {product?.title}
       </h3>
@@ -28,7 +29,7 @@ const SingleCard = ({ product, idx }) => {
       <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <Link
           to={`/products/${product?._id}`}
-          className="w-[80%] text-center rounded-full py-2 bg-[#a61c00] text-white hover:bg-[#872000]"
+          className="w-[80%] text-center rounded-full py-2 bg-[#ff0000cc] text-white hover:bg-[#872000]"
         >
           More Details
         </Link>

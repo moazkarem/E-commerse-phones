@@ -3,15 +3,20 @@ import img1 from "../../../public/images/sony1000xm4-2.png";
 import { LiaStarSolid } from "react-icons/lia";
 import { useNavigate } from "react-router-dom";
 // import { IoCard } from "react-icons/io5";
+import { imageClean } from "./../../helpers/imageClean";
 
 const IoCard = ({ product, idx }) => {
   const navigate = useNavigate();
   return (
     <div
       onClick={() => navigate(`/products/${product?._id}`)}
-      className="relative max-lg:mb-16 group flex flex-col justify-center items-center rounded-[10px] p-4 border border-[#333] overflow-visible"
+      className="relative max-lg:mb-16 group flex flex-col justify-center items-center rounded-[10px] p-4 border border-[#333] overflow-visible cursor-pointer"
     >
-      <img src={img1} alt="Product Image" className="w-full h-auto" />
+      <img
+        src={imageClean(product?.imageCover)}
+        alt="Product Image"
+        className="w-full h-auto"
+      />
 
       <div
         className="absolute w-[90%] bg-[#111] rounded-[20px] shadow  shadow-[#fff]

@@ -17,7 +17,7 @@ const AllProducts = () => {
   const toggleDrawer = () => setIsDrawerOpen((prev) => !prev);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 8;
+  const limit = 9;
   const dispatch = useDispatch();
   const { loading, error, products } = useSelector(
     (state) => state.productsRed

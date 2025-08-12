@@ -8,7 +8,7 @@ const BlogContent = ({ blogData }) => {
   return (
     <div>
       <img
-        src={`${import.meta.env.VITE_IMAGE_DOMAIN + blogData?.image?.url}`}
+        src={blogData?.image?.url}
         alt="blog"
         className="w-full h-[250px] sm:h-[350px] md:h-[400px] lg:h-[400px] object-contain py-6 rounded-[10px] border border-1 border-[#a9afc3]"
       />

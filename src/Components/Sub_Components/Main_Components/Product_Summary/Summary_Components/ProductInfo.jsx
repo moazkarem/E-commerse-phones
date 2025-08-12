@@ -13,22 +13,15 @@ import { LiaStarSolid } from "react-icons/lia";
 import Correct from "../../../../../assets/Correct.svg";
 import toast from "react-hot-toast";
 
-export default function ProductInfo() {
-  const { id } = useParams();
+export default function ProductInfo({
+  loading,
+  getCart,
+  singleProduct,
+  error,
+}) {
   const dispatch = useDispatch();
   const [selectedColor, setSelectedColor] = useState("");
 
-  const { singleProduct, loading, error } = useSelector(
-    (state) => state.productsRed
-  );
-  console.log(singleProduct, "singllll");
-  useEffect(() => {
-    if (!singleProduct || singleProduct?.data?.data?._id !== id) {
-      dispatch(getSingleProd(id));
-      dispatch(getCartAction());
-    }
-  }, [id, dispatch, singleProduct]);
-  const { getCart } = useSelector((state) => state.cartRed);
   const productsCart = getCart?.data?.products;
   if (loading)
     return (
@@ -49,10 +42,7 @@ export default function ProductInfo() {
   const product = singleProduct?.data?.data;
 
   const parsedColors = (() => {
-    if (
-      !Array.isArray(product?.availableColors) 
-    )
-      return [];
+    if (!Array.isArray(product?.availableColors)) return [];
 
     if (
       typeof product?.availableColors[0] === "string" &&
@@ -80,7 +70,7 @@ export default function ProductInfo() {
       style={{ backgroundColor: color }}
     />
   ));
-  // console.log(product?.availableColors , 'colll');
+  
   //============ ADD TO CART HANDELER
 
   const addToCartHandeler = (productId) => {
@@ -101,7 +91,7 @@ export default function ProductInfo() {
       }
     } else {
       const existProductNoColor = productsCart?.find(
-        (item) => item?.product?._id === productId && item?.color === ""   
+        (item) => item?.product?._id === productId && item?.color === ""
       );
       if (existProductNoColor) {
         const count = existProductNoColor?.count + 1;

@@ -25,14 +25,14 @@ const Reviews = () => {
     dispatch(getAllProductsReviewAction());
   }, [dispatch]);
 
-  const renderReviesSlides = getAllProductReview?.data?.data.map(
+  const renderReviesSlides = getAllProductReview?.data?.data?.map(
     ({ review, rating, user }, idx) => (
       <SwiperSlide key={idx} className="cursor-grab">
         <div
           data-aos="fade-up"
           data-aos-duration="300"
           data-aos-delay={idx * 100}
-          className="bg-[#111] rounded-[10px] p-4 flex flex-col justify-start items-start h-full w-full"
+          className="bg-[#111] rounded-[10px] p-4 flex flex-col justify-start items-start h-full w-full border-1 border border-[#a9afc34e]"
         >
           <div className="flex-grow">
             <div className="flex gap-1 mb-[10px]">
