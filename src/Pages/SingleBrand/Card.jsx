@@ -1,5 +1,4 @@
 import React from "react";
-import img1 from "../../../public/images/sony1000xm4-2.png";
 import { LiaStarSolid } from "react-icons/lia";
 import { useNavigate } from "react-router-dom";
 // import { IoCard } from "react-icons/io5";

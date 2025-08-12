@@ -5,7 +5,6 @@ import ContactForm from "./ContactForm";
 import RecentlyBlogs from "./RecentlyBlogs";
 import BlogContent from "./BlogContent";
 import { useParams } from "react-router-dom";
-import { blogs } from "../../data/blogs";
 import Comments from "./Comments";
 import Seo from "../../Components/Seo/Seo";
 import { useDispatch, useSelector } from "react-redux";

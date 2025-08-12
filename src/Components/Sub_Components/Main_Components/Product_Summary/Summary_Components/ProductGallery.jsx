@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Fade } from "react-awesome-reveal";
-import { images } from "./data";
 import { imageClean } from './../../../../../helpers/imageClean';
 
 export default function ProductGallery({ singleProduct }) {

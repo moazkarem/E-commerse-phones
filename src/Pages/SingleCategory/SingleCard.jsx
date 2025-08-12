@@ -1,5 +1,4 @@
 import React from "react";
-import img1 from "../../../public/images/sony1000xm4-2.png";
 import { Link } from "react-router-dom";
 import { LiaStarSolid } from "react-icons/lia";
 import { imageClean } from './../../helpers/imageClean';

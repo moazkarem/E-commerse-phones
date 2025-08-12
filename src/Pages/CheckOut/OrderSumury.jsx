@@ -1,16 +1,17 @@
-import { images } from "./data";
 
 import Loading from "../../Components/Loading/Loading";
+import { imageClean } from "../../helpers/imageClean";
 const OrderSumury = ({ getCart, loading }) => {
   const productsCart = getCart?.data?.products;
+  console.log(productsCart , 'proooca')
   const renderProductCart = productsCart?.map(
-    ({ _id, product, count, price }) => (
+    ({ _id, product, count, price  }) => (
       <div
         key={_id}
         className="flex justify-between items-center gap-2 cursor-pointer mb-4"
       >
         <img
-          src={images[Math.floor(Math.random() * images.length)]}
+          src={imageClean(product?.imageCover)}
           alt="product image"
           className="w-24 h-24 rounded-[12px] p-2 object-cover border "
         />

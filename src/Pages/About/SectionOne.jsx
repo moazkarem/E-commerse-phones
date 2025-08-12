@@ -1,5 +1,4 @@
 import React from "react";
-import fallImg from "../../../public/images/brands/img2.png";
 
 const SectionOne = ({ aboutSections }) => {
   console.log(aboutSections, "section one ");
@@ -17,7 +16,7 @@ const SectionOne = ({ aboutSections }) => {
               src={
                 `${
                   aboutSections?.missionImg?.url
-                }` || fallImg
+                }` 
               }
               alt="Product"
               className="w-full h-auto rounded-[12px] object-contain"
