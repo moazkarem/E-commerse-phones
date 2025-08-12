@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
 import BreadCrumb from "../../Components/BreadCrump/BreadCrump";
-import Errormsg from "../../components/Error/ErrorMsg";
+import Errormsg from "./../../components/Error/ErrorMsg";
 import toast from "react-hot-toast";
 import Seo from "../../Components/Seo/Seo";
 import { useDispatch } from "react-redux";
