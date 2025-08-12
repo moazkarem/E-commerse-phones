@@ -107,7 +107,7 @@ const OurProducts = ({ headSecTitle }) => {
                   spaceBetween={30}
                   breakpoints={{
                     0: {
-                      slidesPerView: 1,
+                      slidesPerView: 1.2,
                       spaceBetween: 15,
                     },
                     550: {
