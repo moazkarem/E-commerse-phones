@@ -9,7 +9,7 @@ const MyProfile = () => {
   return (
     <div className="w-full flex flex-col justify-center items-center gap-5">
       <h3 className="capitalize text-[18px] text-[#fff] font-light text-center">
-        Hello <b className="text-[#ed1d24] font-light">{userName}</b>, your
+        Hello <b className="text-[#ed1d24] font-light">{userName} </b> , your
         account dashboard lets you check your recent orders, update your account
         information, and change your password whenever you need.
       </h3>
