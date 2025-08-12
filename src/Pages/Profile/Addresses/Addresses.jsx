@@ -72,7 +72,7 @@ const Addresses = () => {
         {data?.data?.map((address) => (
           <div
             key={address._id}
-            className="col-span-12 flex flex-col gap-5 bg-[#161819] p-4 border border-[#6c757d] rounded-md"
+            className="col-span-12 flex flex-col gap-5 bg-[#111] p-4 border border-[#6c757d] rounded-md"
           >
             <div className="flex justify-between items-center gap-3">
               <div className="text-[18px] flex gap-2">

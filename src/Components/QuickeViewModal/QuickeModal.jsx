@@ -7,7 +7,7 @@ const QuickeModal = ({ product }) => {
     
       <QuickeViewModal id="Quicke_view" title="" >
         <div className="w-full flex flex-col lg:flex-row product-summary items-center h-max gap-6">
-          <ProductGallery />
+          <ProductGallery product={product}/>
           <ProductInfo product={product} />
         </div>
       </QuickeViewModal>

@@ -38,7 +38,7 @@ const ContactUs = () => {
               {...register("message", {
                 required: "Message is required",
               })}
-              className="min-h-[150px] w-full px-3 md:px-4 pl-10 md:pl-12 py-3 rounded-[8px] bg-[#222] text-white outline-none border border-[#444] text-[14px] md:text-[16px]"
+              className="min-h-[150px] w-full px-3 md:px-4 pl-10 md:pl-12 py-3 rounded-[8px] bg-[#111] text-white outline-none border border-[#444] text-[14px] md:text-[16px]"
             />
             {errors.message && (
               <Errormsg
@@ -58,7 +58,7 @@ const ContactUs = () => {
             type={type}
             placeholder={placeholder}
             {...register(name, { required: `${label} is required` })}
-            className="w-full h-[45px] md:h-[55px] px-3 md:px-4 pl-10 md:pl-12 rounded-[8px] bg-[#222] text-white outline-none border border-[#444] text-[14px] md:text-[16px]"
+            className="w-full h-[45px] md:h-[55px] px-3 md:px-4 pl-10 md:pl-12 rounded-[8px] bg-[#111] text-white outline-none border border-[#444] text-[14px] md:text-[16px]"
           />
           {errors[name] && (
             <Errormsg msg={errors[name].message} className="text-[#ed1d24]" />

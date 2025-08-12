@@ -60,8 +60,8 @@ const Navbar = () => {
   return (
     <div>
       <div
-        className={`navbar ${scrollY > 40 ? "bg-[#111]" : "bg-transparent"} 
-        transition-all duration-500 fixed top-0 w-full z-50 h-24`}
+        className={`navbar ${scrollY > 40 ? "bg-[#111] shadow-sm shadow-[#574d4d28]" : "bg-transparent"} 
+        transition-all duration-500 fixed top-0 w-full z-50 h-24 `}
       >
         <div className="container mx-auto px-4 flex justify-between items-center sm:flex">
           <div className="flex items-center justify-start gap-5">
@@ -94,8 +94,8 @@ const Navbar = () => {
                 { id: "navBrands", to: "/brands" },
                 { id: "navAbout", to: "/about" },
                 { id: "navContact", to: "/contact" },
-              ].map((item) => (
-                <div key={item}>
+              ].map((item , idx) => (
+                <div key={idx}>
                   {item === "Home" ? (
                     <li className="text-lg p-2">
                       <NavLink

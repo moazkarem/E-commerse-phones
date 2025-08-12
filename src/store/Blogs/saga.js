@@ -24,7 +24,7 @@ function* watchBlogsSaga() {
 //=============== SINGLE BLOG
 
 function* getSingleBlogSage({ payload }) {
-
+  console.log(payload ,'saaaa')
   try {
     const blogData = yield call(getSingleBlogApi, payload);
     yield put(getSingleBlogSuccess(blogData));

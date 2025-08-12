@@ -36,7 +36,7 @@ const Comments = ({ blogData }) => {
               key={idx}
               className="bg-[#161819]  p-4 md:p-5 rounded-[10px] border border-[#2b2b2b] text-white relative"
             >
-              {name === userName ? (
+              {/* {name === userName ? (
                 <button
                   onClick={() => removeCommentHandeler(idx)}
                   className="absolute top-3 right-3 text-[#888] hover:text-[#ed1d24] transition duration-300"
@@ -45,7 +45,7 @@ const Comments = ({ blogData }) => {
                 </button>
               ) : (
                 ""
-              )}
+              )} */}
 
               <h4 className="capitalize  text-[16px] font-medium text-[#ed1d24] mb-2">
                 {name}

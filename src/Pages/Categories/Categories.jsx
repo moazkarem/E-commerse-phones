@@ -16,7 +16,7 @@ const Categories = () => {
     (state) => state.categoriesRed
   );
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 10;
+  const limit = 12;
 
   useEffect(() => {
     dispatch(getAllCategories(limit, currentPage));

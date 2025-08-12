@@ -15,15 +15,17 @@ import Blogs from "../Blogs/Blogs";
 import LatestBlogs from "../Home/Blogs/Blogs";
 const SingleBlog = () => {
   const { id } = useParams();
-  const { loading, singleBlog } = useSelector(
+  const { loading, singleBlog , blogsData } = useSelector(
     (state) => state.blogsRed
   );
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(getSingleBlog(id));
-    // dispatch(getBlogsData());
+    dispatch(getBlogsData());
   }, [dispatch , id]);
+  console.log(singleBlog)
 
   //============================HANDEL LOADING ===========
   if (loading)
@@ -41,15 +43,15 @@ const SingleBlog = () => {
       <div className="bg-[#111] text-white py-8 md:py-12 mb-20 md:mb-40 px-8 box-border">
         <div className="max-w-[1200px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-8 box-border">
           <div className="lg:col-span-8 col-span-12 w-full box-border">
-            {/* <BlogContent blogData={singleBlog?.data} />
+            <BlogContent blogData={singleBlog?.data} />
             <Comments blogData={singleBlog?.data} />
-            <ContactForm blogData={singleBlog?.data} /> */}
+            <ContactForm blogData={singleBlog?.data} />
           </div>
-          {/* <RecentlyBlogs blogs={blogsData?.data} /> */}
+          <RecentlyBlogs blogs={blogsData?.data} />
         </div>
       </div>
 
-      <LatestBlogs secTitle={"Related Blogs"} />
+      {/* <LatestBlogs secTitle={"Related Blogs"} /> */}
     </div>
   );
 };

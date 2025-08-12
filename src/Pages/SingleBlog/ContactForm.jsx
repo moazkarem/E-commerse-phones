@@ -47,8 +47,8 @@ const ContactForm = ({ blogData }) => {
         </div>
 
         <div className="col-span-12">
-          <button className="w-[180px] h-[55px] bg-[#ff0000cc] text-white rounded-[10px] transition-all duration-300 hover:opacity-90">
-            Send Message
+          <button className="w-[180px] h-[40px] bg-[#ff0000cc] text-white rounded-[8px] transition-all duration-300 hover:opacity-90">
+            Comment
           </button>
         </div>
       </form>

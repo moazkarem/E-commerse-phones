@@ -26,9 +26,10 @@ const Footer = () => {
       <div className="bg-[#000] bg-fixed relative  py-20 flex justify-between flex-wrap max-sm:px-[1rem] sm:px-[2.5rem] md:px-[3rem] lg:px-[4rem] xl:px-[12rem]">
         <div className="relative z-10 max-sm:w-10/12 sm:w-5/12 md:w-5/12 lg:w-5/12 xl:w-3/12 max-sm:flex max-sm:justify-center mt-5">
           <div className="space-y-5">
-            <h2 
-            style={{letterSpacing:'5px'}}
-            className="text-[#ed1d24] text-4xl font-bold capitalize mb-0">
+            <h2
+              style={{ letterSpacing: "5px" }}
+              className="text-[#ed1d24] text-4xl font-bold capitalize mb-0"
+            >
               Z-LINE
             </h2>
             <p className="text-gray-300 text-base capitalize">
@@ -98,7 +99,9 @@ const Footer = () => {
                       key={idx}
                       className=" hover:text-[#ff0000cc] hover:translate-x-3 duration-300 cursor-pointer"
                     >
-                      {item?.name}
+                      <Link to={"/categories"}>
+                        {item?.name?.slice(0, item?.name?.indexOf(" "))}
+                      </Link>
                     </li>
                   ))}
               </ul>
