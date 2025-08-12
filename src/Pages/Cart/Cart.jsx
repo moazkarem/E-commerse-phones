@@ -27,7 +27,7 @@ export default function Cart() {
       <div>
         <BreadCrump base={"Home"} page={"Cart"} />
       </div>
-      <div className=" flex flex-col lg:flex-row gap-8 ">
+      <div className=" flex flex-col lg:flex-row gap-8 pb-40 max-lg:pb-20">
         <Seo currentPage={"Cart"} />
         {productsCart ? (
           <>
