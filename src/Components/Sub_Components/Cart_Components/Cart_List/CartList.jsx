@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import CartItem from "./Cart_Item/CartItem";
-import img1 from "../../../../../public/images/sonyXb400-1.png";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCartAction, getCartAction } from "../../../../store/cart/actions";

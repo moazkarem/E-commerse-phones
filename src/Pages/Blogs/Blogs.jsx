@@ -1,5 +1,4 @@
 "use client";
-import img1 from "../../../public/images/sony1000xm4-4.png";
 import BreadCrumb from "../../Components/BreadCrump/BreadCrump";
 import { FiArrowRight } from "react-icons/fi";
 import { FaUser, FaCalendarAlt } from "react-icons/fa";
@@ -32,7 +31,7 @@ const Blogs = () => {
         className="bg-[#111] rounded-[10px] p-5 flex flex-col gap-4 h-full w-full transition-all duration-500 ease-in-out hover:-translate-y-2  cursor-pointer"
       >
         <img
-          src={imageClean(image?.url) || img1}
+          src={imageClean(image?.url) }
           alt={title}
           className="w-full h-[180px]  object-contain rounded-[10px] border border-1 border-[#a9afc355]  px-2 py-3"
         />

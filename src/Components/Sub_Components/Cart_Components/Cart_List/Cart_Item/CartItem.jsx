@@ -1,18 +1,15 @@
 import { Link } from "react-router-dom";
-import QuantityButton from "../../../Buttons/Quantity_Button/QuantityButton";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { memo } from "react";
-import PropTypes from "prop-types";
-import { images } from "./data";
 import { useDispatch } from "react-redux";
 import {
   delCartAction,
   updateCartAction,
 } from "./../../../../../store/cart/actions";
 import { useState } from "react";
+import { imageClean } from "../../../../../helpers/imageClean";
 
 function CartItem({ item }) {
-  images[Math.floor(Math.random() * images.length)];
 
   const dispatch = useDispatch();
 
@@ -32,7 +29,7 @@ function CartItem({ item }) {
           className="w-2/5 md:w-1/5 "
         >
           <img
-            src={images[Math.floor(Math.random() * images.length)]}
+            src={imageClean(item?.product?.imageCover)}
             alt={item?.product?.brand?.name}
           />
         </Link>

@@ -1,5 +1,4 @@
 import React from "react";
-import img3 from "../../../public/images/brands/bg-about.jpg";
 import { useNavigate } from "react-router-dom";
 const SectionTwo = ({ aboutSections }) => {
   const navigate = useNavigate();

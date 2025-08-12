@@ -1,5 +1,4 @@
 import React from "react";
-import fallImg from "../../../public/images/brands/img2.png";
 const SectionThree = ({ aboutSections }) => {
   return (
     <>
@@ -27,7 +26,7 @@ const SectionThree = ({ aboutSections }) => {
           <div className="flex justify-center">
             <div className="w-full max-w-[300px]">
               <img
-                src={`${aboutSections?.vissionImg?.url}` || fallImg}
+                src={`${aboutSections?.vissionImg?.url}`}
                 alt="Product"
                 className="w-full h-auto rounded-[12px] object-contain"
               />

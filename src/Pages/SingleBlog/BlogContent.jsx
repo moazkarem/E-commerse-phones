@@ -1,6 +1,5 @@
 import React from "react";
 import { FaUser, FaCalendarAlt, FaSearch } from "react-icons/fa";
-import img1 from "../../../public/images/brands/blogbg.jpg";
 import { formatDate } from "../../helpers/validDate";
 const BlogContent = ({ blogData }) => {
 

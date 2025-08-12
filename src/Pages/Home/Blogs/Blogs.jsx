@@ -7,7 +7,6 @@ import { imageClean } from "../../../helpers/imageClean";
 import { Autoplay, Navigation } from "swiper/modules";
 import HeadSec from "../../../Components/HeadSec/HeadSec";
 import { FaUser, FaCalendarAlt } from "react-icons/fa";
-import { blogs } from "../../../data/blogs";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { useLocale } from "../../../i18n/LocaleProvider";
