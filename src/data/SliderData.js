@@ -3,7 +3,7 @@ const SliderData = [
     id: 7,
     tag: "hero-product",
     tagline: "Give your favourite music a boost.",
-    heroImage: "images/sonyXb910n-1.png",
+    heroImage: "images/slide1.png",
     images: [
       "images/sonyXb910n-1.png",
       "images/sonyXb910n-2.png",
@@ -26,6 +26,7 @@ const SliderData = [
   },
   {
     id: 6,
+    heroImage: "images/slide2.png",
     images: [
       "images/jbl200bt-1.png",
       "images/jbl200bt-2.png",
@@ -50,7 +51,7 @@ const SliderData = [
     id: 3,
     tag: "hero-product",
     tagline: "Featherweight for comfort all-day.",
-    heroImage: "images/boat131-3.png",
+    heroImage: "images/slide3.png",
     images: [
       "images/boat131-1.png",
       "images/boat131-2.png",
