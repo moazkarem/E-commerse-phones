@@ -78,12 +78,12 @@ const Slider = () => {
   ));
 
   //============================HANDEL LOADING ===========
-  if (loading)
-    return (
-      <div className="w-full h-[100vh] flex justify-center items-center">
-        <Loading />
-      </div>
-    );
+  // if (loading)
+  //   return (
+  //     <div className="w-full h-[100vh] flex justify-center items-center">
+  //       <Loading />
+  //     </div>
+  //   );
 
   //============================START JSX ===========
 
