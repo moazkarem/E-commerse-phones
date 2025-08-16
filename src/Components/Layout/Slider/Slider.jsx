@@ -71,7 +71,7 @@ const Slider = () => {
           </Link>
         </div>
         <div className="slider-image w-full  md:w-1/2  m-auto h-2/5 md:h-full">
-          <img src={item.images[0]} alt={item.brand} />
+          <img src={item.heroImage} alt={item.brand} />
         </div>
       </div>
     </SwiperSlide>
