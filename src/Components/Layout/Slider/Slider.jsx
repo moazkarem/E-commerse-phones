@@ -103,7 +103,8 @@ const Slider = () => {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        {heroData?.data ? renderHero : staticSlider}
+        {/* {heroData?.data ? renderHero : staticSlider} */}
+        {staticSlider}
       </Swiper>
     </div>
   );
